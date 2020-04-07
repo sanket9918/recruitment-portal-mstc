@@ -92,7 +92,7 @@ class Login extends React.Component {
                         href="#pablo"
                         role="tab"
                       >
-                        For Orginsation
+                        For Organisation
                   </NavLink>
                     </NavItem>
                     <NavItem>
