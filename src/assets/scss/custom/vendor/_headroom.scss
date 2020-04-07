@@ -1,0 +1,21 @@
+
+.headroom {
+    will-change: transform;
+    background-color: inherit;
+    @include transition($transition-base);
+}
+.headroom--pinned {
+	@extend .position-fixed;
+    transform: translateY(0%);
+}
+.headroom--unpinned {
+	@extend .position-fixed;
+    transform: translateY(-100%);
+}
+
+.headroom--not-top {
+	padding-top: .5rem;
+	padding-bottom: .5rem;
+    background-color: #580058 !important;
+    box-shadow: #580058;
+}
