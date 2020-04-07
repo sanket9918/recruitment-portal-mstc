@@ -56,7 +56,7 @@ class Login extends React.Component {
               <Col className="mb-lg-auto" lg="5">
                 <div>
                   <Card className="bg-secondary shadow border-0">
-                    <CardHeader className="pb-1" style={{backgroundColor:"#880078"}}>
+                    <CardHeader className="pb-1" style={{backgroundColor:"rgb(35, 35, 113)"}}>
                       <div className="text-muted text-center mb-3" >
                         <h4 className="text-white">Sign In</h4>
                       </div>
@@ -91,7 +91,7 @@ class Login extends React.Component {
                         </Button>
                       </div> */}
                     </CardHeader>
-                    <CardBody className="px-lg-5 py-lg-5" style={{backgroundColor:"#A04898"}}>
+                    <CardBody className="px-lg-5 py-lg-5" style={{backgroundColor:"rgb(81, 81, 173)"}}>
                       <div className="text-center text-white ">
                         <small>Sign in with credentials</small>
                       </div>

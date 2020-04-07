@@ -105,7 +105,7 @@
     }
 
     .shape-default {
-        background-color: rgb(88, 0, 88);
+        background-color: rgb(10, 10, 75);        //For the purple  bg  ->  rgb(88, 0, 88);
 
          :nth-child(1) {
             background: shapes-default-color("span-1-bg");
@@ -291,7 +291,7 @@
         }
 
         &.shape-default {
-            background-color: rgb(88, 0, 88);
+            background-color: rgb(10, 10, 75) ;
         }
 
         &.shape-light {
