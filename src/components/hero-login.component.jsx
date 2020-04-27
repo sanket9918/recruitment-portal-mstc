@@ -291,7 +291,7 @@ class Login extends React.Component {
                                   <Button
                                     className="my-4"
                                     type="button"
-                                    href="/"
+                                    href="/overview"
                                   >
                                     Sign in
                     </Button>

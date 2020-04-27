@@ -9,6 +9,7 @@ import "../src/assets/vendor/nucleo/css/nucleo.css";
 import "../src/assets/vendor/font-awesome/css/font-awesome.min.css";
 import "../src/assets/scss/argon-design-system-react.scss";
 import Finish from './components/end_exam.component';
+import CandProfile from './components/user_overview.component';
 
 
 ReactDOM.render(
@@ -16,6 +17,7 @@ ReactDOM.render(
     <Switch>
       <Route path='/' exact render={props => <App />} />
       <Route path='/finish' exact render={props => <Finish />} />
+      <Route path='/overview' exact render={props => <CandProfile />} />
     </Switch>
   </BrowserRouter>
   ,
