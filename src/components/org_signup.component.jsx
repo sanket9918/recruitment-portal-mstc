@@ -152,7 +152,7 @@ class OrgSignUp extends Component{
                                         src={require("../assets/img/delivery-4.png")}
 
                                     />
-                                    <h1 className="display-4  text-white">Provide necessary details and we will get back to you shortly.</h1>
+                                    <h1 className="display-4  text-white" style={{fontWeight:"300"}}>Provide necessary details and we will get back to you shortly.</h1>
                                 </div>
                                 </Col>
                             
