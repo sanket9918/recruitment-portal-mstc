@@ -8,7 +8,10 @@ class OrgSignUp extends Component{
         super(props)
         this.state = {
             nameFocused: '',
-            emailFocused:''
+            emailFocused: '',
+            phone: '',
+            number: '',
+            no:''
         }
     }
 
@@ -87,6 +90,8 @@ class OrgSignUp extends Component{
                                                 placeholder="Mobile No."
                                                 type="text"
                                                 name="phone"
+                                                onFocus={e => this.setState({ phone: true })}
+                                                onBlur={e => this.setState({ phone: false })}
                                                 
                                             />
                                         </InputGroup>
@@ -106,6 +111,8 @@ class OrgSignUp extends Component{
                                                 placeholder="No. of expected candidates"
                                                 type="text"
                                                 name="no_candi"
+                                                onFocus={e => this.setState({ no: true })}
+                                                onBlur={e => this.setState({ no: false })}
 
                                             />
                                         </InputGroup>
