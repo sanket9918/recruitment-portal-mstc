@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
 import { Container, Row, Col} from 'reactstrap'
-import footimage from '../assets/img/brand/white-horizontal.svg'
+import footimage from '../assets/img/brand/white.svg'
 class Footer extends Component {
   render() {
     return (
       <div >
         <footer className=" footer">
           <Container>
-           
-            <center>              
-              <Col md="6">
+           <div style={{margin:'auto',textAlign:"center"}}>
+              <Col lg="12">
+                <div className="copyright text-white">
+                  <p>Proudly managed and hosted by </p>
+                </div>
               <img
                 alt="..."
                 className="img-fluid"
                 src={footimage}
-                style={{ height: "200px", paddingBottom: "1em" }}
+                style={{ height: "10em", paddingBottom: "1em" }}
               />
                 <div className=" copyright text-white">
                   © {new Date().getFullYear()}{" "}
@@ -27,7 +29,7 @@ class Footer extends Component {
                   <p>Designed by <a href="https://www.linkedin.com/in/sanket-mohapatra-b10661176/"> Sanket Mohapatra</a></p>
                 </div>
               </Col>
-            </center>
+            </div>
             <Row className=" align-items-center justify-content-md-between">
 
             </Row>

@@ -8,13 +8,13 @@ class CandProfile extends Component{
         return (
             <>
                 <Navbar1 />
-                <section className="section section-shaped">
-                    <div className="shape shape-style-1 shape-default">
+                    <section className="section section-shaped">
+                        <div className="shape shape-style-1 shape-default">
 
-                    </div>
-                    <Container className="py-md">
-                        <Row className="justify-content-between align-items-center">
-                            <Col className="mb-lg-auto" lg="6">
+                        </div>
+                        <Container className="py-md">
+                            <Row className="justify-content-between align-items-center">
+                                <Col className="mb-lg-auto" lg="6">
                                 <div style={{ margin: "auto", textAlign: "center" }}>
                                 <h2 className="display-3 text-white">
                                     Candidate details
@@ -38,10 +38,28 @@ class CandProfile extends Component{
                                     <h2 className="display-3 text-white">
                                         Exam Instructions
                                 </h2>
-                                    <p className="text-white" >
+                                </div>
+                                <div style={{ margin: "auto", textAlign: "left" }}>
+                                    <ul>
+                                        <li>
+                                            <p className="text-white" >
                                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint dignissimos magnam reiciendis ipsa labore architecto eveniet. Commodi tempore officiis inventore consequatur, amet nobis eligendi, alias quod assumenda, dolores iusto laborum?
                                          
                                     </p>
+                                        </li>
+                                        <li>
+                                            <p className="text-white" >
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint dignissimos magnam reiciendis ipsa labore architecto eveniet. Commodi tempore officiis inventore consequatur, amet nobis eligendi, alias quod assumenda, dolores iusto laborum?
+                                         
+                                    </p>
+                                        </li><li>
+                                            <p className="text-white" >
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint dignissimos magnam reiciendis ipsa labore architecto eveniet. Commodi tempore officiis inventore consequatur, amet nobis eligendi, alias quod assumenda, dolores iusto laborum?
+                                         
+                                    </p>
+                                        </li>
+                                    </ul>
+                                    
 
                                 </div>
                                 <div style={{ margin: "auto", textAlign: "right" }}>
