@@ -13,11 +13,11 @@ import CandProfile from './components/user_overview.component';
 
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename={`${process.env.PUBLIC_URL}/`} >
     <Switch>
-      <Route path='/' exact render={props => <App />} />
-      <Route path='/finish' exact render={props => <Finish />} />
-      <Route path='/overview' exact render={props => <CandProfile />} />
+      <Route path='/' exact render={props => <App {...props} />} />
+      <Route path='/finish' exact render={props => <Finish {...props} />} />
+      <Route path='/overview' exact render={props => <CandProfile {...props} />} />
     </Switch>
   </BrowserRouter>
   ,
