@@ -46,6 +46,13 @@ class Login extends React.Component {
           <Container className="py-md">
             <Row className="row-grid justify-content-between align-items-center">
               <Col lg="6">
+                <img
+                  alt="..."
+                  className="img-fluid"
+                  style={{ paddingBottom: "1em", height: "15em" }}
+                  src={require("../assets/img/selection.svg")}
+
+                />
                 <h1 className="display-3 text-white">
                   Recruitment Made Easy{" "}
                 </h1>
@@ -190,25 +197,21 @@ class Login extends React.Component {
                                     />
                                   </InputGroup>
                                 </FormGroup>
-                                <div className="custom-control custom-control-alternative custom-checkbox">
-                                  <input
-                                    className="custom-control-input"
-                                    id="customCheckLogin2"
-                                    type="checkbox"
-                                  />
-                                  <label
-                                    className="custom-control-label"
-                                    htmlFor="customCheckLogin2"
-                                  >
-                                    <span className="text-white">Remember me</span>
-                                  </label>
-                                </div>
+                                
                                 <div className="text-center">
                                   <Button
                                     className="my-4"
                                     type="button"
+                                    href="/"
                                   >
                                     Sign in
+                    </Button>
+                                  <Button
+                                    className="my-4"
+                                    type="button"
+                                    href="/"
+                                  >
+                                    Sign Up
                     </Button>
                                 </div>
                               </Form>
@@ -283,23 +286,12 @@ class Login extends React.Component {
                                     />
                                   </InputGroup>
                                 </FormGroup>
-                                <div className="custom-control custom-control-alternative custom-checkbox">
-                                  <input
-                                    className="custom-control-input"
-                                    id="customCheckLogin2"
-                                    type="checkbox"
-                                  />
-                                  <label
-                                    className="custom-control-label"
-                                    htmlFor="customCheckLogin2"
-                                  >
-                                    <span className="text-white">Remember me</span>
-                                  </label>
-                                </div>
+                                
                                 <div className="text-center">
                                   <Button
                                     className="my-4"
                                     type="button"
+                                    href="/"
                                   >
                                     Sign in
                     </Button>
@@ -308,19 +300,6 @@ class Login extends React.Component {
                             </CardBody>
                           </Card>
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                       </TabPane>
                       <TabPane tabId="plainTabs3">
@@ -387,23 +366,12 @@ class Login extends React.Component {
                                     />
                                   </InputGroup>
                                 </FormGroup>
-                                <div className="custom-control custom-control-alternative custom-checkbox">
-                                  <input
-                                    className="custom-control-input"
-                                    id="customCheckLogin2"
-                                    type="checkbox"
-                                  />
-                                  <label
-                                    className="custom-control-label"
-                                    htmlFor="customCheckLogin2"
-                                  >
-                                    <span className="text-white">Remember me</span>
-                                  </label>
-                                </div>
+                                
                                 <div className="text-center">
                                   <Button
                                     className="my-4"
                                     type="button"
+                                    href="/"
                                   >
                                     Sign in
                     </Button>

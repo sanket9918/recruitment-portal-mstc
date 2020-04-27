@@ -2,7 +2,7 @@
   "name": "recruitment-portal",
   "author": "Sanket Mohapatra",
   "organisation": "Student Technical Community, VIT Vellore",
-  "homepage":"https://sanket9918.github.io/recruitment-portal-mstc/",
+  "homepage": "https://sanket9918.github.io/recruitment-portal-mstc/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -14,9 +14,9 @@
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "reactstrap": "^8.4.1"
-    
   },
   "scripts": {
     "start": "react-scripts start",
