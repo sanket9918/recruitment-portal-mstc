@@ -115,7 +115,7 @@ class Login extends React.Component {
                         For Candidates
                   </NavLink>
                     </NavItem>
-                    <NavItem>
+                    {/* <NavItem>
                       <NavLink
                         aria-selected={this.state.plainTabs === 3}
                         className={classnames("mb-sm-3 mb-md-0", {
@@ -127,7 +127,7 @@ class Login extends React.Component {
                       >
                         For Admins
                   </NavLink>
-                    </NavItem>
+                    </NavItem> */}
                   </Nav>
                 </div>
                 <Card className="shadow">
@@ -306,7 +306,7 @@ class Login extends React.Component {
 
 
 
-                        <div>
+                        {/* <div>
                           <Card className="bg-secondary shadow border-0">
                             <CardHeader className="pb-1" style={{ backgroundColor: "rgb(35, 35, 113)" }}>
                               <div className="text-muted text-center mb-3" >
@@ -379,7 +379,7 @@ class Login extends React.Component {
                               </Form>
                             </CardBody>
                           </Card>
-                        </div>
+                        </div> */}
 
 
 
