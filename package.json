@@ -2,7 +2,6 @@
   "name": "recruitment-portal",
   "author": "Sanket Mohapatra",
   "organisation": "Student Technical Community, VIT Vellore",
-  "homepage": "https://sanket9918.github.io/recruitment-portal-mstc/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
