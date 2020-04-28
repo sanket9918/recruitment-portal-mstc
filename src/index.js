@@ -11,6 +11,7 @@ import "../src/assets/scss/argon-design-system-react.scss";
 import Finish from './components/end_exam.component';
 import CandProfile from './components/user_overview.component';
 import OrgSignUp from './components/org_signup.component';
+import UserSignUp from './components/candidate_signup.component';
 
 
 ReactDOM.render(
@@ -19,7 +20,9 @@ ReactDOM.render(
       <Route path='/' exact render={props => <App {...props} />} />
       <Route path='/finish' exact render={props => <Finish {...props} />} />
       <Route path='/overview' exact render={props => <CandProfile {...props} />} />
-      <Route path='/orgsignup' exact render={props => <OrgSignUp {...props}/>} />
+      <Route path='/orgsignup' exact render={props => <OrgSignUp {...props} />} />
+      <Route path='/candsignup' exact render={props => <UserSignUp {...props}/>} />
+
 
     </Switch>
   </BrowserRouter>

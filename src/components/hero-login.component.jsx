@@ -295,6 +295,13 @@ class Login extends React.Component {
                                   >
                                     Sign in
                     </Button>
+                                  <Button
+                                    className="my-4"
+                                    type="button"
+                                    href="/candsignup"
+                                  >
+                                    Sign Up
+                    </Button>
                                 </div>
                               </Form>
                             </CardBody>
