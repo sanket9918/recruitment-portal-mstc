@@ -5,7 +5,7 @@ import { Container, Row, Col, Button } from 'reactstrap'
 
 function Finish() {
     return (
-        <>
+        <div>
             <Navbar1 />
 
 
@@ -51,7 +51,7 @@ function Finish() {
 
             <Footer />
             
-        </>
+        </div>
     );
 }
 

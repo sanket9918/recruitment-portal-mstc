@@ -22,7 +22,7 @@ import {
       }
       render(){
           return(
-              <>
+              <div>
                   <header className="header-global">
           <Navbar
             className="navbar-main navbar-transparent navbar-light headroom"
@@ -110,7 +110,7 @@ import {
             </Container>
           </Navbar>
         </header>
-              </>
+              </div>
 
           )
       }

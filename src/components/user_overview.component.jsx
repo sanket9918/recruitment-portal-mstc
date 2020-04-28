@@ -6,7 +6,7 @@ class CandProfile extends Component{
     render()
     {
         return (
-            <>
+            <div>
                 <Navbar1 />
                     <section className="section section-shaped">
                         <div className="shape shape-style-1 shape-default">
@@ -94,7 +94,7 @@ class CandProfile extends Component{
 
                 <Footer />
 
-            </>
+            </div>
             
         )
     }

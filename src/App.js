@@ -7,11 +7,11 @@ import Footer from './components/footer.component';
 
 function App() {
   return (
-    <>
+    <div>
     <Navbar1 />
     <Login />
     <Footer />
-    </>
+    </div>
   );
 }
 
