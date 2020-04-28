@@ -90,7 +90,23 @@ import {
                     <UncontrolledTooltip delay={0} target="tooltip356693867">
                       Follow us on Instagram
                     </UncontrolledTooltip>
-                  </NavItem>
+                        </NavItem>
+                        <NavItem>
+                          <NavLink
+                            className="nav-link-icon"
+                            href="https://www.linkedin.com/company/micvitvellore"
+                            id="tooltip356693867"
+                            target="_blank"
+                          >
+                            <i className="fa fa-linkedin" />
+                            <span className="nav-link-inner--text d-lg-none ml-2">
+                              LinkedIn
+                      </span>
+                          </NavLink>
+                          <UncontrolledTooltip delay={0} target="tooltip356693867">
+                            Follow us on LinkedIn
+                    </UncontrolledTooltip>
+                        </NavItem>
                   
                   {/* <NavItem className="d-none d-lg-block ml-lg-4">
                     <Button
