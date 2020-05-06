@@ -3,6 +3,7 @@ import Navbar1 from './navbar.component'
 import Footer from './footer.component'
 import classnames from 'classnames'
 import {Col,Row,Container,Button,FormGroup,InputGroup,Input,InputGroupAddon,InputGroupText } from 'reactstrap'
+import { Link } from 'react-router-dom'
 class OrgSignUp extends Component{
     constructor(props) {
         super(props)
@@ -132,14 +133,13 @@ class OrgSignUp extends Component{
                                     </FormGroup>
                                     <div>
                                         <center>
-                                           
+                                           <Link to='/'>
                                                 <Button
                                                     className="my-4"
                                                     type="button"
-                                                    href="/"
                                                 >
                                                     Sign Up
-                    </Button>
+                    </Button></Link>
                                             
                                         </center>
                                     </div>

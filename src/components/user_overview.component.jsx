@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Navbar1 from './navbar.component'
 import Footer from './footer.component'
 import { Container,Row,Col,Button} from 'reactstrap'
+import { Link} from 'react-router-dom'
 class CandProfile extends Component{
     render()
     {
@@ -78,13 +79,14 @@ class CandProfile extends Component{
                                             type="checkbox"
                                         />
                                     </div>
+                                    <Link to='/exam'>
                                     <Button
                                         className="my-4"
                                         type="button"
-                                        href="/finish"
                                     >
-                                        Proceed
+                                            Proceed
                                     </Button>
+                                    </Link>
                                     
                                 </div>
                             </Col>

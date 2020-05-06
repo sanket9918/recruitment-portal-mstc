@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar1 from './navbar.component'
 import Footer from './footer.component'
 import { Container, Row, Col, Button } from 'reactstrap'
-
+import { Link } from 'react-router-dom'
 function Finish() {
     return (
         <div>
@@ -31,14 +31,14 @@ function Finish() {
                                     We will be reaching out to you as soon as the evaluation is done.
                                      
                                 </p>
-
+                                <Link to='/'>
                                 <Button
                                     className="my-4"
                                     type="button"
-                                    href = "/"
                                 >
-                                    Log Out
+                                        Log Out
                                 </Button>
+                                </Link>
                                 
                             
                             </Col>

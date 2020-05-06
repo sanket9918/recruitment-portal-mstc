@@ -24,7 +24,7 @@ import {
   TabContent,
   TabPane
 } from "reactstrap";
-
+import { Link } from 'react-router-dom'
 class Login extends React.Component {
   state = {
     iconTabs: 1,
@@ -197,22 +197,24 @@ class Login extends React.Component {
                                     />
                                   </InputGroup>
                                 </FormGroup>
+
                                 
-                                <div className="text-center">
-                                  <Button
-                                    className="my-4"
-                                    type="button"
-                                    href="/"
-                                  >
-                                    Sign in
-                    </Button>
-                                  <Button
-                                    className="my-4"
-                                    type="button"
-                                    href="/orgsignup"
-                                  >
-                                    Sign Up
-                    </Button>
+                                 <div className="text-center">
+                                  <Link to='/'>
+                                    <Button
+                                      className="my-4"
+                                      type="button"
+                                    >
+                                      Sign in
+                    </Button> </Link>
+                                  <Link to='/orgsignup'>
+
+                                    <Button
+                                      className="my-4"
+                                      type="button"
+                                    >
+                                      Sign Up
+                    </Button></Link>
                                 </div>
                               </Form>
                             </CardBody>
@@ -286,22 +288,23 @@ class Login extends React.Component {
                                     />
                                   </InputGroup>
                                 </FormGroup>
-                                
+
                                 <div className="text-center">
-                                  <Button
-                                    className="my-4"
-                                    type="button"
-                                    href="/overview"
-                                  >
-                                    Sign in
-                    </Button>
-                                  <Button
-                                    className="my-4"
-                                    type="button"
-                                    href="/candsignup"
-                                  >
-                                    Sign Up
-                    </Button>
+                                  <Link to='/overview'>
+                                    <Button
+                                      className="my-4"
+                                      type="button"
+                                    >
+                                      Sign in
+                    </Button> </Link>
+                                  <Link to='/candsignup'>
+
+                                    <Button
+                                      className="my-4"
+                                      type="button"
+                                    >
+                                      Sign Up
+                    </Button></Link>
                                 </div>
                               </Form>
                             </CardBody>

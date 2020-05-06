@@ -106,21 +106,8 @@ import {
                           <UncontrolledTooltip delay={0} target="tooltip356693867">
                             Follow us on LinkedIn
                     </UncontrolledTooltip>
-                        </NavItem>
+                        </NavItem>                  
                   
-                  {/* <NavItem className="d-none d-lg-block ml-lg-4">
-                    <Button
-                      className="btn-neutral btn-icon"
-                      color="default"
-                      href="#"
-                      target="_blank"
-                    >
-                      
-                      <span className="nav-link-inner--text ml-1">
-                        Explore
-                      </span>
-                    </Button>
-                  </NavItem> */}
                 </Nav>
               </UncontrolledCollapse>
             </Container>
