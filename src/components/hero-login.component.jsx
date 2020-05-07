@@ -99,7 +99,7 @@ class Login extends React.Component {
                         href="#pablo"
                         role="tab"
                       >
-                        For Organisation
+                        For Candidates
                   </NavLink>
                     </NavItem>
                     <NavItem>
@@ -112,7 +112,7 @@ class Login extends React.Component {
                         href="#pablo"
                         role="tab"
                       >
-                        For Candidates
+                        For Organisation
                   </NavLink>
                     </NavItem>
                     {/* <NavItem>
@@ -137,6 +137,97 @@ class Login extends React.Component {
 
 
                         {/* The login form */}
+                        <div>
+                          <Card className="bg-secondary shadow border-0">
+                            <CardHeader className="pb-1" style={{ backgroundColor: "rgb(35, 35, 113)" }}>
+                              <div className="text-muted text-center mb-3" >
+                                <h4 className="text-white">Sign In with Candidate ID</h4>
+                              </div>
+
+                            </CardHeader>
+                            <CardBody className="px-lg-5 py-lg-5" style={{ backgroundColor: "rgb(81, 81, 173)" }}>
+                              <div className="text-center text-white ">
+                                <small>Sign in with credentials</small>
+                              </div>
+                              <Form role="form">
+                                <FormGroup
+                                  className={classnames("mb-3", {
+                                    focused: this.state.emailFocused
+                                  })}
+                                >
+                                  <InputGroup className="input-group-alternative">
+                                    <InputGroupAddon addonType="prepend">
+                                      <InputGroupText>
+                                        <i className="ni ni-email-83" />
+                                      </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input
+                                      placeholder="Email"
+                                      type="email"
+                                      onFocus={e =>
+                                        this.setState({ emailFocused: true })
+                                      }
+                                      onBlur={e =>
+                                        this.setState({ emailFocused: false })
+                                      }
+                                    />
+                                  </InputGroup>
+                                </FormGroup>
+                                <FormGroup
+                                  className={classnames({
+                                    focused: this.state.passwordFocused
+                                  })}
+                                >
+                                  <InputGroup className="input-group-alternative">
+                                    <InputGroupAddon addonType="prepend">
+                                      <InputGroupText>
+                                        <i className="ni ni-lock-circle-open" />
+                                      </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input
+                                      placeholder="Password"
+                                      type="password"
+                                      autoComplete="off"
+                                      onFocus={e =>
+                                        this.setState({ passwordFocused: true })
+                                      }
+                                      onBlur={e =>
+                                        this.setState({ passwordFocused: false })
+                                      }
+                                    />
+                                  </InputGroup>
+                                </FormGroup>
+                                <div className="text-center">
+                                  <Link to='/overview'>
+                                    <Button
+                                      className="my-4"
+                                      type="button"
+                                    >
+                                      Sign in
+                    </Button> </Link>
+                                  <Link to='/candsignup'>
+
+                                    <Button
+                                      className="my-4"
+                                      type="button"
+                                    >
+                                      Sign Up
+                    </Button></Link>
+                                </div>
+                                
+                                
+                              </Form>
+                            </CardBody>
+                          </Card>
+                        </div>
+
+
+
+
+                      </TabPane>
+                      <TabPane tabId="plainTabs2">
+
+
                         <div>
                           <Card className="bg-secondary shadow border-0">
                             <CardHeader className="pb-1" style={{ backgroundColor: "rgb(35, 35, 113)" }}>
@@ -199,7 +290,7 @@ class Login extends React.Component {
                                 </FormGroup>
 
                                 
-                                 <div className="text-center">
+                                <div className="text-center">
                                   <Link to='/'>
                                     <Button
                                       className="my-4"
@@ -208,96 +299,6 @@ class Login extends React.Component {
                                       Sign in
                     </Button> </Link>
                                   <Link to='/orgsignup'>
-
-                                    <Button
-                                      className="my-4"
-                                      type="button"
-                                    >
-                                      Sign Up
-                    </Button></Link>
-                                </div>
-                              </Form>
-                            </CardBody>
-                          </Card>
-                        </div>
-
-
-
-
-                      </TabPane>
-                      <TabPane tabId="plainTabs2">
-
-
-                        <div>
-                          <Card className="bg-secondary shadow border-0">
-                            <CardHeader className="pb-1" style={{ backgroundColor: "rgb(35, 35, 113)" }}>
-                              <div className="text-muted text-center mb-3" >
-                                <h4 className="text-white">Sign In with Candidate ID</h4>
-                              </div>
-
-                            </CardHeader>
-                            <CardBody className="px-lg-5 py-lg-5" style={{ backgroundColor: "rgb(81, 81, 173)" }}>
-                              <div className="text-center text-white ">
-                                <small>Sign in with credentials</small>
-                              </div>
-                              <Form role="form">
-                                <FormGroup
-                                  className={classnames("mb-3", {
-                                    focused: this.state.emailFocused
-                                  })}
-                                >
-                                  <InputGroup className="input-group-alternative">
-                                    <InputGroupAddon addonType="prepend">
-                                      <InputGroupText>
-                                        <i className="ni ni-email-83" />
-                                      </InputGroupText>
-                                    </InputGroupAddon>
-                                    <Input
-                                      placeholder="Email"
-                                      type="email"
-                                      onFocus={e =>
-                                        this.setState({ emailFocused: true })
-                                      }
-                                      onBlur={e =>
-                                        this.setState({ emailFocused: false })
-                                      }
-                                    />
-                                  </InputGroup>
-                                </FormGroup>
-                                <FormGroup
-                                  className={classnames({
-                                    focused: this.state.passwordFocused
-                                  })}
-                                >
-                                  <InputGroup className="input-group-alternative">
-                                    <InputGroupAddon addonType="prepend">
-                                      <InputGroupText>
-                                        <i className="ni ni-lock-circle-open" />
-                                      </InputGroupText>
-                                    </InputGroupAddon>
-                                    <Input
-                                      placeholder="Password"
-                                      type="password"
-                                      autoComplete="off"
-                                      onFocus={e =>
-                                        this.setState({ passwordFocused: true })
-                                      }
-                                      onBlur={e =>
-                                        this.setState({ passwordFocused: false })
-                                      }
-                                    />
-                                  </InputGroup>
-                                </FormGroup>
-
-                                <div className="text-center">
-                                  <Link to='/overview'>
-                                    <Button
-                                      className="my-4"
-                                      type="button"
-                                    >
-                                      Sign in
-                    </Button> </Link>
-                                  <Link to='/candsignup'>
 
                                     <Button
                                       className="my-4"

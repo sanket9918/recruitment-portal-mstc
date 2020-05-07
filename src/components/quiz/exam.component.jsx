@@ -29,9 +29,7 @@ class Exam extends Component {
     }
 
     nextQuestionHandler = () => {
-        console.log(this.state.currentQuestion)
         this.setState({
-
             currentQuestion: this.state.currentQuestion + 1,
         }, () => {
             if (this.state.currentQuestion > QuizData.length - 1) {
@@ -42,7 +40,6 @@ class Exam extends Component {
         });
     };
     prevQuestionHandler = () => {
-        console.log(this.state.currentQuestion)
         this.setState({
             currentQuestion: this.state.currentQuestion - 1,
         }, () => {
