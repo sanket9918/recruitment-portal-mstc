@@ -11,6 +11,7 @@ import CandProfile from './components/user_overview.component';
 import OrgSignUp from './components/org_signup.component';
 import UserSignUp from './components/candidate_signup.component';
 import Exam from './components/quiz/exam.component';
+import * as serviceWorker from './serviceWorker';
 
 
 ReactDOM.render(
@@ -29,3 +30,5 @@ ReactDOM.render(
   ,
   document.getElementById('root')
 );
+
+serviceWorker.register()
