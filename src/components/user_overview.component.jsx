@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Navbar1 from './navbar.component'
 import Footer from './footer.component'
-import { Container,Row,Col,Button} from 'reactstrap'
+import { Container,Row,Col,Button,Form} from 'reactstrap'
 import { Link} from 'react-router-dom'
 class CandProfile extends Component{
     constructor(props) {
@@ -71,7 +71,7 @@ class CandProfile extends Component{
                                         Exam Instructions
                                 </h2>
                                 </div>
-                                <div style={{ margin: "auto", textAlign: "left",maxHeight:"30em",overflowY:"auto" }}>
+                                <div style={{ margin: "auto", textAlign: "left",maxHeight:"30em",overflow:"auto" }}>
                                     <ul>
                                         <li>
                                             <p className="text-white" >
@@ -112,32 +112,48 @@ class CandProfile extends Component{
                                     
 
                                 </div>
-                                <div style={{ margin: "auto", textAlign: "right" }}>
-                                    <div className="custom-control custom-control-alternative custom-checkbox">
-                                        
+                                <Form role="form">
+                                <div style={{ marginTop: "1em", textAlign: "right" }}>
+                                    <div className="">
+                                            <input
+                                                className="mycheckbox"
+                                                id="consent"
+                                                value='consent'
+                                                type="checkbox"
+                                                checked={this.state.isChecked}
+                                                onChange={() => {
+                                                    this.setState({
+                                                        isChecked:!this.state.isChecked
+                                                    })
+                                                }}
+                                            />
                                         <label
-                                            className="custom-control-label"
-                                            htmlFor="customCheckLogin2"
+                                            htmlFor="mycheckbox"
                                         >
                                             <span className="text-white">I agree to exam rules and conditions.</span>
                                             
                                         </label>
-                                        <input
-                                            className="custom-control-input"
-                                            id="customCheckLogin2"
-                                            type="checkbox"
-                                        />
+                                        
                                     </div>
-                                    <Link to='/exam'>
-                                    <Button
-                                        className="my-4"
-                                        type="button"
-                                    >
-                                            Proceed
-                                    </Button>
+                                        <Link to='/exam'>
+                                            {this.state.isChecked ? <Button
+                                                className="my-4"
+                                                type="button"
+                                            >
+                                                Proceed
+                                    </Button> :
+                                                <Button
+                                                    className="my-4"
+                                                    type="button"
+                                                    disabled
+                                                >
+                                                    Proceed
+                                    </Button>}
+                                   
                                     </Link>
                                     
-                                </div>
+                                    </div>
+                                </Form>
                             </Col>
                         </Row>
                     </Container>

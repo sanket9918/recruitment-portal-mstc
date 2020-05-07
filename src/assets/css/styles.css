@@ -45,3 +45,15 @@
 	margin-top: 1.5em;
 }
 
+.timer{
+	margin: auto;
+	text-align: right;
+}
+
+@media only screen and (max-width:768px){
+	.timer{
+		margin: auto;
+		text-align: left;
+	}
+}
+

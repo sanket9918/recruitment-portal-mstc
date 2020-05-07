@@ -94,7 +94,12 @@ class Exam extends Component {
 
                     </div>
                     <Container className="py-md">
-                        <Row className="justify-content-between align-items-center">
+                       
+                            <div className="timer">
+                                <span className="text-white" style={{fontWeight:"bold",fontSize:"1.5rem"}}>Timer: 30:00</span>
+                            </div>
+                      
+                        <Row className="justify-content-between align-items-center">    
                             <Col className="mb-lg-auto" lg="6">
                                 <div style={{ margin: 'auto', textAlign: 'center' }}></div>
                                 <h2 className="display-3 text-white">
