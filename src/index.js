@@ -12,6 +12,7 @@ import OrgSignUp from './components/org_signup.component';
 import UserSignUp from './components/candidate_signup.component';
 import Exam from './components/quiz/exam.component';
 import * as serviceWorker from './serviceWorker';
+import OrgManage from './components/OrgManage/Org_manage.component';
 
 
 ReactDOM.render(
@@ -23,6 +24,7 @@ ReactDOM.render(
       <Route path='/orgsignup' exact render={props => <OrgSignUp {...props} />} />
       <Route path='/candsignup' exact render={props => <UserSignUp {...props} />} />
       <Route path='/exam' exact render={props => <Exam {...props} />} />
+      <Route path='/orgmanage' exact render={props => <OrgManage {...props} />} />
 
 
     </Switch>
