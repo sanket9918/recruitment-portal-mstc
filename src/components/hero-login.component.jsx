@@ -291,7 +291,7 @@ class Login extends React.Component {
 
                                 
                                 <div className="text-center">
-                                  <Link to='/'>
+                                  <Link to='/orgmanage'>
                                     <Button
                                       className="my-4"
                                       type="button"
