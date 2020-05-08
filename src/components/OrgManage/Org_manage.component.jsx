@@ -8,12 +8,15 @@ class OrgManage extends Component {
         super(props);
         this.state = {
             orgName: 'VIT Music Club',
-            isOpen : false
+            isOpen : true
         }
 
         
     }
     
+    resize() {
+        this.setState()
+    }
     
 
     render() {
