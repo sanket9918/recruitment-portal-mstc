@@ -32,9 +32,11 @@ class OrgManage extends Component {
             })
         }
         return (
+            <div>
+            <Navbar1 />
             <HashRouter>
                 <div>
-                    <Navbar1 />
+                    
 
                     <section className="section section-shaped">
                         <div className="shape shape-style-1 shape-default">
@@ -66,9 +68,9 @@ class OrgManage extends Component {
                                             <div className="options-holder">
 
 
-                                                <NavLink to='/options'><div className="options" tabIndex="0">Questions</div></NavLink>
-                                                <NavLink to='/participants'><div className="options" tabIndex="0">Participants</div></NavLink>
-                                                <NavLink to='/contact'> <div className="options" tabIndex="0">Contact Us</div></NavLink>
+                                                <NavLink exact to='/options'><div className="options" tabIndex="0">Questions</div></NavLink>
+                                                <NavLink exact to='/participants'><div className="options" tabIndex="0">Participants</div></NavLink>
+                                                <NavLink exact to='/contact'> <div className="options" tabIndex="0">Contact Us</div></NavLink>
                                             </div>
                                         </Collapse>
 
@@ -89,7 +91,8 @@ class OrgManage extends Component {
 
                     <Footer />
                 </div>
-            </HashRouter>
+                </HashRouter>
+            </div>
         )
     }
 }
