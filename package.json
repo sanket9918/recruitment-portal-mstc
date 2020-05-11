@@ -14,6 +14,7 @@
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-notifications": "^1.6.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.1",
     "reactstrap": "^8.4.1"
@@ -23,7 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-sw": "http-server ./build" 
+    "start-sw": "http-server ./build"
   },
   "eslintConfig": {
     "extends": "react-app"
