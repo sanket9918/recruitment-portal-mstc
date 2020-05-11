@@ -11,15 +11,13 @@
     }
 }
 .options-holder {
-    position: absolute;
-    left:10em;
+ 
     margin: 0.5em 0em;
     display: block;
-    background-color: #172b4d;
+    background-color:  #f4f5f7;
   
     border-radius: 20px;
     padding: 2em 1em;
-    z-index: 1000;
 
     &.active {
         background-color: #172b4d;
@@ -30,15 +28,15 @@
     margin: 1em;
     padding: 0.625rem 1.25rem;
     font-weight: 600;
-    color: white;
+    color: black;
 
     &:hover {
-        background-color: white;
-        color: black;
+        background-color: #172b4d;
+        color: white;
     }
     &:focus {
-         background-color: white;
-        color: black;
+         background-color: #172b4d;
+        color: white;
     }
 }
 .manage {
