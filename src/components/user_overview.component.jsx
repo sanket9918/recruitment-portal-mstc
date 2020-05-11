@@ -46,26 +46,30 @@ class CandProfile extends Component{
                                     <b>{this.state.orgName}</b>
                                         
                                    
-                                    <h3 className="text-white" style={{ marginTop: "2em" }}>About Organisation</h3>
-                                    <img
-                                        alt="..."
-                                        className="img-fluid"
-                                        style={{ paddingBottom: "1em", height: "10em" }}
-                                        src={require("../assets/img/happy.svg")}
-
-                                    /><br />
-                                    <span className="text-white">{this.state.orgDesc}</span>
-                                    
-
-
-
+                                 
                                 </div>
 
                                 
                             </Col>
                             
-                            <Col className="mb-lg-auto"  lg="6">
-                                <div style={{ margin: "auto", textAlign: "center" }}>
+                            <Col className="mb-lg-auto" lg="6">
+                                <div style={{ margin: "auto", textAlign: "center", }}>
+
+                                <h3 className="display-3 text-white" >About Organisation</h3>
+                                <img
+                                    alt="..."
+                                    className="img-fluid"
+                                    style={{ paddingBottom: "1em", height: "10em" }}
+                                    src={require("../assets/img/happy.svg")}
+
+                                /><br />
+                                <span className="text-white">{this.state.orgDesc}</span>
+                              </div>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <div style={{ margin: "auto", textAlign: "center", marginTop: "5em"}}>
 
                                     <h2 className="display-3 text-white">
                                         Exam Instructions
@@ -155,7 +159,7 @@ class CandProfile extends Component{
                                     </div>
                                 </Form>
                             </Col>
-                        </Row>
+                            </Row>
                     </Container>
                     </section>
 

@@ -39,7 +39,7 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <section className="section section-lg section-shaped">
+        <section className="section section-lg section-shaped" >
           <div className="shape shape-style-1 shape-default">
 
           </div>

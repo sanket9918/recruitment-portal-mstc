@@ -17,10 +17,10 @@ import {
 } from "reactstrap";
 
 class Navbar1 extends Component {
-  componentDidMount() {
-    // let headroom = new Headroom(document.getElementById("navbar-main"));
-    // headroom.init()
-  }
+  // componentDidMount() {
+  //   // let headroom = new Headroom(document.getElementById("navbar-main"));
+  //   // headroom.init()
+  // }
   render() {
     return (
       <div>
