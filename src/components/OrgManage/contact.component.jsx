@@ -8,8 +8,15 @@ class Contact extends Component {
 
     render() {
         return (
-            <div>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga similique accusantium voluptas, laborum vel perferendis, illum qui blanditiis temporibus minus ex esse atque nisi? Laborum esse fugiat odit quaerat dolores.Contact
+            <div className='center-tag'>
+                <div className='contact-container'>
+                <h2>
+                    We are always at your service .
+                </h2>
+                <span className="contact">
+                    You can reach us at <b>mstcvit@gmail.com </b> for all of your queries
+                </span>
+                </div>
             </div>
         )
     }
