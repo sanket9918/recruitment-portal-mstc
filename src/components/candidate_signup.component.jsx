@@ -13,7 +13,9 @@ class UserSignUp extends Component {
             emailFocused: '',
             block: '',
             phone: '',
-            cl_code: ''
+            cl_code: '',
+            password: '',
+            confirm_password: ''
 
         }
     }
@@ -116,6 +118,51 @@ class UserSignUp extends Component {
                                                 name="block"
                                                 onFocus={e => this.setState({ block: true })}
                                                 onBlur={e => this.setState({ block: false })}
+
+                                            />
+                                        </InputGroup>
+                                    </FormGroup>
+
+
+
+                                    <FormGroup
+
+                                    >
+                                        <InputGroup className="input-group-alternative">
+                                            <InputGroupAddon addonType="prepend">
+                                                <InputGroupText>
+                                                    <i className="fa fa-user-secret" />
+                                                </InputGroupText>
+                                            </InputGroupAddon>
+                                            <Input
+                                                id="block"
+                                                placeholder="Password"
+                                                type="password"
+                                                name="block"
+                                                onFocus={e => this.setState({ password: true })}
+                                                onBlur={e => this.setState({ password: false })}
+
+                                            />
+                                        </InputGroup>
+                                    </FormGroup>
+
+
+                                    <FormGroup
+
+                                    >
+                                        <InputGroup className="input-group-alternative">
+                                            <InputGroupAddon addonType="prepend">
+                                                <InputGroupText>
+                                                    <i className="fa fa-user-secret" />
+                                                </InputGroupText>
+                                            </InputGroupAddon>
+                                            <Input
+                                                id="block"
+                                                placeholder="Confirm Password"
+                                                type="password"
+                                                name="block"
+                                                onFocus={e => this.setState({ confirm_password: true })}
+                                                onBlur={e => this.setState({ confirm_password: false })}
 
                                             />
                                         </InputGroup>
