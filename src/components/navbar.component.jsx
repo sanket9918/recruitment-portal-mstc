@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import Headroom from "headroom.js";
 import { Link } from 'react-router-dom'
 import {
-  // Button,
   UncontrolledCollapse,
   UncontrolledDropdown,
   NavbarBrand,
