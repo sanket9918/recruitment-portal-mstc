@@ -13,7 +13,7 @@ import UserSignUp from './components/candidate_signup.component';
 import Exam from './components/quiz/exam.component';
 import * as serviceWorker from './serviceWorker';
 import OrgManage from './components/OrgManage/Org_manage.component';
-
+import Error from './components/error.component'
 
 ReactDOM.render(
   <BrowserRouter basename={`${process.env.PUBLIC_URL}/`} >
@@ -25,7 +25,7 @@ ReactDOM.render(
       <Route path='/candsignup' exact render={props => <UserSignUp {...props} />} />
       <Route path='/exam' exact render={props => <Exam {...props} />} />
       <Route path='/orgmanage' exact render={props => <OrgManage {...props} />} />
-
+      <Route component={Error} />
 
     </Switch>
   </BrowserRouter>
