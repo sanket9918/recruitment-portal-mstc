@@ -30,7 +30,7 @@ class Error extends Component {
 
                                     />
                                     <h1 className="display-3 text-white">
-                                        Oops, something ran wrong!
+                                        Oops, something went wrong!
                                 </h1>
                                     <p className="lead text-white">
                                         Either the page you requested is not available or you are not authorised for access.
