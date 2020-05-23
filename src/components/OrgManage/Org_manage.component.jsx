@@ -8,6 +8,7 @@ import { Container, Col, Row, Button, Collapse, UncontrolledDropdown, DropdownTo
 import { HashRouter, NavLink, Route, Link } from 'react-router-dom'
 import '../../assets/scss/org_sign.scss'
 import QuestionHolder from './questions/taskForm';
+import App from '../../App';
 
 
 class OrgManage extends Component {
@@ -25,6 +26,10 @@ class OrgManage extends Component {
         this.setState()
     }
 
+    onLogout() {
+        console.log("Token deleted")
+        localStorage.removeItem('The token')
+    }
 
     render() {
         const toggle = () => {
@@ -35,27 +40,26 @@ class OrgManage extends Component {
         return (
             <div>
                 <Navbar1 />
-                <HashRouter>
-
-                    <div>
 
 
-                        <section className="section section-shaped">
-                            <div className="shape shape-style-1 shape-default">
-
-                            </div>
-                            <Container className="py-md">
+                <div>
 
 
+                    <section className="section section-shaped">
+                        <div className="shape shape-style-1 shape-default">
 
+                        </div>
+                        <Container className="py-md">
 
-                                <Row className="justify-content-between align-items-center">
-                                    <Col className="mb-lg-auto" lg="6">
-                                        <div style={{ margin: "auto", textAlign: "center" }}>
-                                            <span className="text-white" style={{ fontSize: "1.5rem" }}>
-                                                Hi <b>{this.state.orgName}</b>
-                                            </span>
-                                            {/* <img
+                            <HashRouter>
+                                <div>
+                                    <Row className="justify-content-between align-items-center">
+                                        <Col className="mb-lg-auto" lg="6">
+                                            <div style={{ margin: "auto", textAlign: "center" }}>
+                                                <span className="text-white" style={{ fontSize: "1.5rem" }}>
+                                                    Hi <b>{this.state.orgName}</b>
+                                                </span>
+                                                {/* <img
                                         alt="..."
                                         className="img-fluid"
                                         style={{ paddingBottom: "1em", height: "10em", display: 'block' }}
@@ -64,35 +68,39 @@ class OrgManage extends Component {
 
                                     /> */}
 
-                                            <span className="manage">Management Console</span>
-                                        </div>
-                                    </Col>
-                                    <Col>
-                                        <div className="center-tag">
+                                                <span className="manage">Management Console</span>
+                                            </div>
+                                        </Col>
+
+
+                                        <Col>
+                                            <div className="center-tag">
 
 
 
 
-                                            <UncontrolledDropdown nav>
-                                                <DropdownToggle nav>
-                                                    <div className="options-opener">
-                                                        <span className="nav-link-inner--text">Options</span>
-                                                    </div>
-                                                </DropdownToggle>
-                                                <DropdownMenu>
-                                                    <DropdownItem to="/options" tag={Link}>
-                                                        <NavLink exact to='/options'><div className="options" tabIndex="0">Questions</div></NavLink>
-                                                    </DropdownItem>
-                                                    <DropdownItem to="/participants" tag={Link}>
-                                                        <NavLink exact to='/participants'><div className="options" tabIndex="0">Participants</div></NavLink>
-                                                    </DropdownItem>
-                                                    <DropdownItem to="/contact" tag={Link}>
-                                                        <NavLink exact to='/contact'> <div className="options" tabIndex="0">Contact Us</div></NavLink>
-                                                    </DropdownItem>
+                                                <UncontrolledDropdown nav>
+                                                    <DropdownToggle nav>
+                                                        <div className="options-opener">
+                                                            <span className="nav-link-inner--text">Options</span>
+                                                        </div>
+                                                    </DropdownToggle>
+                                                    <DropdownMenu>
+                                                        <DropdownItem to="/options" tag={Link}>
+                                                            <NavLink exact to='/options'><div className="options" tabIndex="0">Questions</div></NavLink>
+                                                        </DropdownItem>
+                                                        <DropdownItem to="/participants" tag={Link}>
+                                                            <NavLink exact to='/participants'><div className="options" tabIndex="0">Participants</div></NavLink>
+                                                        </DropdownItem>
+                                                        <DropdownItem to="/contact" tag={Link}>
+                                                            <NavLink exact to='/contact'> <div className="options" tabIndex="0">Contact Us</div></NavLink>
+                                                        </DropdownItem>
+                                                        <Link to='/'>
 
-                                                </DropdownMenu>
-                                            </UncontrolledDropdown>
-                                            {/* 
+                                                        </Link>
+                                                    </DropdownMenu>
+                                                </UncontrolledDropdown>
+                                                {/* 
                                             <Collapse isOpen={this.state.isOpen}>
 
 
@@ -104,26 +112,44 @@ class OrgManage extends Component {
                                                 </div>
                                             </Collapse> */}
 
-                                        </div>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col className="mb-lg-auto">
-                                        <div className="placeholder">
-                                            <Route exact path='/options' component={QuestionHolder} />
-                                            <Route path='/participants' component={Participants} />
-                                            <Route path='/contact' component={Contact} />
-                                        </div>
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col className="mb-lg-auto">
+                                            <div className="placeholder">
+                                                <Route path='/options' component={QuestionHolder} />
+                                                <Route path='/participants' component={Participants} />
+                                                <Route path='/contact' component={Contact} />
 
-                                    </Col>
-                                </Row>
+                                            </div>
 
-                            </Container>
-                        </section>
+                                        </Col>
+                                    </Row>
+                                </div>
+                            </HashRouter>
+                            <Row >
+                                <Col>
+                                    <div className="center-tag">
+                                        <Link to='/'>
+                                            <Button
+                                                className="my-4"
+                                                type="button"
+                                                onClick={this.onLogout}
+                                            >
+                                                Log Out
+                                </Button>
+                                        </Link>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </Container>
+                    </section>
 
-                        <Footer />
-                    </div>
-                </HashRouter>
+                    <Footer />
+                </div>
+
+
             </div>
         )
     }

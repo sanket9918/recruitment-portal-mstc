@@ -15,7 +15,8 @@ class UserSignUp extends Component {
             phone: '',
             cl_code: '',
             password: '',
-            confirm_password: ''
+            confirm_password: '',
+            regno:''
 
         }
     }
@@ -60,6 +61,29 @@ class UserSignUp extends Component {
                                             />
                                         </InputGroup>
                                     </FormGroup>
+                                    <FormGroup
+                                        className={classnames({
+                                            focused: this.state.emailFocused
+                                        })}
+                                    >
+                                        <InputGroup className="input-group-alternative">
+                                            <InputGroupAddon addonType="prepend">
+                                                <InputGroupText>
+                                                    <i className="fa fa-user" />
+                                                </InputGroupText>
+                                            </InputGroupAddon>
+                                            <Input
+                                                id="regno"
+                                                placeholder="Registration no."
+                                                type="text"
+                                                name="regno"
+                                                onFocus={e => this.setState({ regno: true })}
+                                                onBlur={e => this.setState({ regno: false })}
+                                            />
+                                        </InputGroup>
+                                    </FormGroup>
+
+
                                     <FormGroup
                                         className={classnames({
                                             focused: this.state.emailFocused
