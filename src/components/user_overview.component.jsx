@@ -24,7 +24,7 @@ class CandProfile extends Component{
 
     onLogout() {
         localStorage.removeItem();
-        
+
     }
     componentDidMount() {
         this.fetchDesc();
@@ -48,7 +48,7 @@ class CandProfile extends Component{
                                 <h4 id="Name" className="text-white">Dan Brown</h4>
                                     <h4 id="reg_no" className="text-white">18BCEXXX</h4>
                                     <span>You are currently appearing test for : </span>
-                                    <b>{this.state.orgName}</b>
+                                    <b>{this.state.orgName}</b><br />
                                     <Link to='/'>
                                         <Button
                                             className="my-4"
