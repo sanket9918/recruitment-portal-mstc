@@ -23,7 +23,7 @@ class CandProfile extends Component{
     // }
 
     onLogout() {
-        localStorage.removeItem();
+        localStorage.removeItem('item');
 
     }
     componentDidMount() {
