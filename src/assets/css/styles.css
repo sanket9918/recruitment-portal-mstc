@@ -47,13 +47,16 @@
 
 .timer{
 	margin: auto;
-	text-align: right;
+	text-align: left;
 }
 
-@media only screen and (max-width:768px){
-	.timer{
-		margin: auto;
-		text-align: left;
-	}
+.exam-logout{
+	margin:auto;
+	text-align: right;
 }
+.content{
+	display: flex;
+	justify-content: space-between;
+}
+
 

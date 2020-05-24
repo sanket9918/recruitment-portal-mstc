@@ -51,6 +51,9 @@ class Exam extends Component {
         });
 
     };
+    onLogout() {
+        localStorage.removeItem('the token');
+    }
     componentDidUpdate(prevProps, prevState) {
         const { currentQuestion } = this.state;
         if (this.state.currentQuestion !== prevState.currentQuestion && this.state.currentQuestion >= 0) {
@@ -94,11 +97,23 @@ class Exam extends Component {
 
                     </div>
                     <Container className="py-md">
-                       
-                            <div className="timer">
-                                <span className="text-white" style={{fontWeight:"bold",fontSize:"1.5rem"}}>Timer: 30:00</span>
+                        
+                            <div className="content">
+                                    <span className="my-4 text-white" style={{ fontWeight: "bold", fontSize: "1.5rem" }}>Timer: 30:00</span>
+                                    <Link to='/'>
+                                        <Button
+                                            className="my-4"
+                                            type="button"
+                                            onClick={this.onLogout}
+                                        >
+                                            Log Out
+                                </Button>
+                                    </Link>
                             </div>
-                      
+                           
+                            
+                            
+                       
                         <Row className="justify-content-between align-items-center">    
                             <Col className="mb-lg-auto" lg="6">
                                 <div style={{ margin: 'auto', textAlign: 'center' }}></div>

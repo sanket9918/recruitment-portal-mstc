@@ -21,6 +21,11 @@ class CandProfile extends Component{
     // fetchOrgImage = () => {
     //     return
     // }
+
+    onLogout() {
+        localStorage.removeItem();
+        
+    }
     componentDidMount() {
         this.fetchDesc();
     }
@@ -44,6 +49,15 @@ class CandProfile extends Component{
                                     <h4 id="reg_no" className="text-white">18BCEXXX</h4>
                                     <span>You are currently appearing test for : </span>
                                     <b>{this.state.orgName}</b>
+                                    <Link to='/'>
+                                        <Button
+                                            className="my-4"
+                                            type="button"
+                                            onClick={this.onLogout}
+                                        >
+                                            Log Out
+                                </Button>
+                                    </Link>
                                         
                                    
                                  
