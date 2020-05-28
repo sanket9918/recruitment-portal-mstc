@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import Navbar1 from './navbar.component'
 import Footer from './footer.component'
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Container,Row,Col,Button,Form} from 'reactstrap'
-import { Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import {logout} from '../actions/authActions'
+
 class CandProfile extends Component{
     constructor(props) {
         super(props);
@@ -22,9 +26,10 @@ class CandProfile extends Component{
     //     return
     // }
 
-    onLogout() {
-        localStorage.removeItem();
-
+    onLogout = e => {
+        e.preventDefault();
+        this.props.logout();
+        this.props.history.push('/')
     }
     componentDidMount() {
         this.fetchDesc();
@@ -49,7 +54,7 @@ class CandProfile extends Component{
                                     <h4 id="reg_no" className="text-white">18BCEXXX</h4>
                                     <span>You are currently appearing test for : </span>
                                     <b>{this.state.orgName}</b><br />
-                                    <Link to='/'>
+                                    
                                         <Button
                                             className="my-4"
                                             type="button"
@@ -57,7 +62,7 @@ class CandProfile extends Component{
                                         >
                                             Log Out
                                 </Button>
-                                    </Link>
+                                   
                                         
                                    
                                  
@@ -184,5 +189,15 @@ class CandProfile extends Component{
         )
     }
 }
+CandProfile.propTypes = {
+    logout: PropTypes.func.isRequired,
+    auth:PropTypes.object.isRequired
+}
 
-export default CandProfile;
+const mapStateToProps = state => ({
+    auth:state.auth
+})
+
+export default connect(
+    mapStateToProps,{logout}
+)(CandProfile)

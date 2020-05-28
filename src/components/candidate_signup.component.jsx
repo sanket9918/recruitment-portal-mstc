@@ -4,23 +4,65 @@ import Footer from './footer.component'
 import classnames from 'classnames'
 import { Col, Row, Container, Button, FormGroup, InputGroup, Input, InputGroupAddon, InputGroupText } from 'reactstrap'
 import { Link } from 'react-router-dom'
-
+import { connect } from 'react-redux'
+import PropTypes from "prop-types";
+import { registerUser } from '../actions/authActions'
 class UserSignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
             nameFocused: '',
             emailFocused: '',
-            block: '',
-            phone: '',
-            cl_code: '',
+            name: '',
+            regNo: '',
+            mobileNo: '',
+            blockName: '',
+            roomNo: '',
+            clubCode: '',
+            email: '',
             password: '',
-            confirm_password: '',
-            regno:''
+            errors: {}
 
         }
     }
+    componentDidMount() {
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push('/overview');
+        }
+    }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.auth.isAuthenticated) {
+            this.props.history.push('/overview')
+        }
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            })
+        }
+    }
+
+    onChange = e => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+
+    }
+    onSubmit = (e) => {
+        e.preventDefault();
+        const userData = {
+            regNo: this.state.regNo,
+            password: this.state.password,
+            email: this.state.email,
+            mobileNo: this.state.mobileNo,
+            blockName: this.state.blockName,
+            roomNo: this.state.roomNo,
+            clubCode: this.state.clubCode,
+            name: this.state.name
+        }
+        this.props.registerUser(userData,this.props.history);
+    }
     render() {
+        const { errors } = this.state;
         return (
             <div>
 
@@ -39,7 +81,7 @@ class UserSignUp extends Component {
 
 
                                 {/* The start of the form  */}
-                                <form>
+                                <form noValidate onSubmit={this.onSubmit}>
                                     <FormGroup
                                         className={classnames("mt-5", {
                                             focused: this.state.nameFocused
@@ -56,8 +98,10 @@ class UserSignUp extends Component {
                                                 placeholder="What's your name?"
                                                 type="text"
                                                 name="name"
-                                                onFocus={e => this.setState({ nameFocused: true })}
-                                                onBlur={e => this.setState({ nameFocused: false })}
+                                                id='name'
+                                                onChange={this.onChange}
+                                                value={this.state.name}
+                                                error={errors.name}
                                             />
                                         </InputGroup>
                                     </FormGroup>
@@ -73,12 +117,14 @@ class UserSignUp extends Component {
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input
-                                                id="regno"
+                                                
                                                 placeholder="Registration no."
                                                 type="text"
-                                                name="regno"
-                                                onFocus={e => this.setState({ regno: true })}
-                                                onBlur={e => this.setState({ regno: false })}
+                                                name="regNo"
+                                                id='regNo'
+                                                onChange={this.onChange}
+                                                value={this.state.regNo}
+                                                error={errors.regNo}
                                             />
                                         </InputGroup>
                                     </FormGroup>
@@ -100,8 +146,10 @@ class UserSignUp extends Component {
                                                 placeholder="Email address"
                                                 type="email"
                                                 name="email"
-                                                onFocus={e => this.setState({ emailFocused: true })}
-                                                onBlur={e => this.setState({ emailFocused: false })}
+                                                id='email'
+                                                onChange={this.onChange}
+                                                value={this.state.email}
+                                                error={errors.email}
                                             />
                                         </InputGroup>
                                     </FormGroup>
@@ -119,8 +167,10 @@ class UserSignUp extends Component {
                                                 placeholder="Mobile No."
                                                 type="text"
                                                 name="phone"
-                                                onFocus={e => this.setState({ phone: true })}
-                                                onBlur={e => this.setState({ phone: false })}
+                                                id='mobileNo'
+                                                onChange={this.onChange}
+                                                value={this.state.mobileNo}
+                                                error={errors.mobileNo}
 
                                             />
                                         </InputGroup>
@@ -140,12 +190,37 @@ class UserSignUp extends Component {
                                                 placeholder="Block name / Room no."
                                                 type="text"
                                                 name="block"
-                                                onFocus={e => this.setState({ block: true })}
-                                                onBlur={e => this.setState({ block: false })}
+                                                id='blockName'
+                                                onChange={this.onChange}
+                                                value={this.state.blockName}
+                                                error={errors.blockName}
 
                                             />
                                         </InputGroup>
                                     </FormGroup>
+                                    <FormGroup
+
+                                    >
+                                        <InputGroup className="input-group-alternative">
+                                            <InputGroupAddon addonType="prepend">
+                                                <InputGroupText>
+                                                    <i className="fa fa-home" />
+                                                </InputGroupText>
+                                            </InputGroupAddon>
+                                            <Input
+                                                id="block"
+                                                placeholder="Room No."
+                                                type="text"
+                                                name="roomNo"
+                                                id='roomNo'
+                                                onChange={this.onChange}
+                                                value={this.state.roomNo}
+                                                error={errors.roomNo}
+
+                                            />
+                                        </InputGroup>
+                                    </FormGroup>
+
 
 
 
@@ -163,34 +238,15 @@ class UserSignUp extends Component {
                                                 placeholder="Password"
                                                 type="password"
                                                 name="block"
-                                                onFocus={e => this.setState({ password: true })}
-                                                onBlur={e => this.setState({ password: false })}
-
+                                                id="password"
+                                                onChange={this.onChange}
+                                                value={this.state.password}
+                                                error={errors.password}
                                             />
                                         </InputGroup>
                                     </FormGroup>
 
 
-                                    <FormGroup
-
-                                    >
-                                        <InputGroup className="input-group-alternative">
-                                            <InputGroupAddon addonType="prepend">
-                                                <InputGroupText>
-                                                    <i className="fa fa-user-secret" />
-                                                </InputGroupText>
-                                            </InputGroupAddon>
-                                            <Input
-                                                id="block"
-                                                placeholder="Confirm Password"
-                                                type="password"
-                                                name="block"
-                                                onFocus={e => this.setState({ confirm_password: true })}
-                                                onBlur={e => this.setState({ confirm_password: false })}
-
-                                            />
-                                        </InputGroup>
-                                    </FormGroup>
 
 
                                     <FormGroup
@@ -207,8 +263,10 @@ class UserSignUp extends Component {
                                                 placeholder="Code of club/chapter applying"
                                                 type="text"
                                                 name="block"
-                                                onFocus={e => this.setState({ cl_code: true })}
-                                                onBlur={e => this.setState({ cl_code: false })}
+                                                id="clubCode"
+                                                onChange={this.onChange}
+                                                value={this.state.clubCode}
+                                                error={errors.clubCode}
 
                                             />
                                         </InputGroup>
@@ -216,13 +274,13 @@ class UserSignUp extends Component {
 
                                     <div>
                                         <center>
-                                            <Link to='/'>
-                                                <Button
-                                                    className="my-4"
-                                                    type="button"
-                                                >
-                                                    Sign Up
-                    </Button></Link>
+
+                                            <Button
+                                                className="my-4"
+                                                type="submit"
+                                            >
+                                                Sign Up
+                    </Button>
 
                                         </center>
                                     </div>
@@ -254,4 +312,17 @@ class UserSignUp extends Component {
         )
     }
 }
-export default UserSignUp;
+UserSignUp.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.error
+})
+
+export default connect(
+    mapStateToProps,
+    { registerUser }
+)(UserSignUp)

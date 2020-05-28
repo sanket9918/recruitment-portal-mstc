@@ -1,8 +1,12 @@
 import React from "react";
+import { withRouter} from 'react-router'
 // import { Link } from "react-router-dom";
 // nodejs library that concatenates classes
 import classnames from "classnames";
 
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { loginUser } from '../actions/authActions'
 // reactstrap components
 import {
   Button,
@@ -25,18 +29,62 @@ import {
   TabPane
 } from "reactstrap";
 import { Link } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
+export const history = createBrowserHistory();
+
 class Login extends React.Component {
   state = {
     iconTabs: 1,
-    plainTabs: 1
+    plainTabs: 1,
+
+    regNo:'',
+    password_user: '',
+    errors: {}
+
   };
+
   toggleNavs = (e, state, index) => {
     e.preventDefault();
     this.setState({
       [state]: index
-    });
+    });   
+
   };
-  render() {
+
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/overview');
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push('/overview')
+    }
+    if (nextProps.errors) {
+      this.setState({
+        errors:nextProps.errors
+      })
+    }
+  }
+
+  onChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
+  onSubmit = e => {
+    e.preventDefault();
+    const userData = {
+      regNo: this.state.regNo,
+      password: this.state.password_user
+    };
+
+    this.props.loginUser(userData)
+  }
+ 
+  render()
+  
+  {
+    const { errors } = this.state
     return (
       <div>
         <section className="section section-lg section-shaped" >
@@ -149,11 +197,9 @@ class Login extends React.Component {
                               <div className="text-center text-white ">
                                 <small>Sign in with credentials</small>
                               </div>
-                              <Form role="form">
+                              <Form noValidate onSubmit={this.onSubmit}>
                                 <FormGroup
-                                  className={classnames("mb-3", {
-                                    focused: this.state.emailFocused
-                                  })}
+                                  
                                 >
                                   <InputGroup className="input-group-alternative">
                                     <InputGroupAddon addonType="prepend">
@@ -162,17 +208,39 @@ class Login extends React.Component {
                                       </InputGroupText>
                                     </InputGroupAddon>
                                     <Input
-                                      placeholder="Email"
-                                      type="email"
+                                      placeholder="Registration No."
+                                      type="text"
+                                      id="regNo"
+                                      onChange={this.onChange}
+                                      value={this.state.regNo}
+                                      error={errors.regNo}
                                       onFocus={e =>
                                         this.setState({ emailFocused: true })
                                       }
                                       onBlur={e =>
                                         this.setState({ emailFocused: false })
                                       }
+
+                                      className={classnames("", {
+                                        invalid: errors.regNo || errors.regnotfound
+                                      })}
                                     />
                                   </InputGroup>
                                 </FormGroup>
+                                <div className="center-tag"
+                                  style={{ margin: 'auto', textAlign: 'center',marginBottom:"1em" }}>
+
+                                <span className="red-text"
+                                  style={
+                                    {
+                                      color: 'red'
+                                    }
+                                  }>
+                                  {errors.regNo}
+                                  {errors.regnotfound}
+                                </span> </div>
+
+
                                 <FormGroup
                                   className={classnames({
                                     focused: this.state.passwordFocused
@@ -187,7 +255,14 @@ class Login extends React.Component {
                                     <Input
                                       placeholder="Password"
                                       type="password"
+                                      id="password_user"
+                                      onChange={this.onChange}
+                                      value={this.state.password_user}
+                                      error={errors.password_user}
                                       autoComplete="off"
+                                      className={classnames("", {
+                                        invalid: errors.password_user || errors.passwordincorrect
+                                      })}
                                       onFocus={e =>
                                         this.setState({ passwordFocused: true })
                                       }
@@ -197,14 +272,27 @@ class Login extends React.Component {
                                     />
                                   </InputGroup>
                                 </FormGroup>
-                                <div className="text-center">
-                                  <Link to='/overview'>
+                                <div className="center-tag"
+                                  style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
+
+                                <span className="red-text"
+                                  style={
+                                    {
+                                      color: 'red'
+                                    }
+                                  }>
+                                  {errors.password}
+                                    {errors.passwordincorrect}
+                                </span> </div>
+                                <div className="center-tag"
+                                style={{margin:'auto',textAlign:'center'}}>
+                                  {/* <Link to='/overview'> */}
                                     <Button
                                       className="my-4"
-                                      type="button"
+                                      type="submit"
                                     >
                                       Sign in
-                    </Button> </Link>
+                    </Button> 
                                   <Link to='/candsignup'>
 
                                     <Button
@@ -214,8 +302,8 @@ class Login extends React.Component {
                                       Sign Up
                     </Button></Link>
                                 </div>
-                                
-                                
+
+
                               </Form>
                             </CardBody>
                           </Card>
@@ -289,7 +377,7 @@ class Login extends React.Component {
                                   </InputGroup>
                                 </FormGroup>
 
-                                
+
                                 <div className="text-center">
                                   <Link to='/orgmanage'>
                                     <Button
@@ -413,4 +501,20 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+
+
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);
