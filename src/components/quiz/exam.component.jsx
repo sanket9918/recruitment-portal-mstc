@@ -6,6 +6,9 @@ import Navbar1 from '../navbar.component';
 import Footer from '../footer.component';
 import { Container, Row, Col } from 'reactstrap'
 import { Link } from 'react-router-dom';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logout } from '../../actions/authActions'
 
 class Exam extends Component {
     state = {
@@ -13,6 +16,12 @@ class Exam extends Component {
         currentQuestion: 0,
         options: [],
     };
+
+    onLogout = e => {
+        e.preventDefault();
+        this.props.logout();
+        this.props.history.push('/')
+    }
 
     loadQuiz = () => {
         const { currentQuestion } = this.state;
@@ -97,24 +106,24 @@ class Exam extends Component {
 
                     </div>
                     <Container className="py-md">
-                        
-                            <div className="content">
-                                    <span className="my-4 text-white" style={{ fontWeight: "bold", fontSize: "1.5rem" }}>Timer: 30:00</span>
-                                    <Link to='/'>
-                                        <Button
-                                            className="my-4"
-                                            type="button"
-                                            onClick={this.onLogout}
-                                        >
-                                            Log Out
+
+                        <div className="content">
+                            <span className="my-4 text-white" style={{ fontWeight: "bold", fontSize: "1.5rem" }}>Timer: 30:00</span>
+
+                            <Button
+                                className="my-4"
+                                type="button"
+                                onClick={this.onLogout}
+                            >
+                                Log Out
                                 </Button>
-                                    </Link>
-                            </div>
-                           
-                            
-                            
-                       
-                        <Row className="justify-content-between align-items-center">    
+
+                        </div>
+
+
+
+
+                        <Row className="justify-content-between align-items-center">
                             <Col className="mb-lg-auto" lg="6">
                                 <div style={{ margin: 'auto', textAlign: 'center' }}></div>
                                 <h2 className="display-3 text-white">
@@ -188,5 +197,16 @@ class Exam extends Component {
     }
 }
 
-export default Exam
+Exam.propTypes =
+{
+    logout: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+export default connect(
+    mapStateToProps,{logout}
+)(Exam)
 

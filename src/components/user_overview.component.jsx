@@ -36,6 +36,7 @@ class CandProfile extends Component{
     }
     render()
     {
+        const { user } = this.props.auth;
         return (
             <div>
                 <Navbar1 />
@@ -50,8 +51,8 @@ class CandProfile extends Component{
                                     Candidate details
                                 </h2>
                                
-                                <h4 id="Name" className="text-white">Dan Brown</h4>
-                                    <h4 id="reg_no" className="text-white">18BCEXXX</h4>
+                                    <h4 id="Name" className="text-white">{user.name}</h4>
+                                    <h4 id="reg_no" className="text-white">{user.regNo}</h4>
                                     <span>You are currently appearing test for : </span>
                                     <b>{this.state.orgName}</b><br />
                                     

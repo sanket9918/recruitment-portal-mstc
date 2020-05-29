@@ -102,9 +102,25 @@ class UserSignUp extends Component {
                                                 onChange={this.onChange}
                                                 value={this.state.name}
                                                 error={errors.name}
+
+                                                className={classnames("", {
+                                                    invalid: errors.name || errors.namenotfound
+                                                })}
                                             />
                                         </InputGroup>
                                     </FormGroup>
+                                    <div className="center-tag"
+                                        style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
+
+                                        <span className="red-text"
+                                            style={
+                                                {
+                                                    color: 'red'
+                                                }
+                                            }>
+                                            {errors.name}
+                                            {errors.namenotfound}
+                                        </span> </div>
                                     <FormGroup
                                         className={classnames({
                                             focused: this.state.emailFocused
@@ -125,9 +141,25 @@ class UserSignUp extends Component {
                                                 onChange={this.onChange}
                                                 value={this.state.regNo}
                                                 error={errors.regNo}
+
+                                                className={classnames("", {
+                                                    invalid: errors.regNo || errors.regnotfound
+                                                })}
                                             />
                                         </InputGroup>
                                     </FormGroup>
+                                    <div className="center-tag"
+                                        style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
+
+                                        <span className="red-text"
+                                            style={
+                                                {
+                                                    color: 'red'
+                                                }
+                                            }>
+                                            {errors.regNo}
+                                            {errors.regnotfound}
+                                        </span> </div>
 
 
                                     <FormGroup

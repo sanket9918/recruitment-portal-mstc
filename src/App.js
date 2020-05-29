@@ -51,7 +51,7 @@ function App() {
             <Route path='/exam' exact render={props => <Exam {...props} />} />
             <Route path='/orgmanage' exact render={props => <OrgManage {...props} />} />
             {/* <Route component={Error} /> */}
-            <Footer />
+           
           </div>
         </BrowserRouter>
       </Provider>

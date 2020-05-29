@@ -30,6 +30,7 @@ import {
 } from "reactstrap";
 import { Link } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
+import Footer from "./footer.component";
 export const history = createBrowserHistory();
 
 class Login extends React.Component {
@@ -496,6 +497,7 @@ class Login extends React.Component {
           </Container>
 
         </section>
+        <Footer />
       </div>
     );
   }
