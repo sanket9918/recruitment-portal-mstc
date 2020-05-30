@@ -43,9 +43,14 @@ class UserSignUp extends Component {
 
     onChange = e => {
         this.setState({
-            [e.target.id]: e.target.value
+            [e.target.id]: e.target.value.toUpperCase()
         })
 
+    }
+    onChangeAlter = e => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
     }
     onSubmit = (e) => {
         e.preventDefault();
@@ -59,7 +64,7 @@ class UserSignUp extends Component {
             clubCode: this.state.clubCode,
             name: this.state.name
         }
-        this.props.registerUser(userData,this.props.history);
+        this.props.registerUser(userData, this.props.history);
     }
     render() {
         const { errors } = this.state;
@@ -133,7 +138,7 @@ class UserSignUp extends Component {
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input
-                                                
+
                                                 placeholder="Registration no."
                                                 type="text"
                                                 name="regNo"
@@ -179,7 +184,7 @@ class UserSignUp extends Component {
                                                 type="email"
                                                 name="email"
                                                 id='email'
-                                                onChange={this.onChange}
+                                                onChange={this.onChangeAlter}
                                                 value={this.state.email}
                                                 error={errors.email}
                                             />
@@ -271,7 +276,7 @@ class UserSignUp extends Component {
                                                 type="password"
                                                 name="block"
                                                 id="password"
-                                                onChange={this.onChange}
+                                                onChange={this.onChangeAlter}
                                                 value={this.state.password}
                                                 error={errors.password}
                                             />
@@ -296,7 +301,7 @@ class UserSignUp extends Component {
                                                 type="text"
                                                 name="block"
                                                 id="clubCode"
-                                                onChange={this.onChange}
+                                                onChange={this.onChangeAlter}
                                                 value={this.state.clubCode}
                                                 error={errors.clubCode}
 

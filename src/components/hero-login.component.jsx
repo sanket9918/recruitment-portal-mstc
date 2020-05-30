@@ -72,6 +72,11 @@ class Login extends React.Component {
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
+  onChangeAlter = e => {
+    this.setState({
+      [e.target.id]: e.target.value.toUpperCase()
+    })
+  }
   onSubmit = e => {
     e.preventDefault();
     const userData = {
@@ -212,7 +217,7 @@ class Login extends React.Component {
                                       placeholder="Registration No."
                                       type="text"
                                       id="regNo"
-                                      onChange={this.onChange}
+                                      onChange={this.onChangeAlter}
                                       value={this.state.regNo}
                                       error={errors.regNo}
                                       onFocus={e =>
