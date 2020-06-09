@@ -4,19 +4,68 @@ import Footer from './footer.component'
 import classnames from 'classnames'
 import {Col,Row,Container,Button,FormGroup,InputGroup,Input,InputGroupAddon,InputGroupText } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import PropTypes from "prop-types";
+import { registerOrg} from '../actions/authActions'
 class OrgSignUp extends Component{
     constructor(props) {
         super(props)
         this.state = {
             nameFocused: '',
             emailFocused: '',
-            phone: '',
-            number: '',
-            no:''
+            clubName: '',
+            clubCode: '',
+            mobileNo: '',
+            email: '',
+            password: '',
+            extras: '',
+            errors:{}
         }
     }
 
+    componentDidMount() {
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push('/orgmanage')
+        }
+    }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.auth.isAuthenticated) {
+            this.props.history.push('/orgmanage')
+        }
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            })
+        }
+    }
+    onChange = e => {
+        this.setState({
+            [e.target.id]: e.target.value.toUpperCase()
+        })
+
+    }
+    onChangeAlter = e => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
+
+    onSubmit = (e) =>
+    {
+        e.preventDefault();
+        const orgData = {
+            clubCode: this.state.clubCode,
+            clubName: this.state.clubName,
+            email: this.state.email,
+            password: this.state.password,
+            extras: this.state.extras,
+            mobileNo:this.state.mobileNo
+        }
+        this.props.registerOrg(orgData, this.props.history);
+        }
+
     render() {
+        const { errors } = this.state;
         return (
             <div>
                 <Navbar1 />
@@ -34,7 +83,7 @@ class OrgSignUp extends Component{
                                 
 
                                 {/* The start of the form  */}
-                                <form>
+                                <form noValidate onSubmit={this.onSubmit}>
                                     <FormGroup
                                         className={classnames("mt-5", {
                                             focused: this.state.nameFocused
@@ -47,12 +96,16 @@ class OrgSignUp extends Component{
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input
-                                                id="name"
+                                                id="clubName"
                                                 placeholder="Name of the Chapter/Club"
                                                 type="text"
                                                 name="name"
-                                                onFocus={e => this.setState({ nameFocused: true })}
-                                                onBlur={e => this.setState({ nameFocused: false })}
+                                                onChange={this.onChange}
+                                                value={this.state.clubName}
+                                                error={errors.clubName}
+                                                className={classnames("", {
+                                                    invalid: errors.clubName || errors.namenotfound
+                                                })}
                                             />
                                         </InputGroup>
                                     </FormGroup>
@@ -71,9 +124,13 @@ class OrgSignUp extends Component{
                                                 id="email"
                                                 placeholder="Email address"
                                                 type="email"
+                                                onChange={this.onChange}
+                                                value ={this.state.email}
                                                 name="email"
-                                                onFocus={e => this.setState({ emailFocused: true })}
-                                                onBlur={e => this.setState({ emailFocused: false })}
+                                               
+                                                className={classnames("", {
+                                                    invalid: errors.email || errors.regnotfound
+                                                })}
                                             />
                                         </InputGroup>
                                     </FormGroup>
@@ -87,13 +144,16 @@ class OrgSignUp extends Component{
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input
-                                                id="mobile"
+                                                id="mobileNo"
                                                 placeholder="Mobile No."
                                                 type="text"
-                                                name="phone"
-                                                onFocus={e => this.setState({ phone: true })}
-                                                onBlur={e => this.setState({ phone: false })}
-                                                
+                                                name="mobileNo"
+                                                onChange={this.onChange}
+                                                error={errors.mobileNo}
+                                                value={this.state.mobileNo}
+                                                className={classnames("", {
+                                                    invalid: errors.mobileNo 
+                                                })}
                                             />
                                         </InputGroup>
                                     </FormGroup>
@@ -108,38 +168,69 @@ class OrgSignUp extends Component{
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input
-                                                id="no_candi"
-                                                placeholder="No. of expected candidates"
+                                                id="password"
+                                                placeholder="Password"
                                                 type="text"
-                                                name="no_candi"
-                                                onFocus={e => this.setState({ no: true })}
-                                                onBlur={e => this.setState({ no: false })}
+                                                name="password"
+                                                id="password"
+                                                onChange={this.onChange}
+                                                value={this.state.password}
+                                                error={errors.password}
+                                                className={classnames("", {
+                                                    invalid: errors.password || errors.regnotfound
+                                                })}
 
                                             />
                                         </InputGroup>
                                     </FormGroup>
 
+                                    <FormGroup
+
+                                    >
+                                        <InputGroup className="input-group-alternative">
+                                        <InputGroupAddon addonType="prepend">
+                                            <InputGroupText>
+                                                <i className="fa fa-phone" />
+                                            </InputGroupText>
+                                        </InputGroupAddon>
+                                        <Input
+                                            id="clubCode"
+                                            placeholder="Club Code"
+                                            type="text"
+                                            name="clubCode"
+                                            onChange={this.onChange}
+                                            error={errors.clubCode}
+                                            value={this.state.clubCode}
+                                            className={classnames("", {
+                                                invalid: errors.clubCode
+                                            })}
+                                        />
+                                    </InputGroup>
+                                    </FormGroup>
+
                                     
                                     <FormGroup className="mb-4">
                                         <Input
-                                            id="message"
+                                            id="extras"
                                             className="form-control-alternative"
                                             cols="80"
                                             name="message"
                                             placeholder="Any other customisations..."
                                             rows="4"
                                             type="textarea"
+                                            onChange={this.onChange}
+                                            value={this.state.extras}
+                                            
                                         />
                                     </FormGroup>
                                     <div>
                                         <center>
-                                           <Link to='/'>
                                                 <Button
                                                     className="my-4"
-                                                    type="button"
+                                                    type="submit"
                                                 >
                                                     Sign Up
-                    </Button></Link>
+                    </Button>
                                             
                                         </center>
                                     </div>
@@ -172,4 +263,18 @@ class OrgSignUp extends Component{
     }
 }
 
-export default OrgSignUp;
+OrgSignUp.propTypes = {
+    registerOrg: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors:PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors:state.error
+})
+
+export default connect(
+    mapStateToProps,
+    {registerOrg}
+)(OrgSignUp)

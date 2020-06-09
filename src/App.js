@@ -16,24 +16,22 @@ import { BrowserRouter, Route, Switch, Router } from 'react-router-dom'
 import Error from './components/error.component'
 import { Provider } from 'react-redux'
 import store from './store'
-import { setCurrentUser, logout } from './actions/authActions';
+import { setCurrentUser, logout,setCurrentOrg } from './actions/authActions';
 import setAuthToken from './utils/setAuthToken'
-
-
 import jwt_decode from "jwt-decode";
 
 
 
-if (localStorage.jwtToken) {
-  const token = localStorage.jwtToken;
-  const decoded = jwt_decode(token);
-  store.dispatch(setCurrentUser(decoded));
-  const currentTime = Date.now() / 1000;
-  if (decoded.exp < currentTime) {
-    store.dispatch(logout());
-    window.location.href = "./"
-  }
-}
+// if (localStorage.jwtToken) {
+//   const token = localStorage.jwtToken;
+//   const decoded = jwt_decode(token);
+//   store.dispatch(setCurrentUser(decoded));
+//   const currentTime = Date.now() / 1000;
+//   if (decoded.exp < currentTime) {
+//     store.dispatch(logout());
+//     window.location.href = "./"
+//   }
+// }
 
 
 function App() {

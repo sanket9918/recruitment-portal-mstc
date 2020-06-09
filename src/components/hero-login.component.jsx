@@ -1,12 +1,12 @@
 import React from "react";
-import { withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 // import { Link } from "react-router-dom";
 // nodejs library that concatenates classes
 import classnames from "classnames";
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { loginUser } from '../actions/authActions'
+import { loginUser, loginOrg } from '../actions/authActions'
 // reactstrap components
 import {
   Button,
@@ -38,8 +38,10 @@ class Login extends React.Component {
     iconTabs: 1,
     plainTabs: 1,
 
-    regNo:'',
+    regNo: '',
     password_user: '',
+    email: '',
+    password_org: '',
     errors: {}
 
   };
@@ -48,7 +50,7 @@ class Login extends React.Component {
     e.preventDefault();
     this.setState({
       [state]: index
-    });   
+    });
 
   };
 
@@ -56,15 +58,21 @@ class Login extends React.Component {
     if (this.props.auth.isAuthenticated) {
       this.props.history.push('/overview');
     }
+    if (this.props.auth.isAuthenticated_org) {
+      this.props.history.push('/orgmanage');
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push('/overview')
     }
+    if (nextProps.auth.isAuthenticated_org) {
+      this.props.history.push('/orgmanage')
+    }
     if (nextProps.errors) {
       this.setState({
-        errors:nextProps.errors
+        errors: nextProps.errors
       })
     }
   }
@@ -84,12 +92,20 @@ class Login extends React.Component {
       password: this.state.password_user
     };
 
+
+
     this.props.loginUser(userData)
   }
- 
-  render()
-  
-  {
+  onSubmit_org = e => {
+    e.preventDefault();
+    const orgData = {
+      email: this.state.email,
+      password: this.state.password_org
+    }
+    this.props.loginOrg(orgData);
+  }
+
+  render() {
     const { errors } = this.state
     return (
       <div>
@@ -205,7 +221,7 @@ class Login extends React.Component {
                               </div>
                               <Form noValidate onSubmit={this.onSubmit}>
                                 <FormGroup
-                                  
+
                                 >
                                   <InputGroup className="input-group-alternative">
                                     <InputGroupAddon addonType="prepend">
@@ -234,17 +250,17 @@ class Login extends React.Component {
                                   </InputGroup>
                                 </FormGroup>
                                 <div className="center-tag"
-                                  style={{ margin: 'auto', textAlign: 'center',marginBottom:"1em" }}>
+                                  style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
 
-                                <span className="red-text"
-                                  style={
-                                    {
-                                      color: 'red'
-                                    }
-                                  }>
-                                  {errors.regNo}
-                                  {errors.regnotfound}
-                                </span> </div>
+                                  <span className="red-text"
+                                    style={
+                                      {
+                                        color: 'red'
+                                      }
+                                    }>
+                                    {errors.regNo}
+                                    {errors.regnotfound}
+                                  </span> </div>
 
 
                                 <FormGroup
@@ -267,7 +283,7 @@ class Login extends React.Component {
                                       error={errors.password_user}
                                       autoComplete="off"
                                       className={classnames("", {
-                                        invalid: errors.password_user || errors.passwordincorrect
+                                        invalid: errors.password|| errors.passwordincorrect
                                       })}
                                       onFocus={e =>
                                         this.setState({ passwordFocused: true })
@@ -281,24 +297,24 @@ class Login extends React.Component {
                                 <div className="center-tag"
                                   style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
 
-                                <span className="red-text"
-                                  style={
-                                    {
-                                      color: 'red'
-                                    }
-                                  }>
-                                  {errors.password}
+                                  <span className="red-text"
+                                    style={
+                                      {
+                                        color: 'red'
+                                      }
+                                    }>
+                                    {errors.password}
                                     {errors.passwordincorrect}
-                                </span> </div>
+                                  </span> </div>
                                 <div className="center-tag"
-                                style={{margin:'auto',textAlign:'center'}}>
+                                  style={{ margin: 'auto', textAlign: 'center' }}>
                                   {/* <Link to='/overview'> */}
-                                    <Button
-                                      className="my-4"
-                                      type="submit"
-                                    >
-                                      Sign in
-                    </Button> 
+                                  <Button
+                                    className="my-4"
+                                    type="submit"
+                                  >
+                                    Sign in
+                    </Button>
                                   <Link to='/candsignup'>
 
                                     <Button
@@ -334,7 +350,7 @@ class Login extends React.Component {
                               <div className="text-center text-white ">
                                 <small>Sign in with credentials</small>
                               </div>
-                              <Form role="form">
+                              <Form noValidate onSubmit={this.onSubmit_org}>
                                 <FormGroup
                                   className={classnames("mb-3", {
                                     focused: this.state.emailFocused
@@ -349,15 +365,28 @@ class Login extends React.Component {
                                     <Input
                                       placeholder="Email"
                                       type="email"
-                                      onFocus={e =>
-                                        this.setState({ emailFocused: true })
-                                      }
-                                      onBlur={e =>
-                                        this.setState({ emailFocused: false })
-                                      }
+                                      id='email'
+                                      value={this.state.email}
+                                      onChange={this.onChange}
+                                      error={errors.email}
+                                      className={classnames("", {
+                                        invalid: errors.email || errors.emailnotfound
+                                      })}
                                     />
                                   </InputGroup>
                                 </FormGroup>
+                                <div className="center-tag"
+                                  style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
+
+                                  <span className="red-text"
+                                    style={
+                                      {
+                                        color: 'red'
+                                      }
+                                    }>
+                                    {errors.email}
+                                    {errors.emailnotfound}
+                                  </span> </div>
                                 <FormGroup
                                   className={classnames({
                                     focused: this.state.passwordFocused
@@ -373,25 +402,36 @@ class Login extends React.Component {
                                       placeholder="Password"
                                       type="password"
                                       autoComplete="off"
-                                      onFocus={e =>
-                                        this.setState({ passwordFocused: true })
-                                      }
-                                      onBlur={e =>
-                                        this.setState({ passwordFocused: false })
-                                      }
+                                      id='password_org'
+                                      value={this.state.password_org}
+                                      onChange={this.onChange}
+                                      error={errors.password_org}
+                                      className={classnames("", {
+                                        invalid: errors.password|| errors.passwordnotfound
+                                      })}
                                     />
                                   </InputGroup>
                                 </FormGroup>
+                                <div className="center-tag"
+                                  style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
 
+                                  <span className="red-text"
+                                    style={
+                                      {
+                                        color: 'red'
+                                      }
+                                    }>
+                                    {errors.password}
+                                    {errors.passwordnotfound}
+                                  </span> </div>
 
                                 <div className="text-center">
-                                  <Link to='/orgmanage'>
-                                    <Button
-                                      className="my-4"
-                                      type="button"
-                                    >
-                                      Sign in
-                    </Button> </Link>
+                                  <Button
+                                    className="my-4"
+                                    type="submit"
+                                  >
+                                    Sign in
+                    </Button>
                                   <Link to='/orgsignup'>
 
                                     <Button
@@ -509,6 +549,7 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
+  loginOrg: PropTypes.func,
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
@@ -523,5 +564,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { loginUser }
+  { loginUser, loginOrg }
 )(Login);
