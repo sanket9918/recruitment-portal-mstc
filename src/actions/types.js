@@ -1,3 +1,4 @@
 export const SET_CURRENT_USER = 'SET_CURRENT_USER'
 export const SET_CURRENT_ORG = 'SET_CURRENT_ORG'
 export const GET_ERRORS = 'GET_ERRORS'
+export const GET_QUESTIONS = 'GET_QUESTIONS'
