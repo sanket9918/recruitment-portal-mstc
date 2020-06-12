@@ -17,15 +17,32 @@ class Exam extends Component {
             currentQuestion: 0,
             options: [],
             questions: [],
-            QuizData: []
+            QuizData: [],
+            setAns:''
         };
     }
 
-    
+    buttonReturnValue() {
+        console.log(document.getElementById('ans').innerText);
+    }
     onLogout = e => {
         e.preventDefault();
         this.props.logout();
         this.props.history.push('/')
+    }
+
+    sendResult(ans) {
+        console.log(ans)
+        axios
+            .post('/api/post/users/submitTest', {
+                "testId": 1004,
+                "clubCode": 102,
+                "name": "Sanket Mohapatra",
+                "regNo": "18BCE0340",
+                "clubName": 'mkbhd',
+                'ans':[`${ans}`],
+                'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTMwZmE1NDZlYjY5Mzc4MjY2MGQ1NyIsIm5hbWUiOiJTYW5rZXQgTW9oYXBhdHJhIiwicmVnTm8iOiIxOEJDRTAzNDAiLCJpYXQiOjE1OTE5Mzg5ODcsImV4cCI6MTU5MTk0OTc4N30.87vR5BuJ2zCmckB9tsCASVF6zaysU1p2Qyszz-LOJu0'
+            })
     }
 
     loadQuiz() {
@@ -34,7 +51,7 @@ class Exam extends Component {
                 "testId": 1004,
                 "clubCode": 102,
                 "regNo": "18BCE0340",
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTAzZTdhMDk0ZmI1MGJkMDI2ZDY4YyIsIm5hbWUiOiJTYW5rZXQgTW9oYXBhdHJhIiwicmVnTm8iOiIxOEJDRTAzNDAiLCJpYXQiOjE1OTE4NTYxNDAsImV4cCI6MTU5MTg2Njk0MH0.JDhplh2Gdjv111fQUq_mlBygtTMAUCvSF8JTKU-TBp4"
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTMwZmE1NDZlYjY5Mzc4MjY2MGQ1NyIsIm5hbWUiOiJTYW5rZXQgTW9oYXBhdHJhIiwicmVnTm8iOiIxOEJDRTAzNDAiLCJpYXQiOjE1OTE5Mzg5ODcsImV4cCI6MTU5MTk0OTc4N30.87vR5BuJ2zCmckB9tsCASVF6zaysU1p2Qyszz-LOJu0"
 
             })
             .then(
@@ -100,7 +117,7 @@ class Exam extends Component {
             localStorage.removeItem('the token');
         }
     componentDidUpdate(prevProps, prevState) {
-        const { QuizData } = this.state;
+        const { QuizData,setAns } = this.state;
         console.log(QuizData.length)
             const { currentQuestion } = this.state;
             if (this.state.currentQuestion !== prevState.currentQuestion && this.state.currentQuestion >= 0) {
@@ -133,7 +150,7 @@ class Exam extends Component {
         }
 
         render() {
-            const { questions, options, currentQuestion,QuizData } = this.state;
+            const { questions, options, currentQuestion,QuizData,setAns } = this.state;
             return (
                 <div>
                     <Navbar1 />
@@ -174,7 +191,16 @@ class Exam extends Component {
                                         {options.map((option) => (
                                             <button
                                                 key={option.id}
-                                                className="quiz"                                            
+                                                className="quiz" 
+                                                onClick={() => {
+                                                    this.setState(
+                                                        { setAns: option }, () => {
+                                                            this.sendResult(setAns)
+                                                            console.log(setAns)
+                                                        })
+                                                   
+                                                }
+                                                    }
                                                
                                             >
                                                 {option}
@@ -187,6 +213,7 @@ class Exam extends Component {
                                         <Button
                                             className="my-4"
                                             type="button"
+                                        
 
                                             onClick={this.prevQuestionHandler}
                                         >
