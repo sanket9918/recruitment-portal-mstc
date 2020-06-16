@@ -157,7 +157,7 @@ class Exam extends Component {
     }
 
     render() {
-        const { questions, options, currentQuestion, QuizData,error } = this.state;
+        const { questions, options, currentQuestion, QuizData } = this.state;
 
         return (
             <div>

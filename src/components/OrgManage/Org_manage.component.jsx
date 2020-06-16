@@ -25,11 +25,7 @@ class OrgManage extends Component {
         this.setState()
     }
 
-    onLogout() {
-        console.log("Token deleted")
-        localStorage.removeItem('The token')
-    }
-
+   
     render() {
         const toggle = () => {
             this.setState({
@@ -134,7 +130,7 @@ class OrgManage extends Component {
                                             <Button
                                                 className="my-4"
                                                 type="button"
-                                                onClick={this.onLogout}
+                                               
                                             >
                                                 Log Out
                                 </Button>

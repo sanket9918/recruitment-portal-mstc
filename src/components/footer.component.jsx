@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Row, Col } from 'reactstrap'
+import { Container, Row, Col, Button, FormGroup, InputGroup, Input, InputGroupAddon, InputGroupText } from 'reactstrap'
 import footimage from '../assets/img/brand/white.svg'
 import { Link } from 'react-router-dom'
 class Footer extends Component {
