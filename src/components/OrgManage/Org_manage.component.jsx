@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Navbar1 from '../navbar.component';
 import Footer from '../footer.component';
-import Options from '../OrgManage/options.component'
 import Participants from '../OrgManage/participants.component'
 import Contact from '../OrgManage/contact.component'
 import { Container, Col, Row, Button, Collapse, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'

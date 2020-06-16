@@ -18,7 +18,8 @@ class Exam extends Component {
             options: [],
             questions: [],
             QuizData: [],
-            setAns:''
+            setAns: [],
+            error:''
         };
     }
 
@@ -31,43 +32,43 @@ class Exam extends Component {
         this.props.history.push('/')
     }
 
-    sendResult(ans) {
-        console.log(ans)
+    sendResult() {
+        const { user } = this.props.auth;
+        const { setAns } = this.state
+        console.log(user.regNo)
+        console.log(setAns)
         axios
             .post('/api/post/users/submitTest', {
-                "testId": 1004,
-                "clubCode": 102,
-                "name": "Sanket Mohapatra",
-                "regNo": "18BCE0340",
-                "clubName": 'mkbhd',
-                'ans':[`${ans}`],
-                'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTMwZmE1NDZlYjY5Mzc4MjY2MGQ1NyIsIm5hbWUiOiJTYW5rZXQgTW9oYXBhdHJhIiwicmVnTm8iOiIxOEJDRTAzNDAiLCJpYXQiOjE1OTE5Mzg5ODcsImV4cCI6MTU5MTk0OTc4N30.87vR5BuJ2zCmckB9tsCASVF6zaysU1p2Qyszz-LOJu0'
+                "testId": `${user.testId}`,
+                "clubCode": `${user.clubCode}`,
+                "name": `${user.name}`,
+                "regNo": `${user.regNo}`,
+                'ans': [`${setAns}`],
+                'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`
             })
+
     }
 
     loadQuiz() {
+        const { user } = this.props.auth;
+
         axios
             .post('api/post/users/takeTest', {
-                "testId": 1004,
-                "clubCode": 102,
-                "regNo": "18BCE0340",
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTMwZmE1NDZlYjY5Mzc4MjY2MGQ1NyIsIm5hbWUiOiJTYW5rZXQgTW9oYXBhdHJhIiwicmVnTm8iOiIxOEJDRTAzNDAiLCJpYXQiOjE1OTE5Mzg5ODcsImV4cCI6MTU5MTk0OTc4N30.87vR5BuJ2zCmckB9tsCASVF6zaysU1p2Qyszz-LOJu0"
+                "testId": `${user.testId}`,
+                "clubCode": `${user.clubCode}`,
+                "regNo": `${user.regNo}`,
+                "token": `${localStorage.getItem('jwtToken').split(" ")[1]}`
 
             })
             .then(
                 res => {
-                    // const id  = res.data.questionSet.map((id)=>id.quid)
-                    // const question = res.data.questionSet.map((ques) => ques.ques)
-                    // const options = res.data.questionSet.map((options) => options.options)
                     this.setState({
                         QuizData: res.data.questionSet
                     });
-                    console.log(this.state.QuizData)
-                    const { currentQuestion, QuizData } = this.state;
-                    console.log(QuizData.length)
-                    console.log(QuizData[currentQuestion])
+                    const { currentQuestion, QuizData } = this.state;                  
                     this.setState(() => {
                         return {
+                            quid:QuizData[currentQuestion].quid,
                             questions: QuizData[currentQuestion].ques,
                             options: QuizData[currentQuestion].options,
                         };
@@ -78,109 +79,123 @@ class Exam extends Component {
                     // 
                     // 
 
-                })}
+                }).catch((err) => {
+                    this.props.history.push('/finish')
+                })
+                    
+                
+
+                
+    }
 
 
 
 
-        componentDidMount() {
+    componentDidMount() {
 
-            // console.log(QuizData)
-            this.loadQuiz();
-        }
+        // console.log(QuizData)
+        this.loadQuiz();
+    }
 
     nextQuestionHandler = () => {
         const { QuizData } = this.state;
-            this.setState({
-                currentQuestion: this.state.currentQuestion + 1,
-            }, () => {
-                if (this.state.currentQuestion > QuizData.length - 1) {
-                    this.setState({
-                        currentQuestion: 0
-                    })
-                }
-            });
-        };
-        prevQuestionHandler = () => {
-            this.setState({
-                currentQuestion: this.state.currentQuestion - 1,
-            }, () => {
-                if (this.state.currentQuestion < 0) {
-                    this.setState({
-                        currentQuestion: 0
-                    })
-                }
-            });
+        this.setState({
+            currentQuestion: this.state.currentQuestion + 1,
+        }, () => {
+            if (this.state.currentQuestion > QuizData.length - 1) {
+                this.setState({
+                    currentQuestion: 0
+                })
+            }
+        });
+    };
+    prevQuestionHandler = () => {
+        this.setState({
+            currentQuestion: this.state.currentQuestion - 1,
+        }, () => {
+            if (this.state.currentQuestion < 0) {
+                this.setState({
+                    currentQuestion: 0
+                })
+            }
+        });
 
-        };
-        onLogout() {
-            localStorage.removeItem('the token');
-        }
+    };
+    onLogout() {
+        localStorage.removeItem('the token');
+    }
     componentDidUpdate(prevProps, prevState) {
-        const { QuizData,setAns } = this.state;
+        const { QuizData} = this.state;
         console.log(QuizData.length)
-            const { currentQuestion } = this.state;
-            if (this.state.currentQuestion !== prevState.currentQuestion && this.state.currentQuestion >= 0) {
-                if (this.state.currentQuestion < QuizData.length) {
-                    this.setState(() => {
+        const { currentQuestion } = this.state;
+        if (this.state.currentQuestion !== prevState.currentQuestion && this.state.currentQuestion >= 0) {
+            if (this.state.currentQuestion < QuizData.length) {
+                this.setState(() => {
 
-                        return {
-                            questions: QuizData[currentQuestion].ques,
-                            options: QuizData[currentQuestion].options,
-                        }
-                    });
-                }
-                else {
-                    this.setState(() => {
+                    return {
+                        questions: QuizData[currentQuestion].ques,
+                        options: QuizData[currentQuestion].options,
+                    }
+                });
+            }
+            else {
+                this.setState(() => {
 
-                        return {
-                            questions: QuizData[QuizData.length - 1].ques,
-                            options: QuizData[QuizData.length - 1].options,
-                        }
-
+                    return {
+                        questions: QuizData[QuizData.length - 1].ques,
+                        options: QuizData[QuizData.length - 1].options,
                     }
 
-                    )
-
                 }
+
+                )
 
             }
 
-
         }
 
-        render() {
-            const { questions, options, currentQuestion,QuizData,setAns } = this.state;
-            return (
-                <div>
-                    <Navbar1 />
-                    <section className="section section-shaped">
-                        <div className="shape shape-style-1 shape-default">
 
-                        </div>
-                        <Container className="py-md">
+    }
 
-                            <div className="content">
-                                <span className="my-4 text-white" style={{ fontWeight: "bold", fontSize: "1.5rem" }}>Timer: 30:00</span>
+    render() {
+        const { questions, options, currentQuestion, QuizData,error } = this.state;
 
-                                <Button
-                                    className="my-4"
-                                    type="button"
-                                    onClick={this.onLogout}
-                                >
-                                    Log Out
+        return (
+            <div>
+                <Navbar1 />
+                <section className="section section-shaped">
+                    <div className="shape shape-style-1 shape-default">
+
+                    </div>
+                    <Container className="py-md">
+
+                        <div className="content">
+                            <span className="my-4 text-white" style={{ fontWeight: "bold", fontSize: "1.5rem" }}>Timer: 30:00</span>
+
+                            <Button
+                                className="my-4"
+                                type="button"
+                                onClick={this.onLogout}
+                            >
+                                Log Out
                                 </Button>
 
-                            </div>
-                            <Row className="justify-content-between align-items-center">
+                        </div>
+                        <Row className="justify-content-between align-items-center">
+                            
+                            {error ? <h1>{error}</h1> :
+                                <div>
                                 <Col className="mb-lg-auto" lg="6">
                                     <div style={{ margin: 'auto', textAlign: 'center' }}></div>
                                     <h2 className="display-3 text-white">
                                         Exam Section
                                 </h2>
+                                
+                                    
+                                
                                     <span style={{ display: 'block', color: "white" }}>
-                                    {`Questions ${currentQuestion} out of ${QuizData.length - 1}`}
-                                </span>
+                                        {`Questions ${currentQuestion} out of ${QuizData.length - 1}`}
+                                    </span>
                                     <span className="text-white" style={{ fontSize: "1.3rem" }}>{questions}</span>
 
                                 </Col>
@@ -191,17 +206,15 @@ class Exam extends Component {
                                         {options.map((option) => (
                                             <button
                                                 key={option.id}
-                                                className="quiz" 
+                                                className="quiz"
                                                 onClick={() => {
-                                                    this.setState(
-                                                        { setAns: option }, () => {
-                                                            this.sendResult(setAns)
-                                                            console.log(setAns)
-                                                        })
-                                                   
+                                                    this.setState(prevState =>
+                                                        ({ setAns: [...prevState.setAns, { "_id": `${QuizData[currentQuestion].quid}`, "ans": option }] })
+                                                    )
+
                                                 }
-                                                    }
-                                               
+                                                }
+
                                             >
                                                 {option}
                                             </button>
@@ -213,7 +226,7 @@ class Exam extends Component {
                                         <Button
                                             className="my-4"
                                             type="button"
-                                        
+
 
                                             onClick={this.prevQuestionHandler}
                                         >
@@ -227,45 +240,66 @@ class Exam extends Component {
                                         >
                                             Next
                     </Button>
-                                        <Link to='/finish'>
-                                            <Button
-                                                className="my-4"
-                                                type="button"
+                                   
+                                        <Button
+                                            className="my-4"
+                                            type="button"
 
-                                                onClick={this.nextQuestionHandler}
-                                            >
-                                                Finish
+                                            onClick={
+                                                () => {
+                                                    const { user } = this.props.auth;
+                                                    const { setAns } = this.state
+                                                    // const ansSample = {
+                                                    //     "_id": "1",
+                                                    //     "ans":"STC"
+                                                    // }
+                                                    axios
+                                                        .post('/api/post/users/submitTest', {
+                                                            "testId": `${user.testId}`,
+                                                            "clubCode": `${user.clubCode}`,
+                                                            "name": `${user.name}`,
+                                                            "regNo": `${user.regNo}`,
+                                                            'ans': setAns,
+                                                            'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`
+                                                        }).then(() => {
+                                                            this.props.history.push('/finish')
+                                                        }).catch((err) => {
+                                                            console.log(err)
+                                                        })
+                                                }
+                                            }
+                                        >
+                                            Finish
                     </Button>
-                                        </Link>
                                     </div>
                                 </Col>
-
-                            </Row>
-                        </Container>
-                    </section>
-
-
+                                </div>  }
+                        </Row>
+                    </Container>
+                </section>
 
 
 
 
-                    <Footer />
-                </div>
-            );
-            //return <div className='App'>{this.state.currentQuestion}</div>;
-        }
+
+
+                <Footer />
+            </div>
+        );
+        //return <div className='App'>{this.state.currentQuestion}</div>;
     }
+}
 
-    Exam.propTypes =
-        {
-            logout: PropTypes.func.isRequired,
-            auth: PropTypes.object.isRequired
-        }
+Exam.propTypes =
+{
+    logout: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+}
 
-    const mapStateToProps = state => ({
-        auth: state.auth
-    });
-    export default connect(
-        mapStateToProps, { logout }
-    )(Exam)
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+export default connect(
+    mapStateToProps, { logout }
+)(Exam)
 

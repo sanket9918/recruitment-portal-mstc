@@ -21,6 +21,7 @@ class UserSignUp extends Component {
             clubCode: '',
             email: '',
             password: '',
+            testId:'',
             errors: {}
 
         }
@@ -62,7 +63,8 @@ class UserSignUp extends Component {
             blockName: this.state.blockName,
             roomNo: this.state.roomNo,
             clubCode: this.state.clubCode,
-            name: this.state.name
+            name: this.state.name,
+            testId:this.state.testId
         }
         this.props.registerUser(userData, this.props.history);
     }
@@ -271,7 +273,6 @@ class UserSignUp extends Component {
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input
-                                                id="block"
                                                 placeholder="Password"
                                                 type="password"
                                                 name="block"
@@ -279,6 +280,27 @@ class UserSignUp extends Component {
                                                 onChange={this.onChangeAlter}
                                                 value={this.state.password}
                                                 error={errors.password}
+                                            />
+                                        </InputGroup>
+                                    </FormGroup>
+
+                                    <FormGroup
+
+                                    >
+                                        <InputGroup className="input-group-alternative">
+                                            <InputGroupAddon addonType="prepend">
+                                                <InputGroupText>
+                                                    <i className="fa fa-user-secret" />
+                                                </InputGroupText>
+                                            </InputGroupAddon>
+                                            <Input
+                                                id="testId"
+                                                placeholder="Test ID"
+                                                type="text"
+                                                name="testId"
+                                                onChange={this.onChangeAlter}
+                                                value={this.state.testId}
+                                                error={errors.testId}
                                             />
                                         </InputGroup>
                                     </FormGroup>
