@@ -4,7 +4,6 @@ import { Button } from 'reactstrap'
 import Navbar1 from '../navbar.component';
 import Footer from '../footer.component';
 import { Container, Row, Col } from 'reactstrap'
-import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logout } from '../../actions/authActions'
@@ -183,8 +182,6 @@ class Exam extends Component {
                         </div>
                         <Row className="justify-content-between align-items-center">
                             
-                            {error ? <h1>{error}</h1> :
-                                <div>
                                 <Col className="mb-lg-auto" lg="6">
                                     <div style={{ margin: 'auto', textAlign: 'center' }}></div>
                                     <h2 className="display-3 text-white">
@@ -273,7 +270,7 @@ class Exam extends Component {
                     </Button>
                                     </div>
                                 </Col>
-                                </div>  }
+                            
                         </Row>
                     </Container>
                 </section>

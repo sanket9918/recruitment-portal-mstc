@@ -170,10 +170,9 @@ class OrgSignUp extends Component{
                                             <Input
                                                 id="password"
                                                 placeholder="Password"
-                                                type="text"
+                                                type="password"
                                                 name="password"
-                                                id="password"
-                                                onChange={this.onChange}
+                                                onChange={this.onChangeAlter}
                                                 value={this.state.password}
                                                 error={errors.password}
                                                 className={classnames("", {
@@ -198,7 +197,7 @@ class OrgSignUp extends Component{
                                             placeholder="Club Code"
                                             type="text"
                                             name="clubCode"
-                                            onChange={this.onChange}
+                                            onChange={this.onChangeAlter}
                                             error={errors.clubCode}
                                             value={this.state.clubCode}
                                             className={classnames("", {
