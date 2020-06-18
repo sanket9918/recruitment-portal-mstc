@@ -6,10 +6,12 @@ import Contact from '../OrgManage/contact.component'
 import { Container, Col, Row, Button, Collapse, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { HashRouter, NavLink, Route, Link } from 'react-router-dom'
 import '../../assets/scss/org_sign.scss'
-import QuestionHolder from './questions/taskForm';
+// import QuestionHolder from './questions/taskForm';
+import QuestionHolder from './questions/containers/main'
 import App from '../../App';
-
-
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logout} from '../../actions/authActions'
 class OrgManage extends Component {
     constructor(props) {
         super(props);
@@ -20,6 +22,11 @@ class OrgManage extends Component {
 
 
     }
+    onLogout = e => {
+        e.preventDefault();
+        this.props.logout();
+        
+    }
 
     resize() {
         this.setState()
@@ -27,6 +34,7 @@ class OrgManage extends Component {
 
    
     render() {
+        const { org } = this.props.auth
         const toggle = () => {
             this.setState({
                 isOpen: !this.state.isOpen
@@ -52,7 +60,7 @@ class OrgManage extends Component {
                                         <Col className="mb-lg-auto" lg="6">
                                             <div style={{ margin: "auto", textAlign: "center" }}>
                                                 <span className="text-white" style={{ fontSize: "1.5rem" }}>
-                                                    Hi <b>{this.state.orgName}</b>
+                                                    {/* Hi <b>{org.clubName}</b> */}
                                                 </span>
                                                 {/* <img
                                         alt="..."
@@ -130,6 +138,7 @@ class OrgManage extends Component {
                                             <Button
                                                 className="my-4"
                                                 type="button"
+                                                onClick={this.onLogout}
                                                
                                             >
                                                 Log Out
@@ -150,4 +159,14 @@ class OrgManage extends Component {
     }
 }
 
-export default OrgManage;
+OrgManage.propTypes = {
+    auth: PropTypes.object.isRequired,
+    logout:PropTypes.func.isRequired
+}
+
+const mapStateToProps = state => ({
+    auth:state.auth
+})
+export default connect(
+    mapStateToProps,{logout}
+)(OrgManage)
