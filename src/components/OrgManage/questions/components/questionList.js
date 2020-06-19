@@ -14,10 +14,7 @@ export class QuestionList extends React.Component {
     let rowDel = this.props.onRowDel;
     let onRowAdd = this.props.onRowAdd;
     let onRowSave = this.props.onRowSave;
-    let onFilterChange = this.props.onFilterChange;
-    let onColumnSort = this.props.onColumnSort;
     let buttonHeaderStyling = this.props.setButtonHeaderStyle;
-    let filter = this.props.filterValue;
 
     this.props.questions.forEach(function(question) {
       rows.push(
@@ -49,7 +46,7 @@ export class QuestionList extends React.Component {
               <th>
                 <button
                   name="questionId"
-                  onClick={onColumnSort}
+                  // onClick={onColumnSort}
                   className={buttonHeaderStyling("nameSort")}
                 >
                   {" "}
@@ -59,7 +56,7 @@ export class QuestionList extends React.Component {
               <th>
                 <button
                   name="question"
-                  onClick={onColumnSort}
+                  // onClick={onColumnSort}
                   className={buttonHeaderStyling("phoneSort")}
                 >
                   {" "}
@@ -69,7 +66,7 @@ export class QuestionList extends React.Component {
               <th>
                 <button
                   name="options"
-                  onClick={onColumnSort}
+                  // onClick={onColumnSort}
                   className={buttonHeaderStyling("timeSort")}
                 >
                   {" "}
@@ -79,7 +76,7 @@ export class QuestionList extends React.Component {
               <th>
                 <button
                   name="ans"
-                  onClick={onColumnSort}
+                  // onClick={onColumnSort}
                   className={buttonHeaderStyling("descSort")}
                 >
                   {" "}
@@ -89,48 +86,7 @@ export class QuestionList extends React.Component {
               <th className="LastColumn" />
             </tr>
           </thead>
-          <tbody>
-            <tr className="pure-table-odd">
-              <td>
-                <input
-                  name="questionId"
-                  type="text"
-                  onChange={onFilterChange}
-                  value={filter.questionId}
-                  className="input"
-                />
-              </td>
-              <td>
-                <input
-                  name="questions"
-                  type="text"
-                  onChange={onFilterChange}
-                  value={filter.questions}
-                  className="input"
-                />
-              </td>
-              <td>
-                <input
-                  name="options"
-                  type="text"
-                  onChange={onFilterChange}
-                  value={filter.options}
-                  className="input"
-                />
-              </td>
-              <td>
-                <input
-                  name="ans"
-                  type="text"
-                  onChange={onFilterChange}
-                  value={filter.ans}
-                  className="input"
-                />
-              </td>
-              <td>
-                <i className="fa fa-search"></i>
-              </td>
-            </tr>
+          <tbody>            
             {rows}
           </tbody>
         </table>
