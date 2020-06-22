@@ -1,8 +1,10 @@
 import React from "react";
 import axios from "axios";
 import { QuestionList } from "../components/questionList";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-export default class QuestionHolder extends React.Component {
+class QuestionHolder extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -35,6 +37,7 @@ export default class QuestionHolder extends React.Component {
 
 
   handleRowDel(question) {
+    const { org } = this.props.auth
     let index = this.state.questions.indexOf(question);
     let questions = this.state.questions;
 
@@ -48,8 +51,8 @@ export default class QuestionHolder extends React.Component {
     axios
       .delete("/api/post/orgs/questions/" + question.questionId,{
         data: {
-          'clubCode': 102,
-          'testId': 1004,
+          'clubCode': `${org.clubCode}`,
+          'testId': `${org.testId}`,
           'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`
         }
         
@@ -66,12 +69,13 @@ export default class QuestionHolder extends React.Component {
   }
 
   handleRowAdd(question) {
+    const { org } = this.props.auth
     // Create on API
     axios
       .post("/api/post/orgs/questions/" + question.questionId, {
 
-        'clubCode': 102,
-        'testId': 1004,
+        'clubCode':`${org.clubCode}`,
+        'testId':`${org.testId}`,
         'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`,
         'question': {
          '_id': question.questionId,
@@ -106,11 +110,12 @@ export default class QuestionHolder extends React.Component {
   }
 
   handleRowSave(question) {
+    const { org } = this.props.auth
     // Update on API
     axios
       .put("/api/post/orgs/questions/" + question.questionId, {
-        'clubCode': 102,
-        'testId': 1004,
+        'clubCode': `${org.clubCode}`,
+        'testId': `${org.testId}`,
         'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`,
         'question': {
           '_id': question.questionId,
@@ -169,3 +174,14 @@ export default class QuestionHolder extends React.Component {
     );
   }
 }
+
+QuestionHolder.propTypes = {
+  auth:PropTypes.object.isRequired
+}
+const mapStateToProps = state => ({
+  auth:state.auth
+})
+
+export default connect(
+  mapStateToProps
+)(QuestionHolder)

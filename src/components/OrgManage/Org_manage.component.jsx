@@ -3,12 +3,10 @@ import Navbar1 from '../navbar.component';
 import Footer from '../footer.component';
 import Participants from '../OrgManage/participants.component'
 import Contact from '../OrgManage/contact.component'
-import { Container, Col, Row, Button, Collapse, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+import { Container, Col, Row, Button, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { HashRouter, NavLink, Route, Link } from 'react-router-dom'
 import '../../assets/scss/org_sign.scss'
-// import QuestionHolder from './questions/taskForm';
 import QuestionHolder from './questions/containers/main'
-import App from '../../App';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logout} from '../../actions/authActions'
@@ -25,7 +23,7 @@ class OrgManage extends Component {
     onLogout = e => {
         e.preventDefault();
         this.props.logout();
-        
+        this.props.history.push('/')
     }
 
     resize() {
@@ -34,12 +32,7 @@ class OrgManage extends Component {
 
    
     render() {
-        const { org } = this.props.auth
-        const toggle = () => {
-            this.setState({
-                isOpen: !this.state.isOpen
-            })
-        }
+        
         return (
             <div>
                 <Navbar1 />
@@ -121,6 +114,10 @@ class OrgManage extends Component {
                                     <Row>
                                         <Col className="mb-lg-auto">
                                             <div className="placeholder">
+                                                <div className="center-tag">
+                                                    <span style={{ fontSize: "1.2em" }}>Welcome to management console</span><br /><br />
+
+                                                </div>
                                                 <Route path='/options' component={QuestionHolder} />
                                                 <Route path='/participants' component={Participants} />
                                                 <Route path='/contact' component={Contact} />
@@ -134,7 +131,7 @@ class OrgManage extends Component {
                             <Row >
                                 <Col>
                                     <div className="center-tag">
-                                        <Link to='/'>
+                                        <a href="localhost:3000">
                                             <Button
                                                 className="my-4"
                                                 type="button"
@@ -143,7 +140,7 @@ class OrgManage extends Component {
                                             >
                                                 Log Out
                                 </Button>
-                                        </Link>
+                                        </a>
                                     </div>
                                 </Col>
                             </Row>

@@ -3,10 +3,10 @@ import Navbar1 from './navbar.component'
 import Footer from './footer.component'
 import classnames from 'classnames'
 import {Col,Row,Container,Button,FormGroup,InputGroup,Input,InputGroupAddon,InputGroupText } from 'reactstrap'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from "prop-types";
 import { registerOrg} from '../actions/authActions'
+import axios from 'axios'
 class OrgSignUp extends Component{
     constructor(props) {
         super(props)
@@ -19,6 +19,7 @@ class OrgSignUp extends Component{
             email: '',
             password: '',
             extras: '',
+            testId:'',
             errors:{}
         }
     }
@@ -59,7 +60,8 @@ class OrgSignUp extends Component{
             email: this.state.email,
             password: this.state.password,
             extras: this.state.extras,
-            mobileNo:this.state.mobileNo
+            mobileNo: this.state.mobileNo,
+            testId:this.state.testId
         }
         this.props.registerOrg(orgData, this.props.history);
         }
@@ -207,6 +209,32 @@ class OrgSignUp extends Component{
                                     </InputGroup>
                                     </FormGroup>
 
+
+
+                                    <FormGroup
+
+                                    >
+                                        <InputGroup className="input-group-alternative">
+                                            <InputGroupAddon addonType="prepend">
+                                                <InputGroupText>
+                                                    <i className="fa fa-phone" />
+                                                </InputGroupText>
+                                            </InputGroupAddon>
+                                            <Input
+                                                id="testId"
+                                                placeholder="Test ID"
+                                                type="text"
+                                                name="testId"
+                                                onChange={this.onChangeAlter}
+                                                error={errors.testId}
+                                                value={this.state.testId}
+                                                className={classnames("", {
+                                                    invalid: errors.testId
+                                                })}
+                                            />
+                                        </InputGroup>
+                                    </FormGroup>
+
                                     
                                     <FormGroup className="mb-4">
                                         <Input
@@ -225,8 +253,16 @@ class OrgSignUp extends Component{
                                     <div>
                                         <center>
                                                 <Button
-                                                    className="my-4"
-                                                    type="submit"
+                                                className="my-4"
+                                                type="submit"
+                                                onClick={() => {
+                                                    axios
+                                                        .post('api/post/orgs/addTest',
+                                                            {
+                                                                "testId": this.state.testId,
+                                                                "clubCode":this.state.clubCode
+                                                    })
+                                                }}
                                                 >
                                                     Sign Up
                     </Button>
