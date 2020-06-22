@@ -33,21 +33,27 @@ export default class QuestionHolder extends React.Component {
     );
   }
 
- 
+
   handleRowDel(question) {
     let index = this.state.questions.indexOf(question);
     let questions = this.state.questions;
 
     questions.splice(index, 1);
     let shownQuestions = questions
-    
-  
+
+
 
     // Delete on API
-    let urlDelete = "http://localhost:3001/questions/" + question._id;
 
     axios
-      .delete(urlDelete, { question })
+      .delete("/api/post/orgs/questions/" + question.questionId,{
+        data: {
+          'clubCode': 102,
+          'testId': 1004,
+          'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`
+        }
+        
+      })
       .then(
         this.setState({
           questions: questions,
@@ -62,12 +68,21 @@ export default class QuestionHolder extends React.Component {
   handleRowAdd(question) {
     // Create on API
     axios
-      .post("http://localhost:3001/questions", {
-        _id: question.questionId,
-        ques: question.questions,
-        options: question.options,
-        ans: question.ans,
-       
+      .post("/api/post/orgs/questions/" + question.questionId, {
+
+        'clubCode': 102,
+        'testId': 1004,
+        'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`,
+        'question': {
+         '_id': question.questionId,
+          'ques': question.questions,
+          'options': question.options.split(","),
+          'ans': question.ans,
+        }
+
+
+
+
       })
       .then(res => {
         question._id = res.data._id;
@@ -81,8 +96,8 @@ export default class QuestionHolder extends React.Component {
     questions.push(question);
 
     let shownQuestions = questions
-    
-    
+
+
 
     this.setState({
       questions: questions,
@@ -93,11 +108,16 @@ export default class QuestionHolder extends React.Component {
   handleRowSave(question) {
     // Update on API
     axios
-      .put("http://localhost:3001/questions/" + question._id, {
-        _id: question.questionId,
-        ques: question.questions,
-        options: question.options,
-        ans: question.ans
+      .put("/api/post/orgs/questions/" + question.questionId, {
+        'clubCode': 102,
+        'testId': 1004,
+        'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`,
+        'question': {
+          '_id': question.questionId,
+          'ques': question.questions,
+          'options': question.options,
+          'ans': question.ans,
+        }
       })
       .then()
       .catch(err => {
@@ -110,12 +130,12 @@ export default class QuestionHolder extends React.Component {
     filters[evt.target.name] = evt.target.value;
 
     let shownQuestions = this.state.questions.filter
-    
+
 
     this.setState({ filter: filters, shownQuestions: shownQuestions });
   }
 
-  
+
 
   // Lifecycle Methods
   componentDidMount() {
@@ -124,7 +144,7 @@ export default class QuestionHolder extends React.Component {
       .get("http://localhost:3001/questions")
       .then(res => {
         let shownQuestions = res.data
-        
+
         this.setState({
           questions: res.data,
           shownQuestions: shownQuestions

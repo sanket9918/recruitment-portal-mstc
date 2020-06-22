@@ -8,8 +8,8 @@ export class QuestionRow extends React.Component {
 
     return (
       <tr>
-        <td>{question._id}</td>
-        <td>{question.ques}</td>
+        <td>{question.questionId}</td>
+        <td>{question.questions}</td>
         <td>{question.options}</td>
         <td>{question.ans}</td>
         <td>
