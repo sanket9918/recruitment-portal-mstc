@@ -10,6 +10,7 @@ import QuestionHolder from './questions/containers/main'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logout} from '../../actions/authActions'
+import Initial from './InitialRoute.component';
 class OrgManage extends Component {
     constructor(props) {
         super(props);
@@ -115,7 +116,7 @@ class OrgManage extends Component {
                                         <Col className="mb-lg-auto">
                                             <div className="placeholder">
                                                 <div className="center-tag">
-                                                    <span style={{ fontSize: "1.2em" }}>Welcome to management console</span><br /><br />
+                                                    <Route path='/' component={Initial}/>
 
                                                 </div>
                                                 <Route path='/options' component={QuestionHolder} />

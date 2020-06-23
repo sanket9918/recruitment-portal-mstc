@@ -44,9 +44,7 @@ export class NewRow extends React.Component {
           />
         </td>
         <td>
-          <button onClick={onSaveEvent} className="button-success pure-button">
-            <i className="material-icons">add_circle</i>
-          </button>
+          <i className="material-icons" onClick={onSaveEvent} style={{ cursor: 'pointer' }}>add_circle</i>
         </td>
       </tr>
     );

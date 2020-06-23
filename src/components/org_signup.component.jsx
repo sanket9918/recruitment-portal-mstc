@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import Navbar1 from './navbar.component'
 import Footer from './footer.component'
 import classnames from 'classnames'
-import {Col,Row,Container,Button,FormGroup,InputGroup,Input,InputGroupAddon,InputGroupText } from 'reactstrap'
+import { Col, Row, Container, Button, FormGroup, InputGroup, Input, InputGroupAddon, InputGroupText } from 'reactstrap'
 import { connect } from 'react-redux'
 import PropTypes from "prop-types";
-import { registerOrg} from '../actions/authActions'
+import { registerOrg } from '../actions/authActions'
 import axios from 'axios'
-class OrgSignUp extends Component{
+class OrgSignUp extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -19,8 +19,8 @@ class OrgSignUp extends Component{
             email: '',
             password: '',
             extras: '',
-            testId:'',
-            errors:{}
+            testId: '',
+            errors: {}
         }
     }
 
@@ -51,8 +51,7 @@ class OrgSignUp extends Component{
         })
     }
 
-    onSubmit = (e) =>
-    {
+    onSubmit = (e) => {
         e.preventDefault();
         const orgData = {
             clubCode: this.state.clubCode,
@@ -61,10 +60,10 @@ class OrgSignUp extends Component{
             password: this.state.password,
             extras: this.state.extras,
             mobileNo: this.state.mobileNo,
-            testId:this.state.testId
+            testId: this.state.testId
         }
         this.props.registerOrg(orgData, this.props.history);
-        }
+    }
 
     render() {
         const { errors } = this.state;
@@ -78,11 +77,11 @@ class OrgSignUp extends Component{
                     <Container className="py-md">
                         <Row className="justify-content-between align-items-center">
                             <Col className="mb-lg-auto" lg="6">
-                                <div style={{margin:'auto',textAlign:'center'}}></div>
+                                <div style={{ margin: 'auto', textAlign: 'center' }}></div>
                                 <h2 className="display-3 text-white">
                                     Let's get started
                                 </h2>
-                                
+
 
                                 {/* The start of the form  */}
                                 <form noValidate onSubmit={this.onSubmit}>
@@ -111,6 +110,17 @@ class OrgSignUp extends Component{
                                             />
                                         </InputGroup>
                                     </FormGroup>
+                                    <div className="center-tag"
+                                        style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
+
+                                        <span className="red-text"
+                                            style={
+                                                {
+                                                    color: 'red'
+                                                }
+                                            }>
+                                            {errors.clubName}
+                                        </span> </div>
                                     <FormGroup
                                         className={classnames({
                                             focused: this.state.emailFocused
@@ -127,17 +137,28 @@ class OrgSignUp extends Component{
                                                 placeholder="Email address"
                                                 type="email"
                                                 onChange={this.onChange}
-                                                value ={this.state.email}
+                                                value={this.state.email}
                                                 name="email"
-                                               
+
                                                 className={classnames("", {
                                                     invalid: errors.email || errors.regnotfound
                                                 })}
                                             />
                                         </InputGroup>
                                     </FormGroup>
+                                    <div className="center-tag"
+                                        style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
+
+                                        <span className="red-text"
+                                            style={
+                                                {
+                                                    color: 'red'
+                                                }
+                                            }>
+                                            {errors.email}
+                                        </span> </div>
                                     <FormGroup
-                                        
+
                                     >
                                         <InputGroup className="input-group-alternative">
                                             <InputGroupAddon addonType="prepend">
@@ -154,11 +175,22 @@ class OrgSignUp extends Component{
                                                 error={errors.mobileNo}
                                                 value={this.state.mobileNo}
                                                 className={classnames("", {
-                                                    invalid: errors.mobileNo 
+                                                    invalid: errors.mobileNo
                                                 })}
                                             />
                                         </InputGroup>
                                     </FormGroup>
+                                    <div className="center-tag"
+                                        style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
+
+                                        <span className="red-text"
+                                            style={
+                                                {
+                                                    color: 'red'
+                                                }
+                                            }>
+                                            {errors.mobileNo}
+                                        </span> </div>
 
                                     <FormGroup
 
@@ -184,30 +216,52 @@ class OrgSignUp extends Component{
                                             />
                                         </InputGroup>
                                     </FormGroup>
+                                    <div className="center-tag"
+                                        style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
+
+                                        <span className="red-text"
+                                            style={
+                                                {
+                                                    color: 'red'
+                                                }
+                                            }>
+                                            {errors.password}
+                                        </span> </div>
 
                                     <FormGroup
 
                                     >
                                         <InputGroup className="input-group-alternative">
-                                        <InputGroupAddon addonType="prepend">
-                                            <InputGroupText>
-                                                <i className="fa fa-phone" />
-                                            </InputGroupText>
-                                        </InputGroupAddon>
-                                        <Input
-                                            id="clubCode"
-                                            placeholder="Club Code"
-                                            type="text"
-                                            name="clubCode"
-                                            onChange={this.onChangeAlter}
-                                            error={errors.clubCode}
-                                            value={this.state.clubCode}
-                                            className={classnames("", {
-                                                invalid: errors.clubCode
-                                            })}
-                                        />
-                                    </InputGroup>
+                                            <InputGroupAddon addonType="prepend">
+                                                <InputGroupText>
+                                                    <i className="fa fa-phone" />
+                                                </InputGroupText>
+                                            </InputGroupAddon>
+                                            <Input
+                                                id="clubCode"
+                                                placeholder="Club Code"
+                                                type="text"
+                                                name="clubCode"
+                                                onChange={this.onChangeAlter}
+                                                error={errors.clubCode}
+                                                value={this.state.clubCode}
+                                                className={classnames("", {
+                                                    invalid: errors.clubCode
+                                                })}
+                                            />
+                                        </InputGroup>
                                     </FormGroup>
+                                    <div className="center-tag"
+                                        style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
+
+                                        <span className="red-text"
+                                            style={
+                                                {
+                                                    color: 'red'
+                                                }
+                                            }>
+                                            {errors.clubCode}
+                                        </span> </div>
 
 
 
@@ -234,8 +288,19 @@ class OrgSignUp extends Component{
                                             />
                                         </InputGroup>
                                     </FormGroup>
+                                    <div className="center-tag"
+                                        style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
 
-                                    
+                                        <span className="red-text"
+                                            style={
+                                                {
+                                                    color: 'red'
+                                                }
+                                            }>
+                                            {errors.testId}
+                                        </span> </div>
+
+
                                     <FormGroup className="mb-4">
                                         <Input
                                             id="extras"
@@ -247,12 +312,12 @@ class OrgSignUp extends Component{
                                             type="textarea"
                                             onChange={this.onChange}
                                             value={this.state.extras}
-                                            
+
                                         />
                                     </FormGroup>
                                     <div>
                                         <center>
-                                                <Button
+                                            <Button
                                                 className="my-4"
                                                 type="submit"
                                                 onClick={() => {
@@ -260,13 +325,13 @@ class OrgSignUp extends Component{
                                                         .post('api/post/orgs/addTest',
                                                             {
                                                                 "testId": this.state.testId,
-                                                                "clubCode":this.state.clubCode
-                                                    })
+                                                                "clubCode": this.state.clubCode
+                                                            })
                                                 }}
-                                                >
-                                                    Sign Up
+                                            >
+                                                Sign Up
                     </Button>
-                                            
+
                                         </center>
                                     </div>
                                 </form>
@@ -276,23 +341,23 @@ class OrgSignUp extends Component{
                             </Col>
 
                             <Col className="mb-lg-auto" lg="6">
-                                
+
                                 <div style={{ margin: 'auto', textAlign: 'center' }}>
                                     <img
                                         alt="..."
                                         className="img-fluid"
-                                        style={{ paddingBottom: "1em",marginTop:"4em", height: "15em" }}
+                                        style={{ paddingBottom: "1em", marginTop: "4em", height: "15em" }}
                                         src={require("../assets/img/delivery-4.png")}
 
                                     />
-                                    <h1 className="display-4  text-white" style={{fontWeight:"300"}}>Provide necessary details and we will get back to you shortly.</h1>
+                                    <h1 className="display-4  text-white" style={{ fontWeight: "300" }}>Provide necessary details and we will get back to you shortly.</h1>
                                 </div>
-                                </Col>
-                            
+                            </Col>
+
                         </Row>
                     </Container>
-                    </section>
-                <Footer />                
+                </section>
+                <Footer />
             </div>
         )
     }
@@ -301,15 +366,15 @@ class OrgSignUp extends Component{
 OrgSignUp.propTypes = {
     registerOrg: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    errors:PropTypes.object.isRequired
+    errors: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    errors:state.error
+    errors: state.errors
 })
 
 export default connect(
     mapStateToProps,
-    {registerOrg}
+    { registerOrg }
 )(OrgSignUp)

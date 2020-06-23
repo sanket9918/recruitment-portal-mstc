@@ -50,12 +50,8 @@ export class EditRow extends React.Component {
 					/>
 				</td>
 				<td>
-					<button onClick={onSaveEvent} className="button-success pure-button">
-            <i className="material-icons">done</i>
-					</button>
-					<button onClick={onDelEvent} className="button-error pure-button">
-            <i className="material-icons">delete</i>
-					</button>
+					<i className="material-icons" onClick={onSaveEvent} style={{ cursor: 'pointer' }}>done</i>
+					<i className="material-icons" onClick={onDelEvent} style={{ cursor: 'pointer' }}>delete</i>
 				</td>
 			</tr>
 		);

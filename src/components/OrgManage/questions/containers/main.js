@@ -162,6 +162,7 @@ class QuestionHolder extends React.Component {
 
   render() {
     return (
+      <div style={{overflowX:'scroll'}}>
       <QuestionList
         questions={this.state.shownQuestions}
         filterValue={this.state.filter}
@@ -170,7 +171,7 @@ class QuestionHolder extends React.Component {
         onRowSave={this.handleRowSave}
         onFilterChange={this.handleFilterChange}
         setButtonHeaderStyle={this.buttonHeaderStyling}
-      />
+        /></div>
     );
   }
 }

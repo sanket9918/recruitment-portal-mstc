@@ -367,7 +367,7 @@ class Login extends React.Component {
                                       type="email"
                                       id='email'
                                       value={this.state.email}
-                                      onChange={this.onChange}
+                                      onChange={this.onChangeAlter}
                                       error={errors.email}
                                       className={classnames("", {
                                         invalid: errors.email || errors.emailnotfound

@@ -105,7 +105,6 @@ class UserSignUp extends Component {
                                                 placeholder="What's your name?"
                                                 type="text"
                                                 name="name"
-                                                id='name'
                                                 onChange={this.onChange}
                                                 value={this.state.name}
                                                 error={errors.name}
@@ -126,7 +125,6 @@ class UserSignUp extends Component {
                                                 }
                                             }>
                                             {errors.name}
-                                            {errors.namenotfound}
                                         </span> </div>
                                     <FormGroup
                                         className={classnames({
@@ -165,7 +163,6 @@ class UserSignUp extends Component {
                                                 }
                                             }>
                                             {errors.regNo}
-                                            {errors.regnotfound}
                                         </span> </div>
 
 
@@ -185,13 +182,23 @@ class UserSignUp extends Component {
                                                 placeholder="Email address"
                                                 type="email"
                                                 name="email"
-                                                id='email'
                                                 onChange={this.onChangeAlter}
                                                 value={this.state.email}
                                                 error={errors.email}
                                             />
                                         </InputGroup>
                                     </FormGroup>
+                                    <div className="center-tag"
+                                        style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
+
+                                        <span className="red-text"
+                                            style={
+                                                {
+                                                    color: 'red'
+                                                }
+                                            }>
+                                            {errors.email}
+                                        </span> </div>
                                     <FormGroup
 
                                     >
@@ -202,7 +209,6 @@ class UserSignUp extends Component {
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input
-                                                id="mobile"
                                                 placeholder="Mobile No."
                                                 type="text"
                                                 name="phone"
@@ -214,6 +220,17 @@ class UserSignUp extends Component {
                                             />
                                         </InputGroup>
                                     </FormGroup>
+                                    <div className="center-tag"
+                                        style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
+
+                                        <span className="red-text"
+                                            style={
+                                                {
+                                                    color: 'red'
+                                                }
+                                            }>
+                                            {errors.mobileNo}
+                                        </span> </div>
 
                                     <FormGroup
 
@@ -225,8 +242,7 @@ class UserSignUp extends Component {
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input
-                                                id="block"
-                                                placeholder="Block name / Room no."
+                                                placeholder="Block name / Room no.(NA if staying outside)"
                                                 type="text"
                                                 name="block"
                                                 id='blockName'
@@ -236,30 +252,7 @@ class UserSignUp extends Component {
 
                                             />
                                         </InputGroup>
-                                    </FormGroup>
-                                    <FormGroup
-
-                                    >
-                                        <InputGroup className="input-group-alternative">
-                                            <InputGroupAddon addonType="prepend">
-                                                <InputGroupText>
-                                                    <i className="fa fa-home" />
-                                                </InputGroupText>
-                                            </InputGroupAddon>
-                                            <Input
-                                                id="block"
-                                                placeholder="Room No."
-                                                type="text"
-                                                name="roomNo"
-                                                id='roomNo'
-                                                onChange={this.onChange}
-                                                value={this.state.roomNo}
-                                                error={errors.roomNo}
-
-                                            />
-                                        </InputGroup>
-                                    </FormGroup>
-
+                                    </FormGroup>                                    
 
 
 
@@ -283,7 +276,17 @@ class UserSignUp extends Component {
                                             />
                                         </InputGroup>
                                     </FormGroup>
+                                    <div className="center-tag"
+                                        style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
 
+                                        <span className="red-text"
+                                            style={
+                                                {
+                                                    color: 'red'
+                                                }
+                                            }>
+                                            {errors.password}
+                                        </span> </div>
                                     <FormGroup
 
                                     >
@@ -304,6 +307,17 @@ class UserSignUp extends Component {
                                             />
                                         </InputGroup>
                                     </FormGroup>
+                                    <div className="center-tag"
+                                        style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
+
+                                        <span className="red-text"
+                                            style={
+                                                {
+                                                    color: 'red'
+                                                }
+                                            }>
+                                            {errors.testId}
+                                        </span> </div>
 
 
 
@@ -318,7 +332,6 @@ class UserSignUp extends Component {
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input
-                                                id="block"
                                                 placeholder="Code of club/chapter applying"
                                                 type="text"
                                                 name="block"
@@ -330,6 +343,17 @@ class UserSignUp extends Component {
                                             />
                                         </InputGroup>
                                     </FormGroup>
+                                    <div className="center-tag"
+                                        style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
+
+                                        <span className="red-text"
+                                            style={
+                                                {
+                                                    color: 'red'
+                                                }
+                                            }>
+                                            {errors.clubCode}
+                                        </span> </div>
 
                                     <div>
                                         <center>
@@ -378,7 +402,7 @@ UserSignUp.propTypes = {
 };
 const mapStateToProps = state => ({
     auth: state.auth,
-    errors: state.error
+    errors: state.errors
 })
 
 export default connect(

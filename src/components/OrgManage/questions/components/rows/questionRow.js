@@ -13,12 +13,8 @@ export class QuestionRow extends React.Component {
         <td>{question.options}</td>
         <td>{question.ans}</td>
         <td>
-          <button onClick={onEditEvent} className="button-edit pure-button">
-            <i className="material-icons">border_color</i>
-          </button>
-          <button onClick={onDelEvent} className="button-error">
-            <i className="material-icons">delete</i>
-          </button>
+          <i className="material-icons" onClick={onEditEvent} style={{ cursor: 'pointer' }}>border_color</i>
+          <i className="material-icons" onClick={onDelEvent} style={{ cursor: 'pointer' }}>delete</i>
         </td>
       </tr>
     );
