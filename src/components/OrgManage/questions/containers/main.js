@@ -11,8 +11,8 @@ class QuestionHolder extends React.Component {
     this.state.questions = [];
     this.state.shownQuestions = this.state.questions;
     this.state.filter = {
-      questionId: "",
-      questions: "",
+      _id: "",
+      ques: "",
       options: "",
       ans: ""
     };
@@ -21,19 +21,19 @@ class QuestionHolder extends React.Component {
     this.handleRowDel = this.handleRowDel.bind(this);
     this.handleRowAdd = this.handleRowAdd.bind(this);
     this.handleRowSave = this.handleRowSave.bind(this);
-    this.buttonHeaderStyling = this.buttonHeaderStyling.bind(this);
+    // this.buttonHeaderStyling = this.buttonHeaderStyling.bind(this);
   }
 
-  // CSS methods
-  buttonHeaderStyling(buttonName) {
-    return (
-      (this.state.activeSort === buttonName + "Asc"
-        ? "button-secondary"
-        : this.state.activeSort === buttonName + "Dsc"
-          ? "button-tertiary"
-          : "") + " button-sort"
-    );
-  }
+  // // CSS methods
+  // buttonHeaderStyling(buttonName) {
+  //   return (
+  //     (this.state.activeSort === buttonName + "Asc"
+  //       ? "button-secondary"
+  //       : this.state.activeSort === buttonName + "Dsc"
+  //         ? "button-tertiary"
+  //         : "") + " button-sort"
+  //   );
+  // }
 
 
   handleRowDel(question) {
@@ -49,7 +49,7 @@ class QuestionHolder extends React.Component {
     // Delete on API
 
     axios
-      .delete("/api/post/orgs/questions/" + question.questionId,{
+      .delete("/api/post/orgs/questions/" + question._id,{
         data: {
           'clubCode': `${org.clubCode}`,
           'testId': `${org.testId}`,
@@ -72,14 +72,14 @@ class QuestionHolder extends React.Component {
     const { org } = this.props.auth
     // Create on API
     axios
-      .post("/api/post/orgs/questions/" + question.questionId, {
+      .post("/api/post/orgs/questions/" + question._id, {
 
         'clubCode':`${org.clubCode}`,
         'testId':`${org.testId}`,
         'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`,
         'question': {
-         '_id': question.questionId,
-          'ques': question.questions,
+         '_id': question._id,
+          'ques': question.ques,
           'options': question.options.split(","),
           'ans': question.ans,
         }
@@ -89,7 +89,7 @@ class QuestionHolder extends React.Component {
 
       })
       .then(res => {
-        question._id = res.data._id;
+        question._ids = res.data._id;
       })
       .catch(err => {
         JSON.stringify(err.config);
@@ -113,13 +113,13 @@ class QuestionHolder extends React.Component {
     const { org } = this.props.auth
     // Update on API
     axios
-      .put("/api/post/orgs/questions/" + question.questionId, {
+      .put("/api/post/orgs/questions/" + question._id, {
         'clubCode': `${org.clubCode}`,
         'testId': `${org.testId}`,
         'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`,
         'question': {
-          '_id': question.questionId,
-          'ques': question.questions,
+          '_id': question._id,
+          'ques': question.ques,
           'options': question.options,
           'ans': question.ans,
         }
@@ -144,11 +144,25 @@ class QuestionHolder extends React.Component {
 
   // Lifecycle Methods
   componentDidMount() {
+    const { org } = this.props.auth;
     // Read All on API
     axios
-      .get("http://localhost:3001/questions")
+      .post("/api/post/orgs/viewQuestions", {
+        'clubCode': `${org.clubCode}`,
+        'testId': `${org.testId}`,
+        'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`
+      })
       .then(res => {
+        
         let shownQuestions = res.data
+        // let shownQuestions = {
+        //   questionId: res.data._id,
+        //   questions: res.data.ques,
+        //   options: res.data.options,
+        //   ans:res.data.ans
+        // }
+        // console.log(shownQuestions)
+
 
         this.setState({
           questions: res.data,
@@ -170,7 +184,7 @@ class QuestionHolder extends React.Component {
         onRowAdd={this.handleRowAdd}
         onRowSave={this.handleRowSave}
         onFilterChange={this.handleFilterChange}
-        setButtonHeaderStyle={this.buttonHeaderStyling}
+        // setButtonHeaderStyle={this.buttonHeaderStyling}
         /></div>
     );
   }

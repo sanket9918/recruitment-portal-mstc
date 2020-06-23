@@ -10,8 +10,8 @@ export class NewRow extends React.Component {
         <td>
           <input
             type="text"
-            name="questionId"
-            value={this.props.questionId}
+            name="_id"
+            value={this.props._id}
             onChange={cellChange}
             className="input"
           />
@@ -19,8 +19,8 @@ export class NewRow extends React.Component {
         <td>
           <input
             type="text"
-            name="questions"
-            value={this.props.questions}
+            name="ques"
+            value={this.props.ques}
             onChange={cellChange}
             className="input"
           />

@@ -9,8 +9,8 @@ export class Question extends React.Component {
 
 		this.state = {
 			editMode: false,
-			questionId: "",
-			questions: "",
+			_id: "",
+			ques: "",
 			options: "",
 			ans: ""
 		};
@@ -29,15 +29,15 @@ export class Question extends React.Component {
 
 	handleRowCreate() {
 		let question = {
-			questionId: this.state.questionId,
-			questions: this.state.questions,
+			_id: this.state._id,
+			ques: this.state.ques,
 			options: this.state.options,
 			ans: this.state.ans
 		};
 		this.props.onRowAdd(question);
 		this.setState({
-			questionId: "",
-			questions: "",
+			_id: "",
+			ques: "",
 			options: "",
 			ans: ""
 		});
@@ -95,8 +95,8 @@ export class Question extends React.Component {
 				<NewRow
 					onSaveEvent={this.handleRowCreate}
 					onCellChange={newRowCellChange}
-					questionId={this.state.questionId}
-					questions={this.state.questions}
+					_id={this.state._id}
+					ques={this.state.ques}
 					options={this.state.options}
 					ans={this.state.ans}
 				/>

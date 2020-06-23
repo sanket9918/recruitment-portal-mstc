@@ -12,9 +12,9 @@ export class EditRow extends React.Component {
 				<td>
 					<input
 						type="text"
-						_id={question._id}
-						name="questionId"
-						defaultValue={question.questionId}
+						_ids={question._ids}
+						name="_id"
+						defaultValue={question._id}
 						onChange={onCellChange}
 						className="input"
 					/>
@@ -22,9 +22,9 @@ export class EditRow extends React.Component {
 				<td>
 					<input
 						type="text"
-						_id={question._id}
-						name="questions"
-						defaultValue={question.questions}
+						_ids={question._ids}
+						name="ques"
+						defaultValue={question.ques}
 						onChange={onCellChange}
 						className="input"
 					/>
@@ -32,7 +32,7 @@ export class EditRow extends React.Component {
 				<td>
 					<input
 						type="text"
-						_id={question._id}
+						_ids={question._ids}
 						name="options"
 						defaultValue={question.options}
 						onChange={onCellChange}
@@ -42,7 +42,7 @@ export class EditRow extends React.Component {
 				<td>
 					<input
 						type="text"
-						_id={question._id}
+						_ids={question._ids}
 						name="ans"
 						defaultValue={question.ans}
 						onChange={onCellChange}

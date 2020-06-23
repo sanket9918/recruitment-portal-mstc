@@ -25,7 +25,7 @@ export class QuestionList extends React.Component {
         />
       );
     });
-    var emptyQuestion = { _id: "", questionId: "", questions: "", options: "", ans: "" };
+    var emptyQuestion = { _ids: "", _id: "", ques: "", options: "", ans: "" };
     rows.push(
       <Question
         question={emptyQuestion}
@@ -44,7 +44,7 @@ export class QuestionList extends React.Component {
             <tr style={{textAlign:'center'}}>
               <th>
                 <span
-                  name="questionId"
+                  name="_id"
                   // onClick={onColumnSort}
                 >
                   {" "}
@@ -53,7 +53,7 @@ export class QuestionList extends React.Component {
               </th>
               <th>
                 <span
-                  name="question"
+                  name="ques"
                   // onClick={onColumnSort}
                 >
                   {" "}
