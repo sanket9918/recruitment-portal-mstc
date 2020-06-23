@@ -18,21 +18,19 @@ class Participants extends Component {
     }
 
     onSubmit = e => {
-        const { testId, clubCode, password } = this.state
+        const { password } = this.state
+        const { org } = this.props.auth
         e.preventDefault();
         const data = {
             token: `${localStorage.getItem('jwtToken').split(" ")[1]}`,
-            // token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZThhZGMxN2M2NjhhMGEzN2E4OTFjZCIsImNsdWJOYW1lIjoibWtiaGQiLCJjbHViQ29kZSI6IjEwMiIsImlhdCI6MTU5MjMxMjA2NiwiZXhwIjoxNTkyMzEyOTY2fQ.6VWQaCNGr8jByDK_qY1oOzoeUYyETY3uOsI9OO12bQU",
-            testId: testId,
-            clubCode: clubCode,
             password: password
         }
         axios
             .post('/api/post/orgs/checkResult', {
                 "token": data.token,
                 // "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZThhZGMxN2M2NjhhMGEzN2E4OTFjZCIsImNsdWJOYW1lIjoibWtiaGQiLCJjbHViQ29kZSI6IjEwMiIsImlhdCI6MTU5MjMxMTk3OSwiZXhwIjoxNTkyMzEyODc5fQ.-Gz-wfVKGs2KqsVDFv7iL6vPKtzZIeyfNBp9mqbwEaM",
-                "clubCode": data.clubCode,
-                "testId": data.testId,
+                "clubCode": `${org.clubCode}`,
+                "testId": `${org.testId}`,
                 "password": data.password
             })
             .then(res => {
@@ -71,39 +69,7 @@ class Participants extends Component {
                         <div className='center-tag'><h4>Participants Details</h4></div>
                         <form noValidate onSubmit={this.onSubmit} >
 
-                            <FormGroup
 
-                            >
-                                <InputGroup className="input-group-alternative" >
-
-                                    <Input
-                                        
-                                        id="clubCode"
-                                        placeholder="Club Code"
-                                        type="text"
-                                        name="clubCode"
-                                        onChange={this.onChange}
-                                        value={this.state.clubCode}
-
-                                    />
-                                </InputGroup>
-                            </FormGroup>
-                            <FormGroup
-
-                            >
-                                <InputGroup className="input-group-alternative" >
-
-                                    <Input
-                                        id="testId"
-                                        placeholder="Test ID"
-                                        type="text"
-                                        name="testId"
-                                        onChange={this.onChange}
-                                        value={this.state.testId}
-
-                                    />
-                                </InputGroup>
-                            </FormGroup>
                             <FormGroup
 
                             >
@@ -111,7 +77,7 @@ class Participants extends Component {
 
                                     <Input
                                         id="password"
-                                        placeholder="Password"
+                                        placeholder="Enter password to verify"
                                         type="password"
                                         onChange={this.onChange}
                                         value={this.state.password}
