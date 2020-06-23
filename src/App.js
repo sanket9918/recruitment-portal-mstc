@@ -3,22 +3,20 @@ import React from 'react';
 import './App.css';
 import Login from './components/hero-login.component';
 import Navbar1 from './components/navbar.component';
-import Footer from './components/footer.component';
 import Finish from './components/end_exam.component';
 import CandProfile from './components/user_overview.component';
 import OrgSignUp from './components/org_signup.component';
 import UserSignUp from './components/candidate_signup.component';
 import Exam from './components/quiz/exam.component';
 import OrgManage from './components/OrgManage/Org_manage.component';
-import { BrowserRouter, Route, Switch, Router } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 
-
-import Error from './components/error.component'
+// import Error from './components/error.component'
 import { Provider } from 'react-redux'
 import store from './store'
-import { setCurrentUser, logout,setCurrentOrg } from './actions/authActions';
-import setAuthToken from './utils/setAuthToken'
-import jwt_decode from "jwt-decode";
+// import { setCurrentUser, logout,setCurrentOrg } from './actions/authActions';
+// import setAuthToken from './utils/setAuthToken'
+// import jwt_decode from "jwt-decode";
 
 
 

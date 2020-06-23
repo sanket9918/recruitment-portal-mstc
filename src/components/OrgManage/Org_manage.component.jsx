@@ -9,7 +9,7 @@ import '../../assets/scss/org_sign.scss'
 import QuestionHolder from './questions/containers/main'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { logout} from '../../actions/authActions'
+import { logoutOrg} from '../../actions/authActions'
 import Initial from './InitialRoute.component';
 class OrgManage extends Component {
     constructor(props) {
@@ -23,7 +23,7 @@ class OrgManage extends Component {
     }
     onLogout = e => {
         e.preventDefault();
-        this.props.logout();
+        this.props.logoutOrg();
         this.props.history.push('/')
     }
 
@@ -132,7 +132,7 @@ class OrgManage extends Component {
                             <Row >
                                 <Col>
                                     <div className="center-tag">
-                                        <a href="localhost:3000">
+                                        {/* <a exact href="http://localhost:3000"> */}
                                             <Button
                                                 className="my-4"
                                                 type="button"
@@ -141,7 +141,7 @@ class OrgManage extends Component {
                                             >
                                                 Log Out
                                 </Button>
-                                        </a>
+                                        {/* </a> */}
                                     </div>
                                 </Col>
                             </Row>
@@ -159,12 +159,12 @@ class OrgManage extends Component {
 
 OrgManage.propTypes = {
     auth: PropTypes.object.isRequired,
-    logout:PropTypes.func.isRequired
+    logoutOrg:PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
     auth:state.auth
 })
 export default connect(
-    mapStateToProps,{logout}
+    mapStateToProps,{logoutOrg}
 )(OrgManage)

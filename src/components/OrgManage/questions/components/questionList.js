@@ -14,7 +14,6 @@ export class QuestionList extends React.Component {
     let rowDel = this.props.onRowDel;
     let onRowAdd = this.props.onRowAdd;
     let onRowSave = this.props.onRowSave;
-    let buttonHeaderStyling = this.props.setButtonHeaderStyle;
 
     this.props.questions.forEach(function(question) {
       rows.push(
@@ -42,46 +41,42 @@ export class QuestionList extends React.Component {
         </center>
         <table className="table-list">
           <thead className="table-head">
-            <tr>
+            <tr style={{textAlign:'center'}}>
               <th>
-                <button
+                <span
                   name="questionId"
                   // onClick={onColumnSort}
-                  className={buttonHeaderStyling("nameSort")}
                 >
                   {" "}
                   Question ID{" "}
-                </button>
+                </span>
               </th>
               <th>
-                <button
+                <span
                   name="question"
                   // onClick={onColumnSort}
-                  className={buttonHeaderStyling("phoneSort")}
                 >
                   {" "}
                   Question{" "}
-                </button>
+                </span>
               </th>
               <th>
-                <button
+                <span
                   name="options"
                   // onClick={onColumnSort}
-                  className={buttonHeaderStyling("timeSort")}
                 >
                   {" "}
                   Option{" "}
-                </button>
+                </span>
               </th>
               <th>
-                <button
+                <span
                   name="ans"
                   // onClick={onColumnSort}
-                  className={buttonHeaderStyling("descSort")}
                 >
                   {" "}
                   Answer{" "}
-                </button>
+                </span>
               </th>
               <th className="LastColumn" />
             </tr>

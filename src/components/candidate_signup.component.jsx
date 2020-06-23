@@ -3,7 +3,6 @@ import Navbar1 from './navbar.component'
 import Footer from './footer.component'
 import classnames from 'classnames'
 import { Col, Row, Container, Button, FormGroup, InputGroup, Input, InputGroupAddon, InputGroupText } from 'reactstrap'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from "prop-types";
 import { registerUser } from '../actions/authActions'
@@ -266,7 +265,7 @@ class UserSignUp extends Component {
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input
-                                                placeholder="Password"
+                                                placeholder="Password (Case sensitive)"
                                                 type="password"
                                                 name="block"
                                                 id="password"

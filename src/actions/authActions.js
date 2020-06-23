@@ -90,3 +90,8 @@ export const logout = () => dispatch => {
     setAuthToken(false);
     dispatch(setCurrentUser({}));
 }
+export const logoutOrg = () => dispatch => {
+    localStorage.removeItem('jwtToken');
+    setAuthToken(false);
+    dispatch(setCurrentOrg({}));
+}

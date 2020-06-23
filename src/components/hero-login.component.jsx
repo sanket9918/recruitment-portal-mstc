@@ -1,9 +1,5 @@
 import React from "react";
-import { withRouter } from 'react-router'
-// import { Link } from "react-router-dom";
-// nodejs library that concatenates classes
 import classnames from "classnames";
-
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { loginUser, loginOrg } from '../actions/authActions'
@@ -275,7 +271,7 @@ class Login extends React.Component {
                                       </InputGroupText>
                                     </InputGroupAddon>
                                     <Input
-                                      placeholder="Password"
+                                      placeholder="Password (Case sensitive)"
                                       type="password"
                                       id="password_user"
                                       onChange={this.onChange}
@@ -399,7 +395,7 @@ class Login extends React.Component {
                                       </InputGroupText>
                                     </InputGroupAddon>
                                     <Input
-                                      placeholder="Password"
+                                      placeholder="Password (Case sensitive)"
                                       type="password"
                                       autoComplete="off"
                                       id='password_org'

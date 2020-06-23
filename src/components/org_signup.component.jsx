@@ -203,7 +203,7 @@ class OrgSignUp extends Component {
                                             </InputGroupAddon>
                                             <Input
                                                 id="password"
-                                                placeholder="Password"
+                                                placeholder="Password (Case sensitive)"
                                                 type="password"
                                                 name="password"
                                                 onChange={this.onChangeAlter}

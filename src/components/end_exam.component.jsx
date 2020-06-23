@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-
 import Navbar1 from './navbar.component'
 import Footer from './footer.component'
 import { Container, Row, Col, Button } from 'reactstrap'
-import { Link } from 'react-router-dom'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logout } from '../actions/authActions'

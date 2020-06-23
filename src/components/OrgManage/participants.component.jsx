@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { Card, CardBody, Row, Col, Collapse, FormGroup, InputGroup, Input, InputGroupAddon, InputGroupText, Button } from 'reactstrap'
+import { Card, CardBody, Row, Col, Collapse, FormGroup, InputGroup, Input, Button } from 'reactstrap'
 import axios from 'axios'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import classnames from 'classnames'
 
 class Participants extends Component {
     constructor(props) {

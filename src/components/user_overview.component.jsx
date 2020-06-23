@@ -45,7 +45,7 @@ class CandProfile extends Component{
                         </div>
                         <Container className="py-md">
                             <Row className="justify-content-between align-items-center">
-                                <Col className="mb-lg-auto" lg="6">
+                                <Col className="mb-lg-auto" >
                                 <div style={{ margin: "auto", textAlign: "center" }}>
                                 <h2 className="display-3 text-white">
                                     Candidate details
@@ -53,8 +53,8 @@ class CandProfile extends Component{
                                
                                     <h4 id="Name" className="text-white">{user.name}</h4>
                                     <h4 id="reg_no" className="text-white">{user.regNo}</h4>
-                                    <span>You are currently appearing test for : </span>
-                                    <b>{this.state.orgName}</b><br />
+                                    <span>You are currently appearing test for the club code : </span>
+                                    <b>{user.clubCode}</b><br />
                                     
                                         <Button
                                             className="my-4"
@@ -72,7 +72,7 @@ class CandProfile extends Component{
                                 
                             </Col>
                             
-                            <Col className="mb-lg-auto" lg="6">
+                            {/* <Col className="mb-lg-auto" lg="6">
                                 <div style={{ margin: "auto", textAlign: "center", }}>
 
                                 <h3 className="display-3 text-white" >About Organisation</h3>
@@ -85,7 +85,7 @@ class CandProfile extends Component{
                                 /><br />
                                 <span className="text-white">{this.state.orgDesc}</span>
                               </div>
-                            </Col>
+                            </Col> */}
                         </Row>
                         <Row>
                             <Col>
