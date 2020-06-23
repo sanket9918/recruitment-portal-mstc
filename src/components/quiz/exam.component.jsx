@@ -220,7 +220,7 @@ class Exam extends Component {
                                     <br />
                                     <div style={{ margin: "auto", textAlign: "right" }}>
 
-                                        <Button
+                                        {/* <Button
                                             className="my-4"
                                             type="button"
 
@@ -228,7 +228,7 @@ class Exam extends Component {
                                             onClick={this.prevQuestionHandler}
                                         >
                                             Prev
-                    </Button>
+                    </Button> */}
                                         <Button
                                             className="my-4"
                                             type="button"
@@ -255,6 +255,8 @@ class Exam extends Component {
                                                             "testId": `${user.testId}`,
                                                             "clubCode": `${user.clubCode}`,
                                                             "name": `${user.name}`,
+                                                            "email": `${user.email}`,
+                                                            "mobileNo":`${user.mobileNo}`,
                                                             "regNo": `${user.regNo}`,
                                                             'ans': setAns,
                                                             'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`

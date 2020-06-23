@@ -61,7 +61,7 @@ class Participants extends Component {
         }
 
         const { details } = this.state
-
+        console.log(details)
         return (
             <div >
                 <Row>
