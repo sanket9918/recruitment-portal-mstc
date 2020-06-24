@@ -112,7 +112,7 @@ class Exam extends Component {
         }, () => {
             if (this.state.currentQuestion > QuizData.length - 1) {
                 this.setState({
-                    currentQuestion: 0
+                    currentQuestion: QuizData.length-1
                 })
             }
         });
@@ -177,7 +177,7 @@ class Exam extends Component {
                     <Container className="py-md">
 
                         <div className="content">
-                            <span className="my-4 text-white" style={{ fontWeight: "bold", fontSize: "1.5rem" }}>Timer: 30:00</span>
+                            <span className="my-4 text-white" style={{ fontWeight: "bold", fontSize: "1.5rem" }}></span>
 
                             <Button
                                 className="my-4"
@@ -203,6 +203,7 @@ class Exam extends Component {
                                     </span>
                                 <span className="text-white" style={{ fontSize: "1.3rem" }}>{questions}</span>
                                 <br />  <br /> <br /> <br />
+                                {/* <span className="text-white" style={{ fontSize: "1.3rem" }}>Last saved ans - </span> */}
 
                                 </Col>
 
@@ -240,7 +241,7 @@ class Exam extends Component {
                                     <br />
                                     <div style={{ margin: "auto", textAlign: "right" }}>
 
-                                        <Button
+                                        {/* <Button
                                             className="my-4"
                                             type="button"
 
@@ -248,7 +249,7 @@ class Exam extends Component {
                                             onClick={this.prevQuestionHandler}
                                         >
                                             Prev
-                    </Button>
+                    </Button> */}
                                         <Button
                                             className="my-4"
                                             type="button"
@@ -293,8 +294,7 @@ class Exam extends Component {
                                                                     'ans': setAns,
                                                                     'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`
                                                                 }).then(() => {
-                                                                    // this.props.history.push('/finish')
-                                                                    console.log(setAns)
+                                                                    this.props.history.push('/finish')
 
                                                                 }).catch((err) => {
                                                                     console.log(err)
