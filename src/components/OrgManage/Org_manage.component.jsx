@@ -9,7 +9,7 @@ import '../../assets/scss/org_sign.scss'
 import QuestionHolder from './questions/containers/main'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { logoutOrg} from '../../actions/authActions'
+import { logoutOrg } from '../../actions/authActions'
 import Initial from './InitialRoute.component';
 class OrgManage extends Component {
     constructor(props) {
@@ -31,9 +31,9 @@ class OrgManage extends Component {
         this.setState()
     }
 
-   
+
     render() {
-        
+        const { org } = this.props.auth
         return (
             <div>
                 <Navbar1 />
@@ -54,7 +54,7 @@ class OrgManage extends Component {
                                         <Col className="mb-lg-auto" lg="6">
                                             <div style={{ margin: "auto", textAlign: "center" }}>
                                                 <span className="text-white" style={{ fontSize: "1.5rem" }}>
-                                                    {/* Hi <b>{org.clubName}</b> */}
+                                                    Hi <b>{org.clubName}</b>
                                                 </span>
                                                 {/* <img
                                         alt="..."
@@ -116,7 +116,7 @@ class OrgManage extends Component {
                                         <Col className="mb-lg-auto">
                                             <div className="placeholder">
                                                 <div className="center-tag">
-                                                    <Route path='/' component={Initial}/>
+                                                    <Route path='/' component={Initial} />
 
                                                 </div>
                                                 <Route path='/options' component={QuestionHolder} />
@@ -132,16 +132,14 @@ class OrgManage extends Component {
                             <Row >
                                 <Col>
                                     <div className="center-tag">
-                                        {/* <a exact href="http://localhost:3000"> */}
-                                            <Button
-                                                className="my-4"
-                                                type="button"
-                                                onClick={this.onLogout}
-                                               
-                                            >
-                                                Log Out
+                                        <Button
+                                            className="my-4"
+                                            type="button"
+                                            onClick={this.onLogout}
+
+                                        >
+                                            Log Out
                                 </Button>
-                                        {/* </a> */}
                                     </div>
                                 </Col>
                             </Row>
@@ -159,12 +157,12 @@ class OrgManage extends Component {
 
 OrgManage.propTypes = {
     auth: PropTypes.object.isRequired,
-    logoutOrg:PropTypes.func.isRequired
+    logoutOrg: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
-    auth:state.auth
+    auth: state.auth
 })
 export default connect(
-    mapStateToProps,{logoutOrg}
+    mapStateToProps, { logoutOrg }
 )(OrgManage)

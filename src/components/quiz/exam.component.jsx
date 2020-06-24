@@ -8,9 +8,12 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logout } from '../../actions/authActions'
 import axios from 'axios'
+import _ from 'lodash'
 class Exam extends Component {
     constructor(props) {
         super(props)
+        
+
         this.state = {
             userAnswer: null,
             currentQuestion: 0,
@@ -18,6 +21,7 @@ class Exam extends Component {
             questions: [],
             QuizData: [],
             setAns: [],
+            selectedAns:[],
             error:''
         };
     }
@@ -86,7 +90,12 @@ class Exam extends Component {
 
                 
     }
-
+    saveAnswers() {
+        const { selectedAns } = this.state
+        this.setState({
+            setAns: _.uniqBy(selectedAns, '_id')
+        })
+    }
 
 
 
@@ -157,8 +166,7 @@ class Exam extends Component {
     }
 
     render() {
-        const { questions, options, currentQuestion, QuizData } = this.state;
-
+        const { questions, options, currentQuestion, QuizData,selectedAns,setAns } = this.state;
         return (
             <div>
                 <Navbar1 />
@@ -193,7 +201,8 @@ class Exam extends Component {
                                     <span style={{ display: 'block', color: "white" }}>
                                         {`Questions ${currentQuestion} out of ${QuizData.length - 1}`}
                                     </span>
-                                    <span className="text-white" style={{ fontSize: "1.3rem" }}>{questions}</span>
+                                <span className="text-white" style={{ fontSize: "1.3rem" }}>{questions}</span>
+                                <br />  <br /> <br /> <br />
 
                                 </Col>
 
@@ -206,11 +215,22 @@ class Exam extends Component {
                                                 className="quiz"
                                                 onClick={() => {
                                                     this.setState(prevState =>
-                                                        ({ setAns: [...prevState.setAns, { "_id": `${QuizData[currentQuestion].quid}`, "ans": option }] })
-                                                    )
+                                                        ({ selectedAns: [{ "_id": `${QuizData[currentQuestion].quid}`, "ans": option }, ...prevState.selectedAns] }),
+                                                        
+                                                    );
+                                                    
+                                                }
+                                                    
+                                                }
+                                                // onClick={() => {
+                                                //     this.setState(prevState =>
+                                                //         ({ setAns: [{ "_id": `${QuizData[currentQuestion].quid}`, "ans": option },...prevState.setAns ] }),
+                                                         
+                                                        
+                                                //     )
 
-                                                }
-                                                }
+                                                // }
+                                                
 
                                             >
                                                 {option}
@@ -220,7 +240,7 @@ class Exam extends Component {
                                     <br />
                                     <div style={{ margin: "auto", textAlign: "right" }}>
 
-                                        {/* <Button
+                                        <Button
                                             className="my-4"
                                             type="button"
 
@@ -228,15 +248,28 @@ class Exam extends Component {
                                             onClick={this.prevQuestionHandler}
                                         >
                                             Prev
-                    </Button> */}
+                    </Button>
                                         <Button
                                             className="my-4"
                                             type="button"
 
                                             onClick={this.nextQuestionHandler}
                                         >
-                                            Next
+                                        Next
                     </Button>
+                                    <Button
+                                        className="my-4"
+                                        type="button"
+
+                                        onClick={() => {
+                                            this.setState({
+                                                setAns: _.uniqBy(selectedAns, '_id')
+                                            })
+                                        }}
+                                    >
+                                        Save Answers
+                    </Button>
+                                    
                                    
                                         <Button
                                             className="my-4"
@@ -244,29 +277,39 @@ class Exam extends Component {
 
                                             onClick={
                                                 () => {
+                                                    console.log(selectedAns)
                                                     const { user } = this.props.auth;
-                                                    const { setAns } = this.state
+                                                    // finalAns=_.uniqBy(selectedAns,'id')
+                                                    
+                                                      
+                                                            axios
+                                                                .post('/api/post/users/submitTest', {
+                                                                    "testId": `${user.testId}`,
+                                                                    "clubCode": `${user.clubCode}`,
+                                                                    "name": `${user.name}`,
+                                                                    "email": `${user.email}`,
+                                                                    "mobileNo": `${user.mobileNo}`,
+                                                                    "regNo": `${user.regNo}`,
+                                                                    'ans': setAns,
+                                                                    'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`
+                                                                }).then(() => {
+                                                                    // this.props.history.push('/finish')
+                                                                    console.log(setAns)
+
+                                                                }).catch((err) => {
+                                                                    console.log(err)
+                                                                })
+                                                        
+                                                    }
+                                                    
+                                                   
                                                     // const ansSample = {
                                                     //     "_id": "1",
                                                     //     "ans":"STC"
                                                     // }
-                                                    axios
-                                                        .post('/api/post/users/submitTest', {
-                                                            "testId": `${user.testId}`,
-                                                            "clubCode": `${user.clubCode}`,
-                                                            "name": `${user.name}`,
-                                                            "email": `${user.email}`,
-                                                            "mobileNo":`${user.mobileNo}`,
-                                                            "regNo": `${user.regNo}`,
-                                                            'ans': setAns,
-                                                            'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`
-                                                        }).then(() => {
-                                                            this.props.history.push('/finish')
-                                                        }).catch((err) => {
-                                                            console.log(err)
-                                                        })
+                                                   
                                                 }
-                                            }
+                                            
                                         >
                                             Finish
                     </Button>
