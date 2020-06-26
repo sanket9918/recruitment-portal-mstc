@@ -49,7 +49,7 @@ class QuestionHolder extends React.Component {
     // Delete on API
 
     axios
-      .delete("/api/post/orgs/questions/" + question._id,{
+      .delete("https://stc-portal.herokuapp.com/api/post/orgs/questions/" + question._id,{
         data: {
           'clubCode': `${org.clubCode}`,
           'testId': `${org.testId}`,
@@ -72,7 +72,7 @@ class QuestionHolder extends React.Component {
     const { org } = this.props.auth
     // Create on API
     axios
-      .post("/api/post/orgs/questions/" + question._id, {
+      .post("https://stc-portal.herokuapp.com/api/post/orgs/questions/" + question._id, {
 
         'clubCode':`${org.clubCode}`,
         'testId':`${org.testId}`,
@@ -113,7 +113,7 @@ class QuestionHolder extends React.Component {
     const { org } = this.props.auth
     // Update on API
     axios
-      .put("/api/post/orgs/questions/" + question._id, {
+      .put("https://stc-portal.herokuapp.com/api/post/orgs/questions/" + question._id, {
         'clubCode': `${org.clubCode}`,
         'testId': `${org.testId}`,
         'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`,
@@ -147,7 +147,7 @@ class QuestionHolder extends React.Component {
     const { org } = this.props.auth;
     // Read All on API
     axios
-      .post("/api/post/orgs/viewQuestions", {
+      .post("https://stc-portal.herokuapp.com/api/post/orgs/viewQuestions", {
         'clubCode': `${org.clubCode}`,
         'testId': `${org.testId}`,
         'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`

@@ -42,7 +42,7 @@ class Exam extends Component {
         console.log(user.regNo)
         console.log(setAns)
         axios
-            .post('/api/post/users/submitTest', {
+            .post('https://stc-portal.herokuapp.com/api/post/users/submitTest', {
                 "testId": `${user.testId}`,
                 "clubCode": `${user.clubCode}`,
                 "name": `${user.name}`,
@@ -57,7 +57,7 @@ class Exam extends Component {
         const { user } = this.props.auth;
 
         axios
-            .post('api/post/users/takeTest', {
+            .post('https://stc-portal.herokuapp.com/api/post/users/takeTest', {
                 "testId": `${user.testId}`,
                 "clubCode": `${user.clubCode}`,
                 "regNo": `${user.regNo}`,
@@ -279,7 +279,7 @@ class Exam extends Component {
 
 
                                                 axios
-                                                    .post('/api/post/users/submitTest', {
+                                                    .post('https://stc-portal.herokuapp.com/api/post/users/submitTest', {
                                                         "testId": `${user.testId}`,
                                                         "clubCode": `${user.clubCode}`,
                                                         "name": `${user.name}`,

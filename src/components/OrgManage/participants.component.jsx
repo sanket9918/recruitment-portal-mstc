@@ -26,7 +26,7 @@ class Participants extends Component {
             password: password
         }
         axios
-            .post('/api/post/orgs/checkResult', {
+            .post('https://stc-portal.herokuapp.com/api/post/orgs/checkResult', {
                 "token": data.token,
                 // "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZThhZGMxN2M2NjhhMGEzN2E4OTFjZCIsImNsdWJOYW1lIjoibWtiaGQiLCJjbHViQ29kZSI6IjEwMiIsImlhdCI6MTU5MjMxMTk3OSwiZXhwIjoxNTkyMzEyODc5fQ.-Gz-wfVKGs2KqsVDFv7iL6vPKtzZIeyfNBp9mqbwEaM",
                 "clubCode": `${org.clubCode}`,

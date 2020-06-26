@@ -322,7 +322,7 @@ class OrgSignUp extends Component {
                                                 type="submit"
                                                 onClick={() => {
                                                     axios
-                                                        .post('api/post/orgs/addTest',
+                                                        .post('https://stc-portal.herokuapp.com/api/post/orgs/addTest',
                                                             {
                                                                 "testId": this.state.testId,
                                                                 "clubCode": this.state.clubCode
