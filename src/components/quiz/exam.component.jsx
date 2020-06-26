@@ -12,7 +12,7 @@ import _ from 'lodash'
 class Exam extends Component {
     constructor(props) {
         super(props)
-        
+
 
         this.state = {
             userAnswer: null,
@@ -21,8 +21,9 @@ class Exam extends Component {
             questions: [],
             QuizData: [],
             setAns: [],
-            selectedAns:[],
-            error:''
+            selectedAns: [],
+            ansSaved: false,
+            error: ''
         };
     }
 
@@ -68,10 +69,10 @@ class Exam extends Component {
                     this.setState({
                         QuizData: res.data.questionSet
                     });
-                    const { currentQuestion, QuizData } = this.state;                  
+                    const { currentQuestion, QuizData } = this.state;
                     this.setState(() => {
                         return {
-                            quid:QuizData[currentQuestion].quid,
+                            quid: QuizData[currentQuestion].quid,
                             questions: QuizData[currentQuestion].ques,
                             options: QuizData[currentQuestion].options,
                         };
@@ -85,10 +86,10 @@ class Exam extends Component {
                 }).catch((err) => {
                     this.props.history.push('/finish')
                 })
-                    
-                
 
-                
+
+
+
     }
     saveAnswers() {
         const { selectedAns } = this.state
@@ -112,7 +113,7 @@ class Exam extends Component {
         }, () => {
             if (this.state.currentQuestion > QuizData.length - 1) {
                 this.setState({
-                    currentQuestion: QuizData.length-1
+                    currentQuestion: QuizData.length - 1
                 })
             }
         });
@@ -133,7 +134,7 @@ class Exam extends Component {
         localStorage.removeItem('the token');
     }
     componentDidUpdate(prevProps, prevState) {
-        const { QuizData} = this.state;
+        const { QuizData } = this.state;
         console.log(QuizData.length)
         const { currentQuestion } = this.state;
         if (this.state.currentQuestion !== prevState.currentQuestion && this.state.currentQuestion >= 0) {
@@ -166,7 +167,7 @@ class Exam extends Component {
     }
 
     render() {
-        const { questions, options, currentQuestion, QuizData,selectedAns,setAns } = this.state;
+        const { questions, options, currentQuestion, QuizData, selectedAns, setAns ,ansSaved} = this.state;
         return (
             <div>
                 <Navbar1 />
@@ -189,59 +190,62 @@ class Exam extends Component {
 
                         </div>
                         <Row className="justify-content-between align-items-center">
-                            
-                                <Col className="mb-lg-auto" lg="6">
-                                    <div style={{ margin: 'auto', textAlign: 'center' }}></div>
-                                    <h2 className="display-3 text-white">
-                                        Exam Section
+
+                            <Col className="mb-lg-auto" lg="6">
+                                <div style={{ margin: 'auto', textAlign: 'center' }}></div>
+                                <h2 className="display-3 text-white">
+                                    Exam Section
                                 </h2>
-                                
-                                    
-                                
-                                    <span style={{ display: 'block', color: "white" }}>
-                                        {`Questions ${currentQuestion} out of ${QuizData.length - 1}`}
-                                    </span>
+
+
+
+                                <span style={{ display: 'block', color: "white" }}>
+                                    {`Questions ${currentQuestion} out of ${QuizData.length - 1}`}
+                                </span>
                                 <span className="text-white" style={{ fontSize: "1.3rem" }}>{questions}</span>
                                 <br />  <br /> <br /> <br />
                                 {/* <span className="text-white" style={{ fontSize: "1.3rem" }}>Last saved ans - </span> */}
 
-                                </Col>
+                            </Col>
 
-                                <Col className="mb-lg-auto" lg="6">
+                            <Col className="mb-lg-auto" lg="6">
 
-                                    <div className="quiz-holder">
-                                        {options.map((option) => (
-                                            <button
-                                                key={option.id}
-                                                className="quiz"
-                                                onClick={() => {
-                                                    this.setState(prevState =>
-                                                        ({ selectedAns: [{ "_id": `${QuizData[currentQuestion].quid}`, "ans": option }, ...prevState.selectedAns] }),
-                                                        
-                                                    );
-                                                    
-                                                }
-                                                    
-                                                }
-                                                // onClick={() => {
-                                                //     this.setState(prevState =>
-                                                //         ({ setAns: [{ "_id": `${QuizData[currentQuestion].quid}`, "ans": option },...prevState.setAns ] }),
-                                                         
-                                                        
-                                                //     )
+                                <div className="quiz-holder">
+                                    {options.map((option) => (
+                                        <button
+                                            key={option.id}
+                                            className="quiz"
+                                            onClick={() => {
+                                                this.setState(prevState =>
+                                                    ({
+                                                        selectedAns: [{ "_id": `${QuizData[currentQuestion].quid}`, "ans": option }, ...prevState.selectedAns],
+                                                        ansSaved: false
+                                                    })
 
-                                                // }
-                                                
+                                                );
 
-                                            >
-                                                {option}
-                                            </button>
-                                        ))}
-                                    </div>
-                                    <br />
-                                    <div style={{ margin: "auto", textAlign: "right" }}>
+                                            }
 
-                                        {/* <Button
+                                            }
+                                        // onClick={() => {
+                                        //     this.setState(prevState =>
+                                        //         ({ setAns: [{ "_id": `${QuizData[currentQuestion].quid}`, "ans": option },...prevState.setAns ] }),
+
+
+                                        //     )
+
+                                        // }
+
+
+                                        >
+                                            {option}
+                                        </button>
+                                    ))}
+                                </div>
+                                <br />
+                                <div style={{ margin: "auto", textAlign: "right" }}>
+
+                                    {/* <Button
                                             className="my-4"
                                             type="button"
 
@@ -250,72 +254,80 @@ class Exam extends Component {
                                         >
                                             Prev
                     </Button> */}
-                                        <Button
-                                            className="my-4"
-                                            type="button"
-
-                                            onClick={this.nextQuestionHandler}
-                                        >
-                                        Next
-                    </Button>
                                     <Button
                                         className="my-4"
                                         type="button"
 
-                                        onClick={() => {
-                                            this.setState({
-                                                setAns: _.uniqBy(selectedAns, '_id')
-                                            })
-                                        }}
+                                        onClick={this.nextQuestionHandler}
                                     >
-                                        Save Answers
+                                        Next
                     </Button>
-                                    
-                                   
-                                        <Button
+                                    {ansSaved ? <Button
+                                        className="my-4"
+                                        style={{
+                                            backgroundColor: "#b2102f",
+                                            color: "white",
+                                            
+                                        }}
+                                        type="button"
+
+                                        onClick={
+                                            () => {
+                                                console.log(selectedAns)
+                                                const { user } = this.props.auth;
+                                                // finalAns=_.uniqBy(selectedAns,'id')
+
+
+                                                axios
+                                                    .post('/api/post/users/submitTest', {
+                                                        "testId": `${user.testId}`,
+                                                        "clubCode": `${user.clubCode}`,
+                                                        "name": `${user.name}`,
+                                                        "email": `${user.email}`,
+                                                        "mobileNo": `${user.mobileNo}`,
+                                                        "regNo": `${user.regNo}`,
+                                                        'ans': setAns,
+                                                        'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`
+                                                    }).then(() => {
+                                                        this.props.history.push('/finish')
+
+                                                    }).catch((err) => {
+                                                        console.log(err)
+                                                    })
+
+                                            }
+
+
+                                            // const ansSample = {
+                                            //     "_id": "1",
+                                            //     "ans":"STC"
+                                            // }
+
+                                        }
+
+                                    >
+                                        Finish
+                    </Button> : <Button
                                             className="my-4"
+                                            
                                             type="button"
 
-                                            onClick={
-                                                () => {
-                                                    console.log(selectedAns)
-                                                    const { user } = this.props.auth;
-                                                    // finalAns=_.uniqBy(selectedAns,'id')
-                                                    
-                                                      
-                                                            axios
-                                                                .post('/api/post/users/submitTest', {
-                                                                    "testId": `${user.testId}`,
-                                                                    "clubCode": `${user.clubCode}`,
-                                                                    "name": `${user.name}`,
-                                                                    "email": `${user.email}`,
-                                                                    "mobileNo": `${user.mobileNo}`,
-                                                                    "regNo": `${user.regNo}`,
-                                                                    'ans': setAns,
-                                                                    'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`
-                                                                }).then(() => {
-                                                                    this.props.history.push('/finish')
-
-                                                                }).catch((err) => {
-                                                                    console.log(err)
-                                                                })
-                                                        
-                                                    }
-                                                    
-                                                   
-                                                    // const ansSample = {
-                                                    //     "_id": "1",
-                                                    //     "ans":"STC"
-                                                    // }
-                                                   
-                                                }
-                                            
+                                            onClick={() => {
+                                                this.setState({
+                                                    setAns: _.uniqBy(selectedAns, '_id'),
+                                                    ansSaved: true
+                                                })
+                                            }}
                                         >
-                                            Finish
-                    </Button>
-                                    </div>
-                                </Col>
-                            
+                                            Save Answers
+                    </Button> }
+                                    
+
+
+                                    
+                                </div>
+                            </Col>
+
                         </Row>
                     </Container>
                 </section>
