@@ -36,7 +36,7 @@
     "eject": "react-scripts eject",
     "start-sw": "http-server ./build"
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "https://stc-portal.herokuapp.com/",
   "eslintConfig": {
     "extends": "react-app"
   },
