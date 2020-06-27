@@ -84,7 +84,7 @@ class Exam extends Component {
                     // 
 
                 }).catch((err) => {
-                    this.props.history.push('/finish')
+                    this.props.history.push('/error')
                 })
 
 
@@ -200,7 +200,7 @@ class Exam extends Component {
 
 
                                 <span style={{ display: 'block', color: "white" }}>
-                                    {`Questions ${currentQuestion} out of ${QuizData.length - 1}`}
+                                    {`Questions ${currentQuestion + 1} out of ${QuizData.length}`}
                                 </span>
                                 <span className="text-white" style={{ fontSize: "1.3rem" }}>{questions}</span>
                                 <br />  <br /> <br /> <br />

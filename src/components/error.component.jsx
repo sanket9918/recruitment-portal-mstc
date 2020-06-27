@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import Navbar1 from './navbar.component';
-import { Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap'
-class Error extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logout } from '../actions/authActions'
+class Error extends Component {   
+    onLogout = (e) => {
+        e.preventDefault();
+        this.props.logout();
+        this.props.history.push('/')
     }
-
     render() {
         return (
             <div>
@@ -30,21 +30,20 @@ class Error extends Component {
 
                                     />
                                     <h1 className="display-3 text-white">
-                                        Oops, something went wrong!
-                                </h1>
+                                        Hey mate, it looks like you've already attempted the test.
+                                    </h1>
                                     <p className="lead text-white">
-                                        Either the page you requested is not available or you are not authorised for access.
+                                        We will be reaching out to you as soon as the evaluation is done.
 
 
                                 </p>
-                                    <Link to='/'>
-                                        <Button
-                                            className="my-4"
-                                            type="button"
-                                        >
-                                            Main Page
+                                    <Button
+                                        className="my-4"
+                                        type="submit"
+                                        onClick={this.onLogout}
+                                    >
+                                        Log Out
                                 </Button>
-                                    </Link>
 
 
                                 </Col>
@@ -56,5 +55,13 @@ class Error extends Component {
         )
     }
 }
-
-export default Error;
+Error.propTypes = {
+    logout: PropTypes.func.isRequired,
+    auth:PropTypes.object.isRequired
+}
+const mapStateToProps = state => ({
+    auth:state.auth
+})
+export default connect(
+    mapStateToProps, {logout}
+)(Error)

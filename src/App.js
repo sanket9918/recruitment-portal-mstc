@@ -2,6 +2,7 @@ import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import Login from './components/hero-login.component';
+import Error from './components/error.component'
 import Navbar1 from './components/navbar.component';
 import Finish from './components/end_exam.component';
 import CandProfile from './components/user_overview.component';
@@ -40,6 +41,7 @@ function App() {
           <div>
             <Navbar1 />
             <Route path='/' exact render={props => <Login {...props} />} />
+            <Route path='/error' exact render={props => <Error {...props} />} />
             <Route path='/finish' exact render={props => <Finish {...props} />} />
             <Route path='/overview' exact render={props => <CandProfile {...props} />} />
             <Route path='/orgsignup' exact render={props => <OrgSignUp {...props} />} />
