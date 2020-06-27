@@ -10,7 +10,7 @@ export class QuestionRow extends React.Component {
       <tr>
         <td>{question._id}</td>
         <td>{question.ques}</td>
-        <td>{question.options}</td>
+        <td>{question.options + " "}</td>
         <td>{question.ans}</td>
         <td>
           <i className="material-icons" onClick={onEditEvent} style={{ cursor: 'pointer' }}>border_color</i>

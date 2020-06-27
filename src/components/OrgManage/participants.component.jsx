@@ -42,7 +42,7 @@ class Participants extends Component {
                 // console.log(data)
                 // console.log(res.data)
             ).catch(err => {
-                alert("Sorry the requested resource could not be loaded.Please Refresh")
+                alert("Sorry the requested resource could not be loaded.Please try agin")
             })
     }
     onChange = e => {
@@ -96,7 +96,8 @@ class Participants extends Component {
 
                             </center>
                         </form>
-                        <ul id="detail-group">
+                        <div className='center-tag'>
+                        <div id="detail-group">
                             {details.map(el => {
                                 return (
 
@@ -127,7 +128,8 @@ class Participants extends Component {
 
                                 )
                             })}
-                        </ul>
+                            </div>
+                            </div>
                         {/* <Card className="shadow">
                             <CardBody className='stud-details'>
                                 <span>

@@ -21,22 +21,9 @@ class QuestionHolder extends React.Component {
     this.handleRowDel = this.handleRowDel.bind(this);
     this.handleRowAdd = this.handleRowAdd.bind(this);
     this.handleRowSave = this.handleRowSave.bind(this);
-    // this.buttonHeaderStyling = this.buttonHeaderStyling.bind(this);
   }
 
-  // // CSS methods
-  // buttonHeaderStyling(buttonName) {
-  //   return (
-  //     (this.state.activeSort === buttonName + "Asc"
-  //       ? "button-secondary"
-  //       : this.state.activeSort === buttonName + "Dsc"
-  //         ? "button-tertiary"
-  //         : "") + " button-sort"
-  //   );
-  // }
-
-
-  handleRowDel(question) {
+    handleRowDel(question) {
     const { org } = this.props.auth
     let index = this.state.questions.indexOf(question);
     let questions = this.state.questions;
@@ -155,15 +142,7 @@ class QuestionHolder extends React.Component {
       .then(res => {
         
         let shownQuestions = res.data
-        // let shownQuestions = {
-        //   questionId: res.data._id,
-        //   questions: res.data.ques,
-        //   options: res.data.options,
-        //   ans:res.data.ans
-        // }
-        // console.log(shownQuestions)
-
-
+       
         this.setState({
           questions: res.data,
           shownQuestions: shownQuestions
@@ -184,7 +163,6 @@ class QuestionHolder extends React.Component {
         onRowAdd={this.handleRowAdd}
         onRowSave={this.handleRowSave}
         onFilterChange={this.handleFilterChange}
-        // setButtonHeaderStyle={this.buttonHeaderStyling}
         /></div>
     );
   }
