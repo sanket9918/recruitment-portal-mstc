@@ -20,7 +20,8 @@ class OrgSignUp extends Component {
             password: '',
             extras: '',
             testId: '',
-            errors: {}
+            errors: {},
+            loading:false
         }
     }
 
@@ -62,11 +63,14 @@ class OrgSignUp extends Component {
             mobileNo: this.state.mobileNo,
             testId: this.state.testId
         }
+        this.setState({
+            loading:true
+        })
         this.props.registerOrg(orgData, this.props.history);
     }
 
     render() {
-        const { errors } = this.state;
+        const { errors,loading } = this.state;
         return (
             <div>
                 <Navbar1 />
@@ -328,8 +332,17 @@ class OrgSignUp extends Component {
                                                                 "clubCode": this.state.clubCode
                                                             })
                                                 }}
+                                                disabled={loading}
+
                                             >
-                                                Sign Up
+                                                {loading && (
+                                                    <i
+                                                        className="fa fa-refresh fa-spin"
+                                                        style={{ marginRight: "5px" }}
+                                                    />
+                                                )}
+                                                {loading && <span>Register</span>}
+                                                {!loading && <span>Register</span>}
                     </Button>
 
                                         </center>
@@ -351,6 +364,7 @@ class OrgSignUp extends Component {
 
                                     />
                                     <h1 className="display-4  text-white" style={{ fontWeight: "300" }}>Provide necessary details and we will get back to you shortly.</h1>
+                                    <span>If you encounter any problem , please refresh</span>
                                 </div>
                             </Col>
 

@@ -38,7 +38,9 @@ class Login extends React.Component {
     password_user: '',
     email: '',
     password_org: '',
-    errors: {}
+    errors: {},
+    loading: false,
+    loading_org:false
 
   };
 
@@ -87,6 +89,9 @@ class Login extends React.Component {
       regNo: this.state.regNo,
       password: this.state.password_user
     };
+    this.setState({
+      loading:true
+    })
 
 
 
@@ -98,11 +103,15 @@ class Login extends React.Component {
       email: this.state.email,
       password: this.state.password_org
     }
+    this.setState({
+      loading_org: true
+    })
+
     this.props.loginOrg(orgData);
   }
 
   render() {
-    const { errors } = this.state
+    const { errors, loading,loading_org } = this.state
     return (
       <div>
         <section className="section section-lg section-shaped" >
@@ -308,15 +317,25 @@ class Login extends React.Component {
                                   <Button
                                     className="my-4"
                                     type="submit"
+                                    disabled={loading}
                                   >
-                                    Sign in
+                                    {loading && (
+                                      <i
+                                        className="fa fa-refresh fa-spin"
+                                        style={{ marginRight: "5px" }}
+                                      />
+                                    )}
+                                    {loading && <span>Sign in</span>}
+                                    {!loading && <span>Sign in</span>}
                     </Button>
                                   <Link to='/candsignup'>
 
                                     <Button
                                       className="my-4"
                                       type="button"
+                                     
                                     >
+                                      
                                       Sign Up
                     </Button></Link>
                                 </div>
@@ -425,8 +444,17 @@ class Login extends React.Component {
                                   <Button
                                     className="my-4"
                                     type="submit"
+                                    disabled={loading_org}
+
                                   >
-                                    Sign in
+                                    {loading_org && (
+                                      <i
+                                        className="fa fa-refresh fa-spin"
+                                        style={{ marginRight: "5px" }}
+                                      />
+                                    )}
+                                    {loading_org && <span>Sign in</span>}
+                                    {!loading_org && <span>Sign in</span>}
                     </Button>
                                   <Link to='/orgsignup'>
 

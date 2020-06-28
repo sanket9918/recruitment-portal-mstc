@@ -23,7 +23,8 @@ class Exam extends Component {
             setAns: [],
             selectedAns: [],
             ansSaved: false,
-            error: ''
+            error: '',
+            loading:false
         };
     }
 
@@ -167,7 +168,7 @@ class Exam extends Component {
     }
 
     render() {
-        const { questions, options, currentQuestion, QuizData, selectedAns, setAns ,ansSaved} = this.state;
+        const { questions, options, currentQuestion, QuizData, selectedAns, setAns ,ansSaved,loading} = this.state;
         return (
             <div>
                 <Navbar1 />
@@ -273,7 +274,9 @@ class Exam extends Component {
 
                                         onClick={
                                             () => {
-                                                console.log(selectedAns)
+                                                this.setState({
+                                                    loading:true
+                                                })
                                                 const { user } = this.props.auth;
                                                 // finalAns=_.uniqBy(selectedAns,'id')
 
@@ -306,7 +309,14 @@ class Exam extends Component {
                                         }
 
                                     >
-                                        Finish
+                                        {loading && (
+                                            <i
+                                                className="fa fa-refresh fa-spin"
+                                                style={{ marginRight: "5px" }}
+                                            />
+                                        )}
+                                        {loading && <span>Finish</span>}
+                                        {!loading && <span>Finish</span>}
                     </Button> : <Button
                                             className="my-4"
                                             

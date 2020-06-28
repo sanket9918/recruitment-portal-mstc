@@ -21,7 +21,8 @@ class UserSignUp extends Component {
             email: '',
             password: '',
             testId:'',
-            errors: {}
+            errors: {},
+            loading:false
 
         }
     }
@@ -65,10 +66,13 @@ class UserSignUp extends Component {
             name: this.state.name,
             testId:this.state.testId
         }
+        this.setState({
+            loading:true
+        })
         this.props.registerUser(userData, this.props.history);
     }
     render() {
-        const { errors } = this.state;
+        const { errors,loading } = this.state;
         return (
             <div>
 
@@ -360,8 +364,16 @@ class UserSignUp extends Component {
                                             <Button
                                                 className="my-4"
                                                 type="submit"
+                                                disabled={loading}
                                             >
-                                                Sign Up
+                                                {loading && (
+                                                    <i
+                                                        className="fa fa-refresh fa-spin"
+                                                        style={{ marginRight: "5px" }}
+                                                    />
+                                                )}
+                                                {loading && <span>Register</span>}
+                                                {!loading && <span>Register</span>}
                     </Button>
 
                                         </center>
@@ -383,6 +395,7 @@ class UserSignUp extends Component {
 
                                     />
                                     <h1 className="display-4  text-white" style={{ fontWeight: "300" }}>Just fill in the details and we will get back you ASAP!</h1>
+                                    <span>If you encounter any problem , please refresh</span>
                                 </div>
                             </Col>
 
