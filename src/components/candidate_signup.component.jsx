@@ -53,6 +53,16 @@ class UserSignUp extends Component {
             [e.target.id]: e.target.value
         })
     }
+    buttonState() {
+        this.setState({
+            loading: true
+        })
+        setTimeout(() => {
+            this.setState({
+                loading: false
+            })
+        }, 3000)
+    }
     onSubmit = (e) => {
         e.preventDefault();
         const userData = {
@@ -66,9 +76,7 @@ class UserSignUp extends Component {
             name: this.state.name,
             testId:this.state.testId
         }
-        this.setState({
-            loading:true
-        })
+        this.buttonState();
         this.props.registerUser(userData, this.props.history);
     }
     render() {

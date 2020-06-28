@@ -83,15 +83,33 @@ class Login extends React.Component {
       [e.target.id]: e.target.value.toUpperCase()
     })
   }
+  buttonState() {
+    this.setState({
+      loading:true
+    })
+    setTimeout(() => {
+      this.setState({
+        loading: false
+      })
+    },3000)
+  }
+  buttonState_org() {
+    this.setState({
+      loading_org: true
+    })
+    setTimeout(() => {
+      this.setState({
+        loading_org: false
+      })
+    }, 3000)
+  }
   onSubmit = e => {
     e.preventDefault();
     const userData = {
       regNo: this.state.regNo,
       password: this.state.password_user
     };
-    this.setState({
-      loading:true
-    })
+    this.buttonState();
 
 
 
@@ -103,9 +121,7 @@ class Login extends React.Component {
       email: this.state.email,
       password: this.state.password_org
     }
-    this.setState({
-      loading_org: true
-    })
+    this.buttonState_org();
 
     this.props.loginOrg(orgData);
   }

@@ -51,6 +51,16 @@ class OrgSignUp extends Component {
             [e.target.id]: e.target.value
         })
     }
+    buttonState() {
+        this.setState({
+            loading: true
+        })
+        setTimeout(() => {
+            this.setState({
+                loading: false
+            })
+        }, 3000)
+    }
 
     onSubmit = (e) => {
         e.preventDefault();
@@ -63,9 +73,7 @@ class OrgSignUp extends Component {
             mobileNo: this.state.mobileNo,
             testId: this.state.testId
         }
-        this.setState({
-            loading:true
-        })
+        this.buttonState();
         this.props.registerOrg(orgData, this.props.history);
     }
 
