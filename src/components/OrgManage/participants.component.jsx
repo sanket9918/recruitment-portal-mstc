@@ -12,10 +12,42 @@ class Participants extends Component {
             details: [],
             testId: '',
             password: '',
-            clubCode: ''
+            clubCode: '',
+            xls_download:false
         }
 
     }
+
+    exportTableToExcel(tableID, filename = '') {
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+    // Specify file name
+    filename = filename ? filename + '.xls' : 'excel_data.xls';
+
+    // Create download link element
+    downloadLink = document.createElement("a");
+
+    document.body.appendChild(downloadLink);
+
+    if (navigator.msSaveOrOpenBlob) {
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob(blob, filename);
+    } else {
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+        // Setting the file name
+        downloadLink.download = filename;
+
+        //triggering the function
+        downloadLink.click();
+    }
+}
 
     onSubmit = e => {
         const { password } = this.state
@@ -35,7 +67,8 @@ class Participants extends Component {
             })
             .then(res => {
                 this.setState({
-                    details: res.data
+                    details: res.data,
+                    xls_download:true
                 })
             }
                 
@@ -58,7 +91,7 @@ class Participants extends Component {
             })
         }
 
-        const { details } = this.state       
+        const { details,xls_download } = this.state       
         return (
             <div >
                 <Row>
@@ -93,11 +126,21 @@ class Participants extends Component {
 
                             </center>
                         </form>
+                        <div className='center-tag'>
+                        {xls_download ? <Button
+                            className="my-4"
+                            type="button"
+                            onClick= {() => {
+                                this.exportTableToExcel('participants', 'participant-list');
+                            }}
+                        >
+                                Export to xls
+                    </Button> : ''} </div>
                         <div className='table-responsive'>
                             <div id="detail-group">
-                                <table className="table table-hover">
-                                    <thead>
-                                        <tr>
+                                <table className="table-list" id='participants'>
+                                    <thead className='table-head'>
+                                        <tr >
                                             <th>Reg.No</th>
                                             <th>Name</th>
                                             <th>Marks</th>
@@ -105,12 +148,9 @@ class Participants extends Component {
                                             <th>Email</th>
                                         </tr>
                                     </thead>
-                                    </table>
                             {details.map(el => {
                                 return (
-                                    <div className='table-responsive'>
-
-                                    <table className="table table-hover" style={{tableLayout:'fixed'}}>                                        
+                                                                          
                                         <tbody>
                                             <tr>
                                                 <td style={{textAlign:'left'}}>{el.regNo}</td>
@@ -122,14 +162,16 @@ class Participants extends Component {
                                             
                                         </tbody>
 
-                                        </table>
-                                        </div>
+                                        
                                     
 
 
                                 )
                             })}
+                                </table>
                             </div>
+                                                                   
+
                             </div>
                         {/* <Card className="shadow">
                             <CardBody className='stud-details'>
