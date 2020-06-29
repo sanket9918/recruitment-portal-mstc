@@ -108,6 +108,7 @@ class Participants extends Component {
                                     </table>
                             {details.map(el => {
                                 return (
+                                    <div className='table-responsive'>
 
                                     <table className="table table-hover" style={{tableLayout:'fixed'}}>                                        
                                         <tbody>
@@ -122,6 +123,7 @@ class Participants extends Component {
                                         </tbody>
 
                                         </table>
+                                        </div>
                                     
 
 
