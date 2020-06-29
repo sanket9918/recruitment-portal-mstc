@@ -61,7 +61,7 @@ class UserSignUp extends Component {
             this.setState({
                 loading: false
             })
-        }, 3000)
+        }, 5000)
     }
     onSubmit = (e) => {
         e.preventDefault();

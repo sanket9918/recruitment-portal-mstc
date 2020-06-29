@@ -24,13 +24,10 @@ class Exam extends Component {
             selectedAns: [],
             ansSaved: false,
             error: '',
-            loading:false
+            loading: false
         };
     }
 
-    buttonReturnValue() {
-        console.log(document.getElementById('ans').innerText);
-    }
     onLogout = e => {
         e.preventDefault();
         this.props.logout();
@@ -40,8 +37,7 @@ class Exam extends Component {
     sendResult() {
         const { user } = this.props.auth;
         const { setAns } = this.state
-        console.log(user.regNo)
-        console.log(setAns)
+
         axios
             .post('https://stc-portal.herokuapp.com/api/post/users/submitTest', {
                 "testId": `${user.testId}`,
@@ -102,8 +98,6 @@ class Exam extends Component {
 
 
     componentDidMount() {
-
-        // console.log(QuizData)
         this.loadQuiz();
     }
 
@@ -136,7 +130,6 @@ class Exam extends Component {
     }
     componentDidUpdate(prevProps, prevState) {
         const { QuizData } = this.state;
-        console.log(QuizData.length)
         const { currentQuestion } = this.state;
         if (this.state.currentQuestion !== prevState.currentQuestion && this.state.currentQuestion >= 0) {
             if (this.state.currentQuestion < QuizData.length) {
@@ -168,7 +161,7 @@ class Exam extends Component {
     }
 
     render() {
-        const { questions, options, currentQuestion, QuizData, selectedAns, setAns ,ansSaved,loading} = this.state;
+        const { questions, options, currentQuestion, QuizData, selectedAns, setAns, ansSaved, loading } = this.state;
         return (
             <div>
                 <Navbar1 />
@@ -268,14 +261,14 @@ class Exam extends Component {
                                         style={{
                                             backgroundColor: "#b2102f",
                                             color: "white",
-                                            
+
                                         }}
                                         type="button"
 
                                         onClick={
                                             () => {
                                                 this.setState({
-                                                    loading:true
+                                                    loading: true
                                                 })
                                                 const { user } = this.props.auth;
                                                 // finalAns=_.uniqBy(selectedAns,'id')
@@ -317,24 +310,24 @@ class Exam extends Component {
                                         )}
                                         {loading && <span>Finish</span>}
                                         {!loading && <span>Finish</span>}
-                    </Button> : <Button
-                                            className="my-4"
-                                            
-                                            type="button"
+                                    </Button> : <Button
+                                        className="my-4"
 
-                                            onClick={() => {
-                                                this.setState({
-                                                    setAns: _.uniqBy(selectedAns, '_id'),
-                                                    ansSaved: true
-                                                })
-                                            }}
-                                        >
+                                        type="button"
+
+                                        onClick={() => {
+                                            this.setState({
+                                                setAns: _.uniqBy(selectedAns, '_id'),
+                                                ansSaved: true
+                                            })
+                                        }}
+                                    >
                                             Save Answers
-                    </Button> }
-                                    
+                    </Button>}
 
 
-                                    
+
+
                                 </div>
                             </Col>
 

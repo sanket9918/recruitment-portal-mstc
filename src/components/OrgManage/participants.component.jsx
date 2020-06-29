@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, CardBody, Row, Col, Collapse, FormGroup, InputGroup, Input, Button } from 'reactstrap'
+import { Card, CardBody, Row, Col, Collapse, FormGroup, InputGroup, Input, Button, Table } from 'reactstrap'
 import axios from 'axios'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -38,9 +38,7 @@ class Participants extends Component {
                     details: res.data
                 })
             }
-
-                // console.log(data)
-                // console.log(res.data)
+                
             ).catch(err => {
                 alert("Sorry the requested resource could not be loaded.Please try agin")
             })
@@ -60,8 +58,7 @@ class Participants extends Component {
             })
         }
 
-        const { details } = this.state
-        console.log(details)
+        const { details } = this.state       
         return (
             <div >
                 <Row>
@@ -96,34 +93,36 @@ class Participants extends Component {
 
                             </center>
                         </form>
-                        <div className='center-tag'>
-                        <div id="detail-group">
+                        <div className='table-responsive'>
+                            <div id="detail-group">
+                                <table className="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Reg.No</th>
+                                            <th>Name</th>
+                                            <th>Marks</th>
+                                            <th>Mobile No.</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    </table>
                             {details.map(el => {
                                 return (
 
-                                    <Card className="shadow" key={el._id}>
-                                        <CardBody className='stud-details'>
-                                            <span className='stud-reg-no'>{el.regNo} </span>
-                                            <span className='stud-name'>
-                                                -  {el.name}<br />
+                                    <table className="table table-hover" style={{tableLayout:'fixed'}}>                                        
+                                        <tbody>
+                                            <tr>
+                                                <td style={{textAlign:'left'}}>{el.regNo}</td>
+                                                <td style={{ textAlign: 'left' }}>{el.name}</td>
+                                                <td style={{ textAlign: 'left' }}>{el.marks}</td>
+                                                <td style={{ textAlign: 'left' }}>{el.mobileNo}</td>
+                                                <td style={{ textAlign: 'left',wordWrap:'break-word' }}>{el.email}</td>
+                                            </tr>
+                                            
+                                        </tbody>
 
-                                            </span>
-                                            <span onClick={toggle} className='detail-toggle'> More</span>
-                                            <Collapse isOpen={this.state.isOpen} key={el._id} data-parent="#detail-group">
-                                                <span>
-                                                    Marks -  {el.marks}<br />
-                                                </span>
-                                                <span>
-                                                    Mobile No. -  {el.mobileNo}<br />
-                                                </span>
-                                                <span>
-                                                    Email ID -  {el.email}<br />
-                                                </span>
-
-                                            </Collapse>
-                                        </CardBody></Card>
-
-
+                                        </table>
+                                    
 
 
                                 )

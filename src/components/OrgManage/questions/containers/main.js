@@ -51,7 +51,7 @@ class QuestionHolder extends React.Component {
         })
       )
       .catch(err => {
-        console.log(JSON.stringify(err.config));
+        JSON.stringify(err.config);
       });
   }
 

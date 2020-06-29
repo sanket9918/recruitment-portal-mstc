@@ -91,7 +91,7 @@ class Login extends React.Component {
       this.setState({
         loading: false
       })
-    },3000)
+    },5000)
   }
   buttonState_org() {
     this.setState({
@@ -101,7 +101,7 @@ class Login extends React.Component {
       this.setState({
         loading_org: false
       })
-    }, 3000)
+    }, 5000)
   }
   onSubmit = e => {
     e.preventDefault();
