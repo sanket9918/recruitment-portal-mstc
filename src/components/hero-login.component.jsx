@@ -150,20 +150,7 @@ class Login extends React.Component {
                 <p className="lead text-white">
                   Hassle-free unified test portal to help organisation to conduct exams
                   efficiently and reduce the time wastage.
-                </p>
-                <div className="btn-wrapper">
-                  {/* <Button color="success" to="/login-page" tag={Link}>
-                    Login Page
-                  </Button>
-                  <Button
-                    className="btn-white"
-                    color="default"
-                    to="/register-page"
-                    tag={Link}
-                  >
-                    Register Page
-                  </Button> */}
-                </div>
+                </p>                
               </Col>
               <Col className="mb-lg-auto" lg="6">
 
@@ -205,20 +192,7 @@ class Login extends React.Component {
                       >
                         For Organisation
                   </NavLink>
-                    </NavItem>
-                    {/* <NavItem>
-                      <NavLink
-                        aria-selected={this.state.plainTabs === 3}
-                        className={classnames("mb-sm-3 mb-md-0", {
-                          active: this.state.plainTabs === 3
-                        })}
-                        onClick={e => this.toggleNavs(e, "plainTabs", 3)}
-                        href="#pablo"
-                        role="tab"
-                      >
-                        For Admins
-                  </NavLink>
-                    </NavItem> */}
+                    </NavItem>                    
                   </Nav>
                 </div>
                 <Card className="shadow">
@@ -438,7 +412,7 @@ class Login extends React.Component {
                                       onChange={this.onChange}
                                       error={errors.password_org}
                                       className={classnames("", {
-                                        invalid: errors.password|| errors.passwordnotfound
+                                        invalid: errors.password|| errors.passwordincorrect
                                       })}
                                     />
                                   </InputGroup>
@@ -453,7 +427,7 @@ class Login extends React.Component {
                                       }
                                     }>
                                     {errors.password}
-                                    {errors.passwordnotfound}
+                                    {errors.passwordincorrect}
                                   </span> </div>
 
                                 <div className="text-center">
@@ -486,91 +460,7 @@ class Login extends React.Component {
                           </Card>
                         </div>
 
-                      </TabPane>
-                      <TabPane tabId="plainTabs3">
-
-
-
-                        {/* <div>
-                          <Card className="bg-secondary shadow border-0">
-                            <CardHeader className="pb-1" style={{ backgroundColor: "rgb(35, 35, 113)" }}>
-                              <div className="text-muted text-center mb-3" >
-                                <h4 className="text-white">Sign In with Admin ID</h4>
-                              </div>
-
-                            </CardHeader>
-                            <CardBody className="px-lg-5 py-lg-5" style={{ backgroundColor: "rgb(81, 81, 173)" }}>
-                              <div className="text-center text-white ">
-                                <small>Sign in with credentials</small>
-                              </div>
-                              <Form role="form">
-                                <FormGroup
-                                  className={classnames("mb-3", {
-                                    focused: this.state.emailFocused
-                                  })}
-                                >
-                                  <InputGroup className="input-group-alternative">
-                                    <InputGroupAddon addonType="prepend">
-                                      <InputGroupText>
-                                        <i className="ni ni-email-83" />
-                                      </InputGroupText>
-                                    </InputGroupAddon>
-                                    <Input
-                                      placeholder="Email"
-                                      type="email"
-                                      onFocus={e =>
-                                        this.setState({ emailFocused: true })
-                                      }
-                                      onBlur={e =>
-                                        this.setState({ emailFocused: false })
-                                      }
-                                    />
-                                  </InputGroup>
-                                </FormGroup>
-                                <FormGroup
-                                  className={classnames({
-                                    focused: this.state.passwordFocused
-                                  })}
-                                >
-                                  <InputGroup className="input-group-alternative">
-                                    <InputGroupAddon addonType="prepend">
-                                      <InputGroupText>
-                                        <i className="ni ni-lock-circle-open" />
-                                      </InputGroupText>
-                                    </InputGroupAddon>
-                                    <Input
-                                      placeholder="Password"
-                                      type="password"
-                                      autoComplete="off"
-                                      onFocus={e =>
-                                        this.setState({ passwordFocused: true })
-                                      }
-                                      onBlur={e =>
-                                        this.setState({ passwordFocused: false })
-                                      }
-                                    />
-                                  </InputGroup>
-                                </FormGroup>
-                                
-                                <div className="text-center">
-                                  <Button
-                                    className="my-4"
-                                    type="button"
-                                    href="/"
-                                  >
-                                    Sign in
-                    </Button>
-                                </div>
-                              </Form>
-                            </CardBody>
-                          </Card>
-                        </div> */}
-
-
-
-
-
-                      </TabPane>
+                      </TabPane>                     
                     </TabContent>
                   </CardBody>
                 </Card>
