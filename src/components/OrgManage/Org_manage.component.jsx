@@ -55,15 +55,7 @@ class OrgManage extends Component {
                                             <div style={{ margin: "auto", textAlign: "center" }}>
                                                 <span className="text-white" style={{ fontSize: "1.5rem" }}>
                                                     Hi <b>{org.clubName}</b>
-                                                </span>
-                                                {/* <img
-                                        alt="..."
-                                        className="img-fluid"
-                                        style={{ paddingBottom: "1em", height: "10em", display: 'block' }}
-                                        src={require("../../assets/img/happy.svg")}
-
-
-                                    /> */}
+                                                </span>                                           
 
                                                 <span className="manage">Management Console</span>
                                             </div>
@@ -72,8 +64,6 @@ class OrgManage extends Component {
 
                                         <Col>
                                             <div className="center-tag">
-
-
 
 
                                                 <UncontrolledDropdown nav>
@@ -96,19 +86,7 @@ class OrgManage extends Component {
 
                                                         </Link>
                                                     </DropdownMenu>
-                                                </UncontrolledDropdown>
-                                                {/* 
-                                            <Collapse isOpen={this.state.isOpen}>
-
-
-                                                <div className="center-tag">
-                                                    <div className="options-holder">
-
-
-                                                    </div>
-                                                </div>
-                                            </Collapse> */}
-
+                                                </UncontrolledDropdown>                                                
                                             </div>
                                         </Col>
                                     </Row>

@@ -24,7 +24,8 @@ class Exam extends Component {
             selectedAns: [],
             ansSaved: false,
             error: '',
-            loading: false
+            loading: false,
+            nextDisable: false
         };
     }
 
@@ -106,9 +107,15 @@ class Exam extends Component {
         this.setState({
             currentQuestion: this.state.currentQuestion + 1,
         }, () => {
+                if (this.state.currentQuestion === QuizData.length - 1) {
+                    this.setState({
+                        nextDisable:true
+                    })
+                }
             if (this.state.currentQuestion > QuizData.length - 1) {
                 this.setState({
-                    currentQuestion: QuizData.length - 1
+                    currentQuestion: QuizData.length - 1,
+                    
                 })
             }
         });
@@ -161,7 +168,7 @@ class Exam extends Component {
     }
 
     render() {
-        const { questions, options, currentQuestion, QuizData, selectedAns, setAns, ansSaved, loading } = this.state;
+        const { questions, options, currentQuestion, QuizData, selectedAns, setAns, ansSaved, loading, nextDisable } = this.state;
         return (
             <div>
                 <Navbar1 />
@@ -253,6 +260,7 @@ class Exam extends Component {
                                         type="button"
 
                                         onClick={this.nextQuestionHandler}
+                                        disabled={nextDisable}
                                     >
                                         Next
                     </Button>
