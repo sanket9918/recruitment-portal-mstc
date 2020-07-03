@@ -3,17 +3,18 @@ import Navbar1 from './navbar.component'
 import Footer from './footer.component'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Container,Row,Col,Button,Form} from 'reactstrap'
+import { Container, Row, Col, Button, Form } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import {logout} from '../actions/authActions'
+import { logout } from '../actions/authActions'
+import { Instruction } from './exam_instruction'
 
-class CandProfile extends Component{
+class CandProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
             orgName: 'VIT Music Club',
             orgDesc: '',
-            isChecked:false
+            isChecked: false
             // orgImage=''
         }
     }
@@ -34,111 +35,70 @@ class CandProfile extends Component{
     componentDidMount() {
         this.fetchDesc();
     }
-    render()
-    {
+    render() {
         const { user } = this.props.auth;
         return (
             <div>
                 <Navbar1 />
-                    <section className="section section-shaped">
-                        <div className="shape shape-style-1 shape-default">
-                        </div>
-                        <Container className="py-md">
-                            <Row className="justify-content-between align-items-center">
-                                <Col className="mb-lg-auto" >
+                <section className="section section-shaped">
+                    <div className="shape shape-style-1 shape-default">
+                    </div>
+                    <Container className="py-md">
+                        <Row className="justify-content-between align-items-center">
+                            <Col className="mb-lg-auto" >
                                 <div style={{ margin: "auto", textAlign: "center" }}>
-                                <h2 className="display-3 text-white">
-                                    Candidate details
+                                    <h2 className="display-3 text-white">
+                                        Candidate details
                                 </h2>
-                               
+
                                     <h4 id="Name" className="text-white">{user.name}</h4>
                                     <h4 id="reg_no" className="text-white">{user.regNo}</h4>
                                     <span>You are currently appearing test for the club code : </span>
                                     <b>{user.clubCode}</b><br />
-                                    
-                                        <Button
-                                            className="my-4"
-                                            type="button"
-                                            onClick={this.onLogout}
-                                        >
-                                            Log Out
+
+                                    <Button
+                                        className="my-4"
+                                        type="button"
+                                        onClick={this.onLogout}
+                                    >
+                                        Log Out
                                 </Button>
-                                   
-                                        
-                                   
-                                 
+
+
+
+
                                 </div>
 
-                                
+
                             </Col>
-                            
-                            {/* <Col className="mb-lg-auto" lg="6">
-                                <div style={{ margin: "auto", textAlign: "center", }}>
 
-                                <h3 className="display-3 text-white" >About Organisation</h3>
-                                <img
-                                    alt="..."
-                                    className="img-fluid"
-                                    style={{ paddingBottom: "1em", height: "10em" }}
-                                    src={require("../assets/img/happy.svg")}
-
-                                /><br />
-                                <span className="text-white">{this.state.orgDesc}</span>
-                              </div>
-                            </Col> */}
                         </Row>
                         <Row>
                             <Col>
-                                <div style={{ margin: "auto", textAlign: "center", marginTop: "5em"}}>
+                                <div style={{ margin: "auto", textAlign: "center", marginTop: "5em" }}>
 
                                     <h2 className="display-3 text-white">
                                         Exam Instructions
                                 </h2>
                                 </div>
-                                <div style={{ margin: "auto", textAlign: "left",maxHeight:"30em",overflow:"auto" }}>
-                                    <ul>
-                                        <li>
-                                            <p className="text-white" >
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint dignissimos magnam reiciendis ipsa labore architecto eveniet. Commodi tempore officiis inventore consequatur, amet nobis eligendi, alias quod assumenda, dolores iusto laborum?
-                                         
-                                    </p>
-                                        </li>
-                                        <li>
-                                            <p className="text-white" >
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint dignissimos magnam reiciendis ipsa labore architecto eveniet. Commodi tempore officiis inventore consequatur, amet nobis eligendi, alias quod assumenda, dolores iusto laborum?
-                                         
-                                    </p>
-                                        </li><li>
-                                            <p className="text-white" >
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint dignissimos magnam reiciendis ipsa labore architecto eveniet. Commodi tempore officiis inventore consequatur, amet nobis eligendi, alias quod assumenda, dolores iusto laborum?
-                                         
-                                    </p>
-                                        </li>
-                                        <li>
-                                            <p className="text-white" >
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint dignissimos magnam reiciendis ipsa labore architecto eveniet. Commodi tempore officiis inventore consequatur, amet nobis eligendi, alias quod assumenda, dolores iusto laborum?
-                                         
-                                    </p>
-                                        </li>
-                                        <li>
-                                            <p className="text-white" >
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint dignissimos magnam reiciendis ipsa labore architecto eveniet. Commodi tempore officiis inventore consequatur, amet nobis eligendi, alias quod assumenda, dolores iusto laborum?
-                                         
-                                    </p>
-                                        </li>
-                                        <li>
-                                            <p className="text-white" >
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint dignissimos magnam reiciendis ipsa labore architecto eveniet. Commodi tempore officiis inventore consequatur, amet nobis eligendi, alias quod assumenda, dolores iusto laborum?
-                                         
-                                    </p>
-                                        </li>
-                                    </ul>
-                                    
+                                <div style={{ margin: "auto", textAlign: "left", maxHeight: "30em", overflow: "auto" }}>
+                                    {Instruction.map((el) => (
+                                        <ul>
+                                            <li key={el.id}>
+                                                <p className="text-white" >
+                                                    {el.text}
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    )
+
+                                    )
+                                    }
 
                                 </div>
                                 <Form role="form">
-                                <div style={{ marginTop: "1em", textAlign: "right" }}>
-                                    <div className="">
+                                    <div style={{ marginTop: "1em", textAlign: "right" }}>
+                                        <div className="">
                                             <input
                                                 className="mycheckbox"
                                                 id="consent"
@@ -147,18 +107,18 @@ class CandProfile extends Component{
                                                 checked={this.state.isChecked}
                                                 onChange={() => {
                                                     this.setState({
-                                                        isChecked:!this.state.isChecked
+                                                        isChecked: !this.state.isChecked
                                                     })
                                                 }}
                                             />
-                                        <label
-                                            htmlFor="mycheckbox"
-                                        >
-                                            <span className="text-white">I agree to exam rules and conditions.</span>
-                                            
-                                        </label>
-                                        
-                                    </div>
+                                            <label
+                                                htmlFor="mycheckbox"
+                                            >
+                                                <span className="text-white">I agree to exam rules and conditions.</span>
+
+                                            </label>
+
+                                        </div>
                                         <Link to='/exam'>
                                             {this.state.isChecked ? <Button
                                                 className="my-4"
@@ -173,32 +133,32 @@ class CandProfile extends Component{
                                                 >
                                                     Proceed
                                     </Button>}
-                                   
-                                    </Link>
-                                    
+
+                                        </Link>
+
                                     </div>
                                 </Form>
                             </Col>
-                            </Row>
+                        </Row>
                     </Container>
-                    </section>
+                </section>
 
                 <Footer />
 
             </div>
-            
+
         )
     }
 }
 CandProfile.propTypes = {
     logout: PropTypes.func.isRequired,
-    auth:PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-    auth:state.auth
+    auth: state.auth
 })
 
 export default connect(
-    mapStateToProps,{logout}
+    mapStateToProps, { logout }
 )(CandProfile)
