@@ -14,4 +14,13 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-serviceWorker.register()
+serviceWorker.register({
+  onUpdate: registration => {
+    alert('New Version of EasyRecruit is available. Please update to latest version');
+    if (registration && registration.waiting) {
+      registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+
+    }
+    window.location.reload();
+  }
+})
