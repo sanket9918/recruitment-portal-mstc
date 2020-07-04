@@ -17,8 +17,9 @@ ReactDOM.render(
 serviceWorker.register({
   onUpdate: registration => {
     const waitingSW = registration.waiting;
-    
+
     if (waitingSW) {
+      alert("A new version of the app is available.Please update")
       waitingSW.addEventListener("statechange", event => {
         if (event.target.state === 'activated') {
           window.location.reload();
