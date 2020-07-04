@@ -17,7 +17,7 @@ ReactDOM.render(
 serviceWorker.register({
   onUpdate: registration => {
     const waitingSW = registration.waiting;
-
+    
     if (waitingSW) {
       waitingSW.addEventListener("statechange", event => {
         if (event.target.state === 'activated') {
