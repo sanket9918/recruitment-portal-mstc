@@ -107,7 +107,7 @@ class QuestionHolder extends React.Component {
         'question': {
           '_id': question._id,
           'ques': question.ques,
-          'options': question.options,
+          'options': question.options.split(","),
           'ans': question.ans,
         }
       })
