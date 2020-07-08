@@ -34,10 +34,14 @@ class Error extends Component {
                                         Hey mate, it looks like you've already attempted the test.
                                     </h1>
                                     <p className="lead text-white">
-                                        We will be reaching out to you as soon as the evaluation is done.
+                                        
+                                        We will be reaching out to you as soon as the evaluation is done.   </p>
+                                    <p className="lead text-white">
+                                       <b> NOTE:</b> If you are seeing this page due to some interruptions(without finishing the exam), Kindly <b>login again.</b>
+</p>
+                        
 
-
-                                </p>
+                             
                                     <Button
                                         className="my-4"
                                         type="submit"
