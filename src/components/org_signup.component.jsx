@@ -105,7 +105,7 @@ class OrgSignUp extends Component {
                                         <InputGroup className="input-group-alternative">
                                             <InputGroupAddon addonType="prepend">
                                                 <InputGroupText>
-                                                    <i className="ni ni-user-run" />
+                                                    <i className="fa fa-user" />
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input
@@ -210,7 +210,7 @@ class OrgSignUp extends Component {
                                         <InputGroup className="input-group-alternative">
                                             <InputGroupAddon addonType="prepend">
                                                 <InputGroupText>
-                                                    <i className="fa fa-user" />
+                                                    <i className="fa fa-user-secret" />
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input
@@ -246,7 +246,7 @@ class OrgSignUp extends Component {
                                         <InputGroup className="input-group-alternative">
                                             <InputGroupAddon addonType="prepend">
                                                 <InputGroupText>
-                                                    <i className="fa fa-phone" />
+                                                    <i className="fa fa-building-o" />
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input
@@ -283,7 +283,7 @@ class OrgSignUp extends Component {
                                         <InputGroup className="input-group-alternative">
                                             <InputGroupAddon addonType="prepend">
                                                 <InputGroupText>
-                                                    <i className="fa fa-phone" />
+                                                    <i className="fa fa-newspaper-o" />
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input

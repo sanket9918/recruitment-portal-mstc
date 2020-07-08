@@ -304,7 +304,7 @@ class UserSignUp extends Component {
                                         <InputGroup className="input-group-alternative">
                                             <InputGroupAddon addonType="prepend">
                                                 <InputGroupText>
-                                                    <i className="fa fa-user-secret" />
+                                                    <i className="fa fa-newspaper-o" />
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input
@@ -339,7 +339,7 @@ class UserSignUp extends Component {
                                         <InputGroup className="input-group-alternative">
                                             <InputGroupAddon addonType="prepend">
                                                 <InputGroupText>
-                                                    <i className="fa fa-user-secret" />
+                                                    <i className="fa fa-building-o" />
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input

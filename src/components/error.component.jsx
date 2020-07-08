@@ -4,6 +4,7 @@ import { Container, Row, Col, Button } from 'reactstrap'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logout } from '../actions/authActions'
+import Footer from './footer.component';
 class Error extends Component {   
     onLogout = (e) => {
         e.preventDefault();
@@ -51,6 +52,7 @@ class Error extends Component {
                         </Row>
                     </Container>
                 </section>
+                <Footer />
             </div>
         )
     }
