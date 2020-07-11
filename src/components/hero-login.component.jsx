@@ -239,7 +239,7 @@ class Login extends React.Component {
                                       }
 
                                       className={classnames("", {
-                                        invalid: errors.regNo || errors.regnotfound
+                                        invalid: errors.regNo || errors.regNoNotFound
                                       })}
                                     />
                                   </InputGroup>
@@ -254,7 +254,7 @@ class Login extends React.Component {
                                       }
                                     }>
                                     {errors.regNo}
-                                    {errors.regnotfound}
+                                    {errors.regNoNotFound}
                                   </span> </div>
 
 
