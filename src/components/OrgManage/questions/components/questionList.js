@@ -1,6 +1,6 @@
 import React from "react";
 import { Question } from "../containers/question";
-import "../styles/AppointmentList.css";
+import "../styles/QuestionList.css";
 
 export class QuestionList extends React.Component {
   constructor(props) {

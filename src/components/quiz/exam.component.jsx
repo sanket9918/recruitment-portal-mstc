@@ -82,7 +82,7 @@ class Exam extends Component {
                     // 
 
                 }).catch((err) => {
-                    this.props.history.push('/error')
+                    this.props.history.push('/error1')
                 })
 
 
