@@ -30,14 +30,14 @@ function App() {
               <ProtectedRoute path='/orgmanage' exact component={OrgManage} />
               <ProtectedRoute path='/finish' exact component={Finish} />
 
+
+              <Route path='/' exact render={props => <Login {...props} />} />
+              <Route path='/error1' exact render={props => <Error1 {...props} />} />
+              <Route path='/error' exact render={props => <Error {...props} />} />
+              <Route path='/orgsignup' exact render={props => <OrgSignUp {...props} />} />
+              <Route path='/candsignup' exact render={props => <UserSignUp {...props} />} />
+              <Route component={Error} />
             </Switch>
-            <Route path='/' exact render={props => <Login {...props} />} />
-            <Route path='/error1' exact render={props => <Error1 {...props} />} />
-            <Route path='/error' exact render={props => <Error {...props} />} />
-            <Route path='/orgsignup' exact render={props => <OrgSignUp {...props} />} />
-            <Route path='/candsignup' exact render={props => <UserSignUp {...props} />} />
-           
-           
           </div>
         </BrowserRouter>
       </Provider>

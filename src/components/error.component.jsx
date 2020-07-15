@@ -28,7 +28,7 @@ class Error extends Component {
                                         alt="..."
                                         className="img-fluid"
                                         style={{ paddingBottom: "1em", height: "20em" }}
-                                        src={require("../assets/img/15.png")}
+                                        src={require("../assets/img/global_error.svg")}
 
                                     />
                                     <h1 className="display-3 text-white">

@@ -26,13 +26,13 @@ class Footer extends Component {
                   <span style={{ color: 'white', paddingBottom: '1.5em', fontSize: '1.2rem' }}>Follow us at</span><br />
                   <div style={{marginTop:'1em'}}>
                   <a href='https://www.instagram.com/mstcvit/' style={{margin:'1em'}}>
-                    <i className="fa fa-instagram text-white" />
+                    <i className="fa fa-instagram text-white foot" />
                   </a>
                   <a href='https://www.facebook.com/mstcvit/' style={{ margin: '1em' }}>
-                    <i className="fa fa-facebook text-white" />
+                    <i className="fa fa-facebook text-white foot" />
                   </a>
                   <a href='https://www.linkedin.com/company/micvitvellore' style={{ margin: '1em' }}>
-                    <i className="fa fa-linkedin text-white" />
+                    <i className="fa fa-linkedin text-white foot" />
                     </a>
                   </div>
                 </Col>

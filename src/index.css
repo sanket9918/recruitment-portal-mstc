@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+i.foot {
+  display: inline-block;
+  border-radius: 60px;
+  box-shadow: 0px 0px 2px #888;  
+  padding: 0.5em 0.6em;
+
+}
+i.foot:hover{
+  box-shadow: 0px 0px 2px #fff;  
+}
