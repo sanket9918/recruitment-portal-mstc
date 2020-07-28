@@ -76,6 +76,10 @@ class OrgSignUp extends Component {
         this.buttonState();
         this.props.registerOrg(orgData, this.props.history);
     }
+    componentDidUpdate() {
+        window.scrollTo(0, 0);
+
+    }
 
     render() {
         const { errors,loading } = this.state;

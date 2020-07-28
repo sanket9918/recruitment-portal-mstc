@@ -11,6 +11,10 @@ class Error1 extends Component {
         this.props.logout();
         this.props.history.push('/')
     }
+    componentDidMount() {
+        window.scrollTo(0, 0);
+
+    }
     render() {
         return (
             <div>

@@ -30,6 +30,10 @@ class OrgManage extends Component {
     resize() {
         this.setState()
     }
+    componentDidMount() {
+        window.scrollTo(0, 0);
+
+    }
 
 
     render() {

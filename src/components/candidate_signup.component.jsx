@@ -27,6 +27,8 @@ class UserSignUp extends Component {
         }
     }
     componentDidMount() {
+        window.scrollTo(0, 0);
+
         if (this.props.auth.isAuthenticated) {
             this.props.history.push('/overview');
         }

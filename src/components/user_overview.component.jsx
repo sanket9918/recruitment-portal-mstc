@@ -33,6 +33,7 @@ class CandProfile extends Component {
         this.props.history.push('/')
     }
     componentDidMount() {
+        window.scrollTo(0, 0);
         this.fetchDesc();
     }
     render() {
