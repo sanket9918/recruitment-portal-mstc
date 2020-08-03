@@ -3,6 +3,7 @@ import axios from "axios";
 import { QuestionList } from "../components/questionList";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { backURL } from '../../../../utils/integration'
 
 class QuestionHolder extends React.Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class QuestionHolder extends React.Component {
     this.handleRowSave = this.handleRowSave.bind(this);
   }
 
-    handleRowDel(question) {
+  handleRowDel(question) {
     const { org } = this.props.auth
     let index = this.state.questions.indexOf(question);
     let questions = this.state.questions;
@@ -36,13 +37,13 @@ class QuestionHolder extends React.Component {
     // Delete on API
 
     axios
-      .delete("https://stc-portal.herokuapp.com/api/post/orgs/questions/" + question._id,{
+      .delete(`${backURL}/api/post/orgs/questions` + question._id, {
         data: {
           'clubCode': `${org.clubCode}`,
           'testId': `${org.testId}`,
           'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`
         }
-        
+
       })
       .then(
         this.setState({
@@ -59,13 +60,13 @@ class QuestionHolder extends React.Component {
     const { org } = this.props.auth
     // Create on API
     axios
-      .post("https://stc-portal.herokuapp.com/api/post/orgs/questions/" + question._id, {
+      .post(`${backURL}/api/post/orgs/questions` + question._id, {
 
-        'clubCode':`${org.clubCode}`,
-        'testId':`${org.testId}`,
+        'clubCode': `${org.clubCode}`,
+        'testId': `${org.testId}`,
         'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`,
         'question': {
-         '_id': question._id,
+          '_id': question._id,
           'ques': question.ques,
           'options': question.options.split(","),
           'ans': question.ans,
@@ -100,7 +101,7 @@ class QuestionHolder extends React.Component {
     const { org } = this.props.auth
     // Update on API
     axios
-      .put("https://stc-portal.herokuapp.com/api/post/orgs/questions/" + question._id, {
+      .put(`${backURL}/api/post/orgs/questions` + question._id, {
         'clubCode': `${org.clubCode}`,
         'testId': `${org.testId}`,
         'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`,
@@ -134,15 +135,15 @@ class QuestionHolder extends React.Component {
     const { org } = this.props.auth;
     // Read All on API
     axios
-      .post("https://stc-portal.herokuapp.com/api/post/orgs/viewQuestions", {
+      .post(`${backURL}/api/post/orgs/viewQuestions`, {
         'clubCode': `${org.clubCode}`,
         'testId': `${org.testId}`,
         'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`
       })
       .then(res => {
-        
+
         let shownQuestions = res.data
-       
+
         this.setState({
           questions: res.data,
           shownQuestions: shownQuestions
@@ -155,24 +156,24 @@ class QuestionHolder extends React.Component {
 
   render() {
     return (
-      <div style={{overflowX:'scroll'}}>
-      <QuestionList
-        questions={this.state.shownQuestions}
-        filterValue={this.state.filter}
-        onRowDel={this.handleRowDel}
-        onRowAdd={this.handleRowAdd}
-        onRowSave={this.handleRowSave}
-        onFilterChange={this.handleFilterChange}
+      <div style={{ overflowX: 'scroll' }}>
+        <QuestionList
+          questions={this.state.shownQuestions}
+          filterValue={this.state.filter}
+          onRowDel={this.handleRowDel}
+          onRowAdd={this.handleRowAdd}
+          onRowSave={this.handleRowSave}
+          onFilterChange={this.handleFilterChange}
         /></div>
     );
   }
 }
 
 QuestionHolder.propTypes = {
-  auth:PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired
 }
 const mapStateToProps = state => ({
-  auth:state.auth
+  auth: state.auth
 })
 
 export default connect(

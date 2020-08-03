@@ -1,0 +1,1 @@
+export const backURL = "https://stc-portal.herokuapp.com"

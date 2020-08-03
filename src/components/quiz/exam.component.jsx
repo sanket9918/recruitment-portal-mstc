@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { logout } from '../../actions/authActions'
 import axios from 'axios'
 import _ from 'lodash'
+import { backURL } from '../../utils/integration'
 class Exam extends Component {
     constructor(props) {
         super(props)
@@ -40,7 +41,7 @@ class Exam extends Component {
         const { setAns } = this.state
 
         axios
-            .post('https://stc-portal.herokuapp.com/api/post/users/submitTest', {
+            .post(`${backURL}/api/post/users/submitTest`,{
                 "testId": `${user.testId}`,
                 "clubCode": `${user.clubCode}`,
                 "name": `${user.name}`,
@@ -55,7 +56,7 @@ class Exam extends Component {
         const { user } = this.props.auth;
 
         axios
-            .post('https://stc-portal.herokuapp.com/api/post/users/takeTest', {
+            .post(`${backURL}/api/post/users/takeTest`, {
                 "testId": `${user.testId}`,
                 "clubCode": `${user.clubCode}`,
                 "regNo": `${user.regNo}`,
@@ -109,15 +110,15 @@ class Exam extends Component {
         this.setState({
             currentQuestion: this.state.currentQuestion + 1,
         }, () => {
-                if (this.state.currentQuestion === QuizData.length - 1) {
-                    this.setState({
-                        nextDisable:true
-                    })
-                }
+            if (this.state.currentQuestion === QuizData.length - 1) {
+                this.setState({
+                    nextDisable: true
+                })
+            }
             if (this.state.currentQuestion > QuizData.length - 1) {
                 this.setState({
                     currentQuestion: QuizData.length - 1,
-                    
+
                 })
             }
         });
@@ -281,11 +282,8 @@ class Exam extends Component {
                                                     loading: true
                                                 })
                                                 const { user } = this.props.auth;
-                                                // finalAns=_.uniqBy(selectedAns,'id')
-
-
                                                 axios
-                                                    .post('https://stc-portal.herokuapp.com/api/post/users/submitTest', {
+                                                    .post(`${backURL}/api/post/users/submitTest`, {
                                                         "testId": `${user.testId}`,
                                                         "clubCode": `${user.clubCode}`,
                                                         "name": `${user.name}`,
@@ -302,8 +300,6 @@ class Exam extends Component {
                                                     })
 
                                             }
-
-
                                             // const ansSample = {
                                             //     "_id": "1",
                                             //     "ans":"STC"

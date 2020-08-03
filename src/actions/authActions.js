@@ -1,13 +1,13 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../utils/setAuthToken'
-import { SET_CURRENT_USER, GET_ERRORS,SET_CURRENT_ORG } from './types'
-
+import { SET_CURRENT_USER, GET_ERRORS, SET_CURRENT_ORG } from './types'
+import { backURL } from '../utils/integration'
 // Register the user
 
 export const registerUser = (userData, history) => dispatch => {
     axios
-        .post('https://stc-portal.herokuapp.com/api/users/register', userData)
+        .post(`${backURL}/api/users/register`,userData)
         .then(res => history.push('/'))
         .catch(err => {
             dispatch({
@@ -19,7 +19,7 @@ export const registerUser = (userData, history) => dispatch => {
 
 export const loginUser = userData => dispatch => {
     axios
-        .post('https://stc-portal.herokuapp.com/api/users/login', userData)
+        .post(`${backURL}/api/users/login`,userData)
         .then(res => {
             const { token } = res.data;
             localStorage.setItem('jwtToken', token);
@@ -39,7 +39,7 @@ export const loginUser = userData => dispatch => {
 
 export const registerOrg = (orgData, history) => dispatch => {
     axios
-        .post('https://stc-portal.herokuapp.com/api/orgs/register', orgData)
+        .post(`${backURL}/api/orgs/register`,orgData)
         .then(res => history.push('/'))
         .catch(err => {
             dispatch({
@@ -51,7 +51,7 @@ export const registerOrg = (orgData, history) => dispatch => {
 
 export const loginOrg = (orgData) => dispatch => {
     axios
-        .post('https://stc-portal.herokuapp.com/api/orgs/login', orgData)
+        .post(`${backURL}/api/orgs/login`, orgData)
         .then(res => {
             const { token } = res.data;
             localStorage.setItem('jwtToken', token);
@@ -67,7 +67,7 @@ export const loginOrg = (orgData) => dispatch => {
                     payload: err.response.data
                 })
             }
-    )
+        )
 }
 
 

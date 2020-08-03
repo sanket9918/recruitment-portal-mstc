@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import PropTypes from "prop-types";
 import { registerOrg } from '../actions/authActions'
 import axios from 'axios'
+import { backURL } from '../utils/integration'
 class OrgSignUp extends Component {
     constructor(props) {
         super(props)
@@ -21,7 +22,7 @@ class OrgSignUp extends Component {
             extras: '',
             testId: '',
             errors: {},
-            loading:false
+            loading: false
         }
     }
 
@@ -82,7 +83,7 @@ class OrgSignUp extends Component {
     }
 
     render() {
-        const { errors,loading } = this.state;
+        const { errors, loading } = this.state;
         return (
             <div>
                 <Navbar1 />
@@ -337,8 +338,8 @@ class OrgSignUp extends Component {
                                                 className="my-4"
                                                 type="submit"
                                                 onClick={() => {
-                                                    axios
-                                                        .post('https://stc-portal.herokuapp.com/api/post/orgs/addTest',
+                                                    axios                                                        
+                                                        .post(`${backURL}/api/post/orgs/addTest`,
                                                             {
                                                                 "testId": this.state.testId,
                                                                 "clubCode": this.state.clubCode
@@ -355,7 +356,7 @@ class OrgSignUp extends Component {
                                                 )}
                                                 {loading && <span>Register</span>}
                                                 {!loading && <span>Register</span>}
-                    </Button>
+                                            </Button>
 
                                         </center>
                                     </div>

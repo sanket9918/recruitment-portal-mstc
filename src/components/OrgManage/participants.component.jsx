@@ -3,7 +3,7 @@ import { Row, Col, FormGroup, InputGroup, Input, Button } from 'reactstrap';
 import axios from 'axios';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-
+import { backURL } from '../../utils/integration'
 class Participants extends Component {
     constructor(props) {
         super(props);
@@ -58,7 +58,7 @@ class Participants extends Component {
             password: password
         }
         axios
-            .post('https://stc-portal.herokuapp.com/api/post/orgs/checkResult', {
+            .post(`${backURL}/api/post/orgs/checkResult`,{
                 "token": data.token,
                 // "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZThhZGMxN2M2NjhhMGEzN2E4OTFjZCIsImNsdWJOYW1lIjoibWtiaGQiLCJjbHViQ29kZSI6IjEwMiIsImlhdCI6MTU5MjMxMTk3OSwiZXhwIjoxNTkyMzEyODc5fQ.-Gz-wfVKGs2KqsVDFv7iL6vPKtzZIeyfNBp9mqbwEaM",
                 "clubCode": `${org.clubCode}`,
@@ -166,7 +166,7 @@ class Participants extends Component {
 
 
                         </div>
-                       
+
                     </Col>
                 </Row>
             </div>
