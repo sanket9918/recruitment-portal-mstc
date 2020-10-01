@@ -1,1 +1,1 @@
-export const backURL = "https://stc-portal.herokuapp.com"
+export const backURL = "http://localhost:5000";

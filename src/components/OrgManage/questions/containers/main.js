@@ -37,7 +37,7 @@ class QuestionHolder extends React.Component {
     // Delete on API
 
     axios
-      .delete(`${backURL}/api/post/orgs/questions` + question._id, {
+      .delete(`${backURL}/api/post/orgs/questions/` + question._id, {
         data: {
           'clubCode': `${org.clubCode}`,
           'testId': `${org.testId}`,
@@ -60,7 +60,7 @@ class QuestionHolder extends React.Component {
     const { org } = this.props.auth
     // Create on API
     axios
-      .post(`${backURL}/api/post/orgs/questions` + question._id, {
+      .post(`${backURL}/api/post/orgs/questions/` + question._id, {
 
         'clubCode': `${org.clubCode}`,
         'testId': `${org.testId}`,
@@ -80,7 +80,7 @@ class QuestionHolder extends React.Component {
         question._ids = res.data._id;
       })
       .catch(err => {
-        JSON.stringify(err.config);
+        console.log(err)
       });
 
     // Update State and the data shown filtered/sorted
@@ -101,7 +101,7 @@ class QuestionHolder extends React.Component {
     const { org } = this.props.auth
     // Update on API
     axios
-      .put(`${backURL}/api/post/orgs/questions` + question._id, {
+      .put(`${backURL}/api/post/orgs/questions/` + question._id, {
         'clubCode': `${org.clubCode}`,
         'testId': `${org.testId}`,
         'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`,
