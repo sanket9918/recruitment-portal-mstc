@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import "../src/assets/vendor/nucleo/css/nucleo.css";
 import "../src/assets/vendor/font-awesome/css/font-awesome.min.css";
-import "../src/assets/scss/argon-design-system-react.scss";
+import "../src/assets/scss/customize.scss";
 import * as serviceWorker from './serviceWorker';
 
 

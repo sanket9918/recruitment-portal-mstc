@@ -1,11 +1,48 @@
 import React from "react";
 import { Question } from "../containers/question";
 import "../styles/QuestionList.css";
+import { Button } from 'reactstrap'
+import axios from 'axios'
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { backURL } from '../../../../utils/integration'
 
-export class QuestionList extends React.Component {
+class QuestionList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      testMode: ''
+    };
+  }
+
+  getTestStatus() {
+    const { org } = this.props.auth
+    axios.post(`${backURL}/api/post/orgs/getTestStatus`, {
+
+      "testId": `${org.testId}`
+
+    }).then(res => {
+      this.setState({
+        testMode: res.data
+      })
+    }).catch(err => console.log(err))
+  }
+  updateTestStatus() {
+    const { org } = this.props.auth
+    const { testMode } = this.state
+    axios.post(`${backURL}/api/post/orgs/updateTestStatus`, {
+      "updateTestStatus": !testMode,
+      "testId": `${org.testId}`
+    }).then(res => {
+      this.setState({
+        testMode: res.start
+      })
+      console.log(`State changed to ${testMode}`)
+
+    })
+  }
+  componentDidMount() {
+    this.getTestStatus()
   }
 
   render() {
@@ -36,6 +73,30 @@ export class QuestionList extends React.Component {
     );
     return (
       <div className="question-list">
+        <center>
+          <h4>Test Status</h4>
+          <span>Currently, the test is : {this.state.testMode ? "Enabled" : "Disabled"}</span><br />
+          <Button
+            className="my-4"
+            type="button"
+            onClick={() => {
+              const { org } = this.props.auth
+              const { testMode } = this.state
+              axios.post(`${backURL}/api/post/orgs/updateTestStatus`, {
+                "updateTestStatus": !testMode,
+                "testId": `${org.testId}`
+              }).then(res => {
+                this.setState({
+                  testMode: !testMode
+                })
+                console.log(res)
+
+              })
+            }}
+          >
+            Toggle Availability
+                    </Button>
+        </center>
         <center>
           <h4>Question Roster</h4>
         </center>
@@ -89,3 +150,11 @@ export class QuestionList extends React.Component {
     );
   }
 }
+QuestionList.propTypes = {
+  auth: PropTypes.object.isRequired
+}
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps)(QuestionList)

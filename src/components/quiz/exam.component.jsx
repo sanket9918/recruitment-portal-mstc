@@ -13,8 +13,6 @@ import { backURL } from '../../utils/integration'
 class Exam extends Component {
     constructor(props) {
         super(props)
-
-
         this.state = {
             userAnswer: null,
             currentQuestion: 0,
@@ -75,20 +73,12 @@ class Exam extends Component {
                             questions: QuizData[currentQuestion].ques,
                             options: QuizData[currentQuestion].options,
                         };
-                        // });
 
                     });
-
-                    // 
-                    // 
 
                 }).catch((err) => {
                     this.props.history.push('/error1')
                 })
-
-
-
-
     }
     saveAnswers() {
         const { selectedAns } = this.state
@@ -96,15 +86,11 @@ class Exam extends Component {
             setAns: _.uniqBy(selectedAns, '_id')
         })
     }
-
-
-
     componentDidMount() {
         window.scrollTo(0, 0);
 
         this.loadQuiz();
     }
-
     nextQuestionHandler = () => {
         const { QuizData } = this.state;
         this.setState({
@@ -158,16 +144,9 @@ class Exam extends Component {
                         questions: QuizData[QuizData.length - 1].ques,
                         options: QuizData[QuizData.length - 1].options,
                     }
-
-                }
-
-                )
-
+                })
             }
-
         }
-
-
     }
 
     render() {
@@ -249,15 +228,7 @@ class Exam extends Component {
                                 <br />
                                 <div style={{ margin: "auto", textAlign: "right" }}>
 
-                                    {/* <Button
-                                            className="my-4"
-                                            type="button"
 
-
-                                            onClick={this.prevQuestionHandler}
-                                        >
-                                            Prev
-                    </Button> */}
                                     <Button
                                         className="my-4"
                                         type="button"
@@ -300,12 +271,7 @@ class Exam extends Component {
                                                     })
 
                                             }
-                                            // const ansSample = {
-                                            //     "_id": "1",
-                                            //     "ans":"STC"
-                                            // }
-
-                                        }
+                                                                                    }
 
                                     >
                                         {loading && (
@@ -330,29 +296,17 @@ class Exam extends Component {
                                     >
                                             Save Answers
                     </Button>}
-
-
-
-
                                 </div>
                             </Col>
 
                         </Row>
                     </Container>
                 </section>
-
-
-
-
-
-
                 <Footer />
             </div>
         );
-        //return <div className='App'>{this.state.currentQuestion}</div>;
     }
 }
-
 Exam.propTypes =
 {
     logout: PropTypes.func.isRequired,

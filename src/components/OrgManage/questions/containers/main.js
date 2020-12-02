@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { QuestionList } from "../components/questionList";
+import QuestionList from "../components/questionList";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { backURL } from '../../../../utils/integration'

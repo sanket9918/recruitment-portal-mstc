@@ -1,1 +1,1 @@
-export const backURL = "http://localhost:5000";
+export const backURL = "https://easyrecruit-backend.azurewebsites.net";
