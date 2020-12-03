@@ -263,7 +263,10 @@ class Exam extends Component {
                                                         "regNo": `${user.regNo}`,
                                                         'ans': setAns,
                                                         'token': `${localStorage.getItem('jwtToken').split(" ")[1]}`
-                                                    }).then(() => {
+                                                    }).then((res) => {
+                                                        if (res.data.error === 1) {
+                                                            this.props.history.push('/error-disable')
+                                                        } else if (res.data.error === 0)
                                                         this.props.history.push('/finish')
 
                                                     }).catch((err) => {

@@ -11,7 +11,8 @@ class QuestionList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      testMode: ''
+      testMode: '',
+      loading: false
     };
   }
 
@@ -27,20 +28,7 @@ class QuestionList extends React.Component {
       })
     }).catch(err => console.log(err))
   }
-  updateTestStatus() {
-    const { org } = this.props.auth
-    const { testMode } = this.state
-    axios.post(`${backURL}/api/post/orgs/updateTestStatus`, {
-      "updateTestStatus": !testMode,
-      "testId": `${org.testId}`
-    }).then(res => {
-      this.setState({
-        testMode: res.start
-      })
-      console.log(`State changed to ${testMode}`)
 
-    })
-  }
   componentDidMount() {
     this.getTestStatus()
   }
@@ -75,11 +63,15 @@ class QuestionList extends React.Component {
       <div className="question-list">
         <center>
           <h4>Test Status</h4>
-          <span>Currently, the test is : {this.state.testMode ? "Enabled" : "Disabled"}</span><br />
+          <span>Currently, the test is : {this.state.testMode ? (<span style={{ color: 'green' }}>ENABLED</span>) : (<span style={{ color: 'red' }}>DISABLED</span>)}</span><br />
           <Button
             className="my-4"
             type="button"
+            disabled={this.state.loading}
             onClick={() => {
+              this.setState({
+                loading: true
+              })
               const { org } = this.props.auth
               const { testMode } = this.state
               axios.post(`${backURL}/api/post/orgs/updateTestStatus`, {
@@ -87,14 +79,19 @@ class QuestionList extends React.Component {
                 "testId": `${org.testId}`
               }).then(res => {
                 this.setState({
-                  testMode: !testMode
+                  testMode: !testMode,
+                  loading: false
                 })
-                console.log(res)
 
               })
             }}
           >
-            Toggle Availability
+            {this.state.loading ? (<><i
+              className="fa fa-refresh fa-spin"
+              style={{ marginRight: "5px" }}
+            /><span>Processing</span></>) :
+              <span>Toggle Availability</span>
+            }
                     </Button>
         </center>
         <center>
