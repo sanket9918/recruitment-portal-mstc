@@ -63,6 +63,12 @@ class Exam extends Component {
             })
             .then(
                 res => {
+
+                    if (res.data.error === 1) {
+                        this.props.history.push('/error-disable')
+                    } else if (res.data.error === 2) {
+                        this.props.history.push('/error-test')
+                    } 
                     this.setState({
                         QuizData: res.data.questionSet
                     });

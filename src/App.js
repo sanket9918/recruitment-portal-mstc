@@ -10,7 +10,9 @@ import OrgSignUp from "./components/org_signup.component";
 import UserSignUp from "./components/candidate_signup.component";
 import Exam from "./components/quiz/exam.component";
 import OrgManage from "./components/OrgManage/Org_manage.component";
-import ErrorDisable from './components/error_test_off.component'
+import ErrorDisable from './components/error_test_off.component';
+import ErrorExamNotStarted from './components/error_test_not_started.component'
+
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -53,7 +55,12 @@ function App() {
               <Route
                 path="/error-disable"
                 exact
-                render={(props) => <ErrorDisable />}
+                render={(props) => <ErrorDisable {...props} />}
+              />
+              <Route
+                path="/error-test"
+                exact
+                render={(props) => <ErrorExamNotStarted {...props} />}
               />
               <Route component={Error} />
             </Switch>
