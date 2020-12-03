@@ -3,11 +3,9 @@ import { Question } from "../containers/question";
 import "../styles/QuestionList.css";
 import { Button } from 'reactstrap'
 import axios from 'axios'
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import { backURL } from '../../../../utils/integration'
 
-class QuestionList extends React.Component {
+export class QuestionList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,10 +15,9 @@ class QuestionList extends React.Component {
   }
 
   getTestStatus() {
-    const { org } = this.props.auth
     axios.post(`${backURL}/api/post/orgs/getTestStatus`, {
 
-      "testId": `${org.testId}`
+      "testId": `${this.props.testId}`
 
     }).then(res => {
       this.setState({
@@ -72,11 +69,10 @@ class QuestionList extends React.Component {
               this.setState({
                 loading: true
               })
-              const { org } = this.props.auth
               const { testMode } = this.state
               axios.post(`${backURL}/api/post/orgs/updateTestStatus`, {
                 "updateTestStatus": !testMode,
-                "testId": `${org.testId}`
+                "testId": `${this.props.testId}`
               }).then(res => {
                 this.setState({
                   testMode: !testMode,
@@ -147,11 +143,3 @@ class QuestionList extends React.Component {
     );
   }
 }
-QuestionList.propTypes = {
-  auth: PropTypes.object.isRequired
-}
-const mapStateToProps = state => ({
-  auth: state.auth
-})
-
-export default connect(mapStateToProps)(QuestionList)

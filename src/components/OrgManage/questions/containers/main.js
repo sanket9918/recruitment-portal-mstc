@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import QuestionList from "../components/questionList";
+import { QuestionList } from "../components/questionList";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { backURL } from '../../../../utils/integration'
@@ -155,9 +155,11 @@ class QuestionHolder extends React.Component {
   }
 
   render() {
+    const { org } = this.props.auth
     return (
       <div style={{ overflowX: 'scroll' }}>
         <QuestionList
+          testId={org.testId}
           questions={this.state.shownQuestions}
           filterValue={this.state.filter}
           onRowDel={this.handleRowDel}
