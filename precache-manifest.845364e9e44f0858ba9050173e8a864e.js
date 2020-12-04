@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e236377df9f0f9a3567c03de7d852ee4",
+    "revision": "0e190d7f9bb7470998983a8ee2890128",
     "url": "/recruitment-portal-mstc/index.html"
   },
   {
-    "revision": "70051681d594f4b8fae2",
+    "revision": "e5558d8fda33d849b026",
     "url": "/recruitment-portal-mstc/static/css/main.ffea735d.chunk.css"
   },
   {
-    "revision": "492420241e7fc6d3ef35",
-    "url": "/recruitment-portal-mstc/static/js/2.57009f16.chunk.js"
+    "revision": "1a2b7bd024c9fedde9af",
+    "url": "/recruitment-portal-mstc/static/js/2.5bb02e94.chunk.js"
   },
   {
     "revision": "8bb92c23487eb5c952e51992947cb95e",
-    "url": "/recruitment-portal-mstc/static/js/2.57009f16.chunk.js.LICENSE.txt"
+    "url": "/recruitment-portal-mstc/static/js/2.5bb02e94.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "70051681d594f4b8fae2",
-    "url": "/recruitment-portal-mstc/static/js/main.e29b6b53.chunk.js"
+    "revision": "e5558d8fda33d849b026",
+    "url": "/recruitment-portal-mstc/static/js/main.5f17c3db.chunk.js"
   },
   {
     "revision": "baeff9af67b21fc6004f",
