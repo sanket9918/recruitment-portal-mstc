@@ -20,11 +20,14 @@ class UserSignUp extends Component {
             clubCode: '',
             email: '',
             password: '',
+            confirmPassword: '',
+            passwordMatch: false,
             testId:'',
             errors: {},
             loading:false
 
         }
+        this.onChangePasswordConfirm = this.onChangePasswordConfirm.bind(this)
     }
     componentDidMount() {
         window.scrollTo(0, 0);
@@ -54,6 +57,22 @@ class UserSignUp extends Component {
         this.setState({
             [e.target.id]: e.target.value
         })
+    }
+    onChangePasswordConfirm(e) {
+        this.setState({
+            [e.target.id]: e.target.value
+        }, () => {
+            if (this.state.confirmPassword === this.state.password) {
+                this.setState({
+                    passwordMatch: true
+                })
+            } else {
+                this.setState({
+                    passwordMatch: false
+                })
+            }
+        })
+
     }
     buttonState() {
         this.setState({
@@ -306,6 +325,44 @@ class UserSignUp extends Component {
                                         <InputGroup className="input-group-alternative">
                                             <InputGroupAddon addonType="prepend">
                                                 <InputGroupText>
+                                                    <i className="fa fa-user-secret" />
+                                                </InputGroupText>
+                                            </InputGroupAddon>
+                                            <Input
+                                                placeholder="Confirm Password"
+                                                type="password"
+                                                name="confirmPassword"
+                                                id="confirmPassword"
+                                                onChange={this.onChangePasswordConfirm}
+                                                value={this.state.confirmPassword}
+                                                error={errors.confirmPassword}
+                                            />
+                                        </InputGroup>
+                                    </FormGroup>
+                                    <div className="center-tag"
+                                        style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
+                                        {this.state.confirmPassword.length >= 1 ? (this.state.passwordMatch ? (<span className="red-text"
+                                            style={
+                                                {
+                                                    color: 'green'
+                                                }
+                                            }>
+                                            Passwords are matching!
+                                        </span>) : (<span className="red-text"
+                                            style={
+                                                {
+                                                    color: 'red'
+                                                }
+                                            }>
+                                            Passwords are not matching!
+                                        </span>)) : ''}
+                                    </div>
+                                    <FormGroup
+
+                                    >
+                                        <InputGroup className="input-group-alternative">
+                                            <InputGroupAddon addonType="prepend">
+                                                <InputGroupText>
                                                     <i className="fa fa-newspaper-o" />
                                                 </InputGroupText>
                                             </InputGroupAddon>
@@ -374,7 +431,7 @@ class UserSignUp extends Component {
                                             <Button
                                                 className="my-4"
                                                 type="submit"
-                                                disabled={loading}
+                                                disabled={(this.state.passwordMatch && this.state.testId.length >= 1 && this.state.clubCode.length >= 1 && this.state.name.length >= 1 && this.state.regNo.length >= 1 && this.state.mobileNo.length >= 1 && this.state.email.length >= 1) ? false : true}
                                             >
                                                 {loading && (
                                                     <i

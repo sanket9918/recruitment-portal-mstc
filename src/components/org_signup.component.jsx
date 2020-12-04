@@ -19,11 +19,15 @@ class OrgSignUp extends Component {
             mobileNo: '',
             email: '',
             password: '',
+            confirmPassword: '',
+            passwordMatch: false,
             extras: '',
             testId: '',
             errors: {},
             loading: false
         }
+        this.onChangePasswordConfirm = this.onChangePasswordConfirm.bind(this)
+
     }
 
     componentDidMount() {
@@ -51,6 +55,22 @@ class OrgSignUp extends Component {
         this.setState({
             [e.target.id]: e.target.value
         })
+    }
+    onChangePasswordConfirm(e) {
+        this.setState({
+            [e.target.id]: e.target.value
+        }, () => {
+            if (this.state.confirmPassword === this.state.password) {
+                this.setState({
+                    passwordMatch: true
+                })
+            } else {
+                this.setState({
+                    passwordMatch: false
+                })
+            }
+        })
+
     }
     buttonState() {
         this.setState({
@@ -244,6 +264,44 @@ class OrgSignUp extends Component {
                                             }>
                                             {errors.password}
                                         </span> </div>
+                                    <FormGroup
+
+                                    >
+                                        <InputGroup className="input-group-alternative">
+                                            <InputGroupAddon addonType="prepend">
+                                                <InputGroupText>
+                                                    <i className="fa fa-user-secret" />
+                                                </InputGroupText>
+                                            </InputGroupAddon>
+                                            <Input
+                                                placeholder="Confirm Password"
+                                                type="password"
+                                                name="confirmPassword"
+                                                id="confirmPassword"
+                                                onChange={this.onChangePasswordConfirm}
+                                                value={this.state.confirmPassword}
+                                                error={errors.confirmPassword}
+                                            />
+                                        </InputGroup>
+                                    </FormGroup>
+                                    <div className="center-tag"
+                                        style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
+                                        {this.state.confirmPassword.length >= 1 ? (this.state.passwordMatch ? (<span className="red-text"
+                                            style={
+                                                {
+                                                    color: 'green'
+                                                }
+                                            }>
+                                            Passwords are matching!
+                                        </span>) : (<span className="red-text"
+                                            style={
+                                                {
+                                                    color: 'red'
+                                                }
+                                            }>
+                                            Passwords are not matching!
+                                        </span>)) : ''}
+                                    </div>
 
                                     <FormGroup
 
@@ -345,7 +403,7 @@ class OrgSignUp extends Component {
                                                                 "clubCode": this.state.clubCode
                                                             })
                                                 }}
-                                                disabled={loading}
+                                                disabled={(this.state.passwordMatch && this.state.clubName.length >= 1 && this.state.clubCode.length >= 1 && this.state.email.length >= 1 && this.state.testId.length >= 1) ? false : true}
 
                                             >
                                                 {loading && (
