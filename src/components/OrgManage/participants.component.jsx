@@ -13,6 +13,7 @@ class Participants extends Component {
             testId: '',
             password: '',
             clubCode: '',
+            loading: false,
             xls_download: false
         }
 
@@ -53,6 +54,9 @@ class Participants extends Component {
         const { password } = this.state
         const { org } = this.props.auth
         e.preventDefault();
+        this.setState({
+            loading: true
+        })
         const data = {
             token: `${localStorage.getItem('jwtToken').split(" ")[1]}`,
             password: password
@@ -68,7 +72,8 @@ class Participants extends Component {
             .then(res => {
                 this.setState({
                     details: res.data,
-                    xls_download: true
+                    xls_download: true,
+                    loading: false
                 })
             }
 
@@ -97,8 +102,14 @@ class Participants extends Component {
                                 <Button
                                     className="my-4"
                                     type="submit"
+                                    disabled={this.state.loading}
                                 >
-                                    Fetch Results
+                                    {this.state.loading ? (<><i
+                                        className="fa fa-refresh fa-spin"
+                                        style={{ marginRight: "5px" }}
+                                    /><span>Processing</span></>) :
+                                        <span>Fetch Results</span>
+                                    }
                     </Button>
 
                             </center>
