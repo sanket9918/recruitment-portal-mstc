@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/recruitment-portal-mstc/precache-manifest.5d1cb05ea46f4e58a32348866b652dd2.js"
+  "/recruitment-portal-mstc/precache-manifest.6be246db846594789990661f80dd24ad.js"
 );
 
 self.addEventListener('message', (event) => {
