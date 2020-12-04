@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, FormGroup, InputGroup, Input, Button } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
 import axios from 'axios';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -91,30 +91,14 @@ class Participants extends Component {
                     <Col>
                         <div className='center-tag'><h4>Participants Details</h4></div>
                         <form noValidate onSubmit={this.onSubmit} >
-
-
-                            <FormGroup
-
-                            >
-                                <InputGroup className="input-group-alternative" >
-
-                                    <Input
-                                        id="password"
-                                        placeholder="Enter password to verify"
-                                        type="password"
-                                        onChange={this.onChange}
-                                        value={this.state.password}
-                                        name="password"
-
-                                    />
-                                </InputGroup>
-                            </FormGroup>
                             <center>
+                                <span>Get the latest results of the test.</span><br />
+
                                 <Button
                                     className="my-4"
                                     type="submit"
                                 >
-                                    Submit
+                                    Fetch Results
                     </Button>
 
                             </center>

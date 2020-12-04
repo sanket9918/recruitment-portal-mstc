@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import Navbar1 from './navbar.component';
-import { Container, Row, Col, Button } from 'reactstrap';
+import Navbar1 from '../navbar.component';
+import { Container, Row, Col, Button } from 'reactstrap'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { logout } from '../actions/authActions';
-import Footer from './footer.component';
-import { Link } from 'react-router-dom';
-class Error extends Component {
+import { logout } from '../../actions/authActions'
+
+import Footer from '../footer.component';
+class ErrorExamNotStarted extends Component {
     onLogout = (e) => {
         e.preventDefault();
         this.props.logout();
@@ -14,7 +14,7 @@ class Error extends Component {
     }
     componentDidMount() {
         window.scrollTo(0, 0);
- 
+
     }
     render() {
         return (
@@ -32,26 +32,28 @@ class Error extends Component {
                                         alt="..."
                                         className="img-fluid"
                                         style={{ paddingBottom: "1em", height: "20em" }}
-                                        src={require("../assets/img/global_error.svg")}
+                                        src={require("../../assets/img/15.png")}
 
                                     />
                                     <h1 className="display-3 text-white">
-                                        Oops, something went wrong!
+                                        Hey mate, it looks the exam is not enabled as of now.
                                     </h1>
                                     <p className="lead text-white">
 
-                                        Please login again to proceed.   </p>
-                                   
+                                        We hope that you have strictly adhere to the exam rules & regulations   </p>
+                                    <p className="lead text-white">
+                                        <b> NOTE:</b> Contact the exam admin for further queries.
+                                    </p>
 
-                                    <Link to="/">
                                     <Button
                                         className="my-4"
                                         type="submit"
-                                        
+                                        onClick={this.onLogout}
                                     >
-                                            Login
+                                        Log Out
                                 </Button>
-                                    </Link>
+
+
 
 
                                 </Col>
@@ -64,7 +66,7 @@ class Error extends Component {
         )
     }
 }
-Error.propTypes = {
+ErrorExamNotStarted.propTypes = {
     logout: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
 }
@@ -73,4 +75,4 @@ const mapStateToProps = state => ({
 })
 export default connect(
     mapStateToProps, { logout }
-)(Error)
+)(ErrorExamNotStarted)

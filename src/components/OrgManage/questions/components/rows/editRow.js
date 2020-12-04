@@ -10,7 +10,7 @@ export class EditRow extends React.Component {
 		return (
 			<tr>
 				<td>
-					<input
+					<textarea
 						type="text"
 						_ids={question._ids}
 						name="_id"
@@ -20,7 +20,7 @@ export class EditRow extends React.Component {
 					/>
 				</td>
 				<td>
-					<input
+					<textarea
 						type="text"
 						_ids={question._ids}
 						name="ques"
@@ -30,7 +30,7 @@ export class EditRow extends React.Component {
 					/>
 				</td>
 				<td>
-					<input
+					<textarea
 						type="text"
 						_ids={question._ids}
 						name="options"
@@ -40,7 +40,7 @@ export class EditRow extends React.Component {
 					/>
 				</td>
 				<td>
-					<input
+					<textarea
 						type="text"
 						_ids={question._ids}
 						name="ans"

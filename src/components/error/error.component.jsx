@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import Navbar1 from './navbar.component';
-import { Container, Row, Col, Button } from 'reactstrap'
+import Navbar1 from './../navbar.component';
+import { Container, Row, Col, Button } from 'reactstrap';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { logout } from '../actions/authActions'
-import Footer from './footer.component';
-class Error1 extends Component {   
+import { logout } from '../../actions/authActions';
+import Footer from './../footer.component';
+import { Link } from 'react-router-dom';
+class Error extends Component {
     onLogout = (e) => {
         e.preventDefault();
         this.props.logout();
@@ -31,28 +32,26 @@ class Error1 extends Component {
                                         alt="..."
                                         className="img-fluid"
                                         style={{ paddingBottom: "1em", height: "20em" }}
-                                        src={require("../assets/img/15.png")}
+                                        src={require("../../assets/img/global_error.svg")}
 
                                     />
                                     <h1 className="display-3 text-white">
-                                        Hey mate, it looks like you've already attempted the test.
+                                        Oops, something went wrong!
                                     </h1>
                                     <p className="lead text-white">
-                                        
-                                        We will be reaching out to you as soon as the evaluation is done.   </p>
-                                    <p className="lead text-white">
-                                       <b> NOTE:</b> If you are seeing this page due to some interruptions(without finishing the exam), Kindly <b>login again.</b>
-</p>
-                        
 
-                             
-                                    <Button
-                                        className="my-4"
-                                        type="submit"
-                                        onClick={this.onLogout}
-                                    >
-                                        Log Out
+                                        Please login again to proceed.   </p>
+
+
+                                    <Link to="/">
+                                        <Button
+                                            className="my-4"
+                                            type="submit"
+
+                                        >
+                                            Login
                                 </Button>
+                                    </Link>
 
 
                                 </Col>
@@ -65,13 +64,13 @@ class Error1 extends Component {
         )
     }
 }
-Error1.propTypes = {
+Error.propTypes = {
     logout: PropTypes.func.isRequired,
-    auth:PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired
 }
 const mapStateToProps = state => ({
-    auth:state.auth
+    auth: state.auth
 })
 export default connect(
-    mapStateToProps, {logout}
-)(Error1)
+    mapStateToProps, { logout }
+)(Error)

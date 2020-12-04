@@ -8,7 +8,7 @@ export class NewRow extends React.Component {
     return (
       <tr>
         <td>
-          <input
+          <textarea
             type="text"
             name="_id"
             value={this.props._id}
@@ -17,7 +17,7 @@ export class NewRow extends React.Component {
           />
         </td>
         <td>
-          <input
+          <textarea
             type="text"
             name="ques"
             value={this.props.ques}
@@ -26,7 +26,7 @@ export class NewRow extends React.Component {
           />
         </td>
         <td>
-          <input
+          <textarea
             type="text"
             name="options"
             value={this.props.options}
@@ -35,7 +35,7 @@ export class NewRow extends React.Component {
           />
         </td>
         <td>
-          <input
+          <textarea
             type="text"
             name="ans"
             value={this.props.ans}

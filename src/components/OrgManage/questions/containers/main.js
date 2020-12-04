@@ -68,7 +68,7 @@ class QuestionHolder extends React.Component {
         'question': {
           '_id': question._id,
           'ques': question.ques,
-          'options': question.options.split(","),
+          'options': question.options.toString().split(","),
           'ans': question.ans,
         }
 
@@ -108,7 +108,7 @@ class QuestionHolder extends React.Component {
         'question': {
           '_id': question._id,
           'ques': question.ques,
-          'options': question.options.split(","),
+          'options': question.options.toString().split(","),
           'ans': question.ans,
         }
       })
