@@ -242,7 +242,7 @@ class UserSignUp extends Component {
                                             </InputGroupAddon>
                                             <Input
                                                 placeholder="Mobile No."
-                                                type="text"
+                                                type="number"
                                                 name="phone"
                                                 id='mobileNo'
                                                 onChange={this.onChange}

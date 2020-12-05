@@ -36,6 +36,7 @@ class Login extends React.Component {
 
     regNo: '',
     password_user: '',
+    testId: '',
     email: '',
     password_org: '',
     errors: {},
@@ -108,7 +109,8 @@ class Login extends React.Component {
     e.preventDefault();
     const userData = {
       regNo: this.state.regNo,
-      password: this.state.password_user
+      password: this.state.password_user,
+      testId: this.state.testId
     };
     this.buttonState();
 
@@ -302,6 +304,43 @@ class Login extends React.Component {
                                     {errors.password}
                                     {errors.passwordincorrect}
                                   </span> </div>
+                                <FormGroup
+                                  className={classnames({
+                                    focused: this.state.passwordFocused
+                                  })}
+                                >
+                                  <InputGroup className="input-group-alternative">
+                                    <InputGroupAddon addonType="prepend">
+                                      <InputGroupText>
+                                        <i className="fa fa-newspaper-o" />
+                                      </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input
+                                      placeholder="Test ID"
+                                      type="text"
+                                      id="testId"
+                                      onChange={this.onChange}
+                                      value={this.state.testId}
+                                      error={errors.testId}
+                                      autoComplete="off"
+                                      className={classnames("", {
+                                        invalid: errors.testId || errors.testIdIncorrect
+                                      })}
+                                    />
+                                  </InputGroup>
+                                </FormGroup>
+                                {/* <div className="center-tag"
+                                  style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
+
+                                  <span className="red-text"
+                                    style={
+                                      {
+                                        color: 'red'
+                                      }
+                                    }>
+                                    {errors.password}
+                                    {errors.passwordincorrect}
+                                  </span> </div> */}
                                 <div className="center-tag"
                                   style={{ margin: 'auto', textAlign: 'center' }}>
                                   {/* <Link to='/overview'> */}

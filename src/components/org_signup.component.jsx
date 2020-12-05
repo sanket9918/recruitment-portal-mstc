@@ -206,7 +206,7 @@ class OrgSignUp extends Component {
                                             <Input
                                                 id="mobileNo"
                                                 placeholder="Mobile No."
-                                                type="text"
+                                                type="number"
                                                 name="mobileNo"
                                                 onChange={this.onChange}
                                                 error={errors.mobileNo}
