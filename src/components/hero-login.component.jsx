@@ -317,7 +317,7 @@ class Login extends React.Component {
                                     </InputGroupAddon>
                                     <Input
                                       placeholder="Test ID"
-                                      type="text"
+                                      type="number"
                                       id="testId"
                                       onChange={this.onChange}
                                       value={this.state.testId}
@@ -329,7 +329,7 @@ class Login extends React.Component {
                                     />
                                   </InputGroup>
                                 </FormGroup>
-                                {/* <div className="center-tag"
+                                <div className="center-tag"
                                   style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
 
                                   <span className="red-text"
@@ -338,9 +338,9 @@ class Login extends React.Component {
                                         color: 'red'
                                       }
                                     }>
-                                    {errors.password}
-                                    {errors.passwordincorrect}
-                                  </span> </div> */}
+                                    {errors.testId}
+                                    {errors.testidIncorrect}
+                                  </span> </div>
                                 <div className="center-tag"
                                   style={{ margin: 'auto', textAlign: 'center' }}>
                                   {/* <Link to='/overview'> */}

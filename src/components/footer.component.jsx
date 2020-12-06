@@ -47,6 +47,8 @@ class Footer extends Component {
               
                 <div className="copyright text-white">
                   <p>Designed by <a href="https://www.linkedin.com/in/sanket-mohapatra-b10661176/"> Sanket Mohapatra</a></p>
+                  <p style={{ marginTop: '-15px' }}>Backend developed by <a href="https://www.linkedin.com/in/pankaj-shukla-97a456190/">Pankaj Shukla</a></p>
+
                 </div>
               </Col>
             </div>

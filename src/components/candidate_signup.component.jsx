@@ -368,8 +368,8 @@ class UserSignUp extends Component {
                                             </InputGroupAddon>
                                             <Input
                                                 id="testId"
-                                                placeholder="Test ID"
-                                                type="text"
+                                                placeholder="Test ID (Numeric)"
+                                                type="number"
                                                 name="testId"
                                                 onChange={this.onChangeAlter}
                                                 value={this.state.testId}

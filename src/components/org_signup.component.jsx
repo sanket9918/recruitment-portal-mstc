@@ -351,8 +351,8 @@ class OrgSignUp extends Component {
                                             </InputGroupAddon>
                                             <Input
                                                 id="testId"
-                                                placeholder="Test ID"
-                                                type="text"
+                                                placeholder="Test ID (numeric)"
+                                                type="number"
                                                 name="testId"
                                                 onChange={this.onChangeAlter}
                                                 error={errors.testId}
@@ -396,12 +396,17 @@ class OrgSignUp extends Component {
                                                 className="my-4"
                                                 type="submit"
                                                 onClick={() => {
-                                                    axios                                                        
-                                                        .post(`${backURL}/api/post/orgs/addTest`,
-                                                            {
-                                                                "testId": this.state.testId,
-                                                                "clubCode": this.state.clubCode
-                                                            })
+                                                    if (errors) {
+                                                        return
+                                                    } else {
+                                                        axios
+                                                            .post(`${backURL}/api/post/orgs/addTest`,
+                                                                {
+                                                                    "testId": this.state.testId,
+                                                                    "clubCode": this.state.clubCode
+                                                                }) 
+                                                    }
+
                                                 }}
                                                 disabled={(this.state.passwordMatch && this.state.clubName.length >= 1 && this.state.clubCode.length >= 1 && this.state.email.length >= 1 && this.state.testId.length >= 1) ? false : true}
 
