@@ -31,6 +31,8 @@ class OrgSignUp extends Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0);
+
         if (this.props.auth.isAuthenticated) {
             this.props.history.push('/orgmanage')
         }
@@ -97,10 +99,7 @@ class OrgSignUp extends Component {
         this.buttonState();
         this.props.registerOrg(orgData, this.props.history);
     }
-    componentDidUpdate() {
-        window.scrollTo(0, 0);
 
-    }
 
     render() {
         const { errors, loading } = this.state;
@@ -351,8 +350,8 @@ class OrgSignUp extends Component {
                                             </InputGroupAddon>
                                             <Input
                                                 id="testId"
-                                                placeholder="Test ID (numeric)"
-                                                type="number"
+                                                placeholder="Test ID"
+                                                type="text"
                                                 name="testId"
                                                 onChange={this.onChangeAlter}
                                                 error={errors.testId}
@@ -396,17 +395,12 @@ class OrgSignUp extends Component {
                                                 className="my-4"
                                                 type="submit"
                                                 onClick={() => {
-                                                    if (errors) {
-                                                        return
-                                                    } else {
-                                                        axios
-                                                            .post(`${backURL}/api/post/orgs/addTest`,
-                                                                {
-                                                                    "testId": this.state.testId,
-                                                                    "clubCode": this.state.clubCode
-                                                                }) 
-                                                    }
-
+                                                    axios
+                                                        .post(`${backURL}/api/post/orgs/addTest`,
+                                                            {
+                                                                "testId": this.state.testId,
+                                                                "clubCode": this.state.clubCode
+                                                            })
                                                 }}
                                                 disabled={(this.state.passwordMatch && this.state.clubName.length >= 1 && this.state.clubCode.length >= 1 && this.state.email.length >= 1 && this.state.testId.length >= 1) ? false : true}
 
