@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5e798f7152c64f1fa2e21204537dce80",
+    "revision": "782c4b04d4381f4ed7442a645e3d932f",
     "url": "/recruitment-portal-mstc/index.html"
   },
   {
-    "revision": "741ca12d3c6a662e2e60",
+    "revision": "f3014dec5614f7d98f3b",
     "url": "/recruitment-portal-mstc/static/css/main.ffea735d.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/recruitment-portal-mstc/static/js/2.5bb02e94.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "741ca12d3c6a662e2e60",
-    "url": "/recruitment-portal-mstc/static/js/main.e50d7f6b.chunk.js"
+    "revision": "f3014dec5614f7d98f3b",
+    "url": "/recruitment-portal-mstc/static/js/main.b4fc0b22.chunk.js"
   },
   {
     "revision": "baeff9af67b21fc6004f",

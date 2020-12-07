@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/recruitment-portal-mstc/static/css/main.ffea735d.chunk.css",
-    "main.js": "/recruitment-portal-mstc/static/js/main.e50d7f6b.chunk.js",
-    "main.js.map": "/recruitment-portal-mstc/static/js/main.e50d7f6b.chunk.js.map",
+    "main.js": "/recruitment-portal-mstc/static/js/main.b4fc0b22.chunk.js",
+    "main.js.map": "/recruitment-portal-mstc/static/js/main.b4fc0b22.chunk.js.map",
     "runtime-main.js": "/recruitment-portal-mstc/static/js/runtime-main.da98ad9b.js",
     "runtime-main.js.map": "/recruitment-portal-mstc/static/js/runtime-main.da98ad9b.js.map",
     "static/js/2.5bb02e94.chunk.js": "/recruitment-portal-mstc/static/js/2.5bb02e94.chunk.js",
     "static/js/2.5bb02e94.chunk.js.map": "/recruitment-portal-mstc/static/js/2.5bb02e94.chunk.js.map",
     "index.html": "/recruitment-portal-mstc/index.html",
-    "precache-manifest.edd146fb40299a2e947aa6f364d99f9a.js": "/recruitment-portal-mstc/precache-manifest.edd146fb40299a2e947aa6f364d99f9a.js",
+    "precache-manifest.b7ea6cc11f848bc5e04c2e5cd13d8859.js": "/recruitment-portal-mstc/precache-manifest.b7ea6cc11f848bc5e04c2e5cd13d8859.js",
     "service-worker.js": "/recruitment-portal-mstc/service-worker.js",
     "static/css/main.ffea735d.chunk.css.map": "/recruitment-portal-mstc/static/css/main.ffea735d.chunk.css.map",
     "static/js/2.5bb02e94.chunk.js.LICENSE.txt": "/recruitment-portal-mstc/static/js/2.5bb02e94.chunk.js.LICENSE.txt",
@@ -26,6 +26,6 @@
     "static/js/runtime-main.da98ad9b.js",
     "static/js/2.5bb02e94.chunk.js",
     "static/css/main.ffea735d.chunk.css",
-    "static/js/main.e50d7f6b.chunk.js"
+    "static/js/main.b4fc0b22.chunk.js"
   ]
 }
