@@ -13,7 +13,7 @@ class Footer extends Component {
                   <div className=" copyright text-white" style={{fontSize:'1.2rem'}}>
                   Brought to you by  
                   </div><br />
-                <a href='https://mstcvit.co.in'>
+                  <a href='https://stcvit.in'>
                 <img
                   alt="..."
                   className="img-fluid"

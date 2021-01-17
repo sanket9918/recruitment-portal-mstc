@@ -1,1 +1,1 @@
-export const backURL = "https://easyrecruit-backend.azurewebsites.net";
+export const backURL = "https://easy-recruit-back.herokuapp.com";

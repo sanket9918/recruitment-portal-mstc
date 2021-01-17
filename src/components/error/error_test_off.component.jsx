@@ -43,13 +43,7 @@ class ErrorDisable extends Component {
                                     <p className="lead text-white">
                                         <b> NOTE:</b> Contact the exam admin for further queries.
                                     </p>
-                                    <Button
-                                        className="my-4"
-                                        type="submit"
-                                        onClick={this.onLogout}
-                                    >
-                                        Log Out
-                                </Button>
+
 
 
 

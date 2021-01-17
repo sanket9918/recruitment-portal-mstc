@@ -94,6 +94,9 @@ class Exam extends Component {
     }
     componentDidMount() {
         window.scrollTo(0, 0);
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        })
 
         this.loadQuiz();
     }
@@ -154,11 +157,12 @@ class Exam extends Component {
             }
         }
     }
-
+    
     render() {
         const { questions, options, currentQuestion, QuizData, selectedAns, setAns, ansSaved, loading, nextDisable } = this.state;
+
         return (
-            <div>
+            <div classname="Exam-container" style={{ userSelect: 'none', MozUserSelect: 'none', WebkitUserSelect: 'none', msUserSelect: 'none', WebkitTouchCallout: 'none' }}>
                 <Navbar1 />
                 <section className="section section-shaped">
                     <div className="shape shape-style-1 shape-default">

@@ -350,7 +350,7 @@ class OrgSignUp extends Component {
                                             <Input
                                                 id="testId"
                                                 placeholder="Test ID"
-                                                type="text"
+                                                type="number"
                                                 name="testId"
                                                 onChange={this.onChangeAlter}
                                                 error={errors.testId}

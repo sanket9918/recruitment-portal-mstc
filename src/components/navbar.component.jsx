@@ -94,7 +94,7 @@ class Navbar1 extends Component {
                     <NavLink
                       className="nav-link-icon"
                       href="https://www.linkedin.com/company/micvitvellore"
-                      id="tooltip356693867"
+                      id="tooltip356693890"
                       target="_blank"
                     >
                       <i className="fa fa-linkedin" />
@@ -102,7 +102,7 @@ class Navbar1 extends Component {
                         LinkedIn
                       </span>
                     </NavLink>
-                    <UncontrolledTooltip delay={0} target="tooltip356693867">
+                    <UncontrolledTooltip delay={0} target="tooltip356693890">
                       Follow us on LinkedIn
                     </UncontrolledTooltip>
                   </NavItem>

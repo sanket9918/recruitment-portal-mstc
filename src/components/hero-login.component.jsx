@@ -37,6 +37,7 @@ class Login extends React.Component {
     regNo: '',
     password_user: '',
     testId: '',
+    testId_org: '',
     email: '',
     password_org: '',
     errors: {},
@@ -122,7 +123,8 @@ class Login extends React.Component {
     e.preventDefault();
     const orgData = {
       email: this.state.email,
-      password: this.state.password_org
+      password: this.state.password_org,
+      testId: this.state.testId_org
     }
     this.buttonState_org();
 
@@ -468,6 +470,43 @@ class Login extends React.Component {
                                     }>
                                     {errors.password}
                                     {errors.passwordincorrect}
+                                  </span> </div>
+                                <FormGroup
+                                  className={classnames({
+                                    focused: this.state.passwordFocused
+                                  })}
+                                >
+                                  <InputGroup className="input-group-alternative">
+                                    <InputGroupAddon addonType="prepend">
+                                      <InputGroupText>
+                                        <i className="fa fa-newspaper-o" />
+                                      </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input
+                                      placeholder="Test ID"
+                                      type="number"
+                                      id="testId_org"
+                                      onChange={this.onChange}
+                                      value={this.state.testId_org}
+                                      error={errors.testId_org}
+                                      autoComplete="off"
+                                      className={classnames("", {
+                                        invalid: errors.testId_org || errors.testIdIncorrect
+                                      })}
+                                    />
+                                  </InputGroup>
+                                </FormGroup>
+                                <div className="center-tag"
+                                  style={{ margin: 'auto', textAlign: 'center', marginBottom: "1em" }}>
+
+                                  <span className="red-text"
+                                    style={
+                                      {
+                                        color: 'red'
+                                      }
+                                    }>
+                                    {errors.testId_org}
+                                    {errors.testidIncorrect}
                                   </span> </div>
 
                                 <div className="text-center">
